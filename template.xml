@@ -18,11 +18,12 @@
       </ifModule>
   ]]></description>
   <transformations>
-    <transformation query="copy" writer="FileIo" source="images" artifact="img"/>
-    <transformation query="copy" writer="FileIo" source="img" artifact="img"/>
-    <transformation query="copy" writer="FileIo" source="css" artifact="css"/>
-    <transformation query="copy" writer="FileIo" source="fonts" artifact="fonts"/>
-    <transformation query="copy" writer="FileIo" source="js" artifact="js"/>
+    <transformation query="copy" writer="FileIo" source="../data/images" artifact="images"/>
+    <transformation query="copy" writer="FileIo" source="images" artifact="images"/>
+    <transformation query="copy" writer="FileIo" source="templates/joomla/img" artifact="img"/>
+    <transformation query="copy" writer="FileIo" source="templates/joomla/css" artifact="css"/>
+    <transformation query="copy" writer="FileIo" source="templates/joomla/fonts" artifact="fonts"/>
+    <transformation query="copy" writer="FileIo" source="templates/joomla/js" artifact="js"/>
     <transformation writer="twig" source="templates/joomla/index.html.twig" artifact="index.html"/>
     <transformation query="indexes.namespaces" writer="twig" source="templates/joomla/namespace.html.twig" />
     <transformation query="indexes.packages" writer="twig" source="templates/joomla/package.html.twig" />
