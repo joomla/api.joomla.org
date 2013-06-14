@@ -1,11 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-        <div class="hero-unit">
-            <h1>{{ project.name|raw }}</h1>
-            <h2>Documentation</h2>
-        </div>
-
         <div class="row">
             <div class="span7">
                 {% if project.namespace.namespaces.count > 0 or not project.index.packages %}
