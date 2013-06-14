@@ -23,9 +23,10 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 
         <link rel="shortcut icon" href="{{ path('img/favicon.ico') }}"/>
-        <link rel="apple-touch-icon" href="{{ path('img/apple-touch-icon.png') }}"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ path('img/apple-touch-icon-72x72.png') }}"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ path('img/apple-touch-icon-114x114.png') }}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ path('img/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ path('img/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ path('img/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ path('img/apple-touch-icon-57-precomposed.png') }}">
 
         <style type="text/css">
             h1, h2, h3, h4, h5, h6, .site-title {
@@ -165,7 +166,7 @@
                         <a href="{{ path('index.html') }}">{{ project.name }}</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             API Documentation <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
@@ -181,7 +182,7 @@
                         </ul>
                     </li>
                     <li class="dropdown" id="charts-menu">
-                        <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Charts <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
@@ -193,7 +194,7 @@
                         </ul>
                     </li>
                     <li class="dropdown" id="reports-menu">
-                        <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Reports <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">

@@ -2,8 +2,8 @@
 <template>
   <author>Kyle Ledbetter</author>
   <email>kyle@kyleledbetter.com</email>
-  <version>1.0</version>
-  <copyright>Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.</copyright>
+  <version>1.1</version>
+  <copyright>Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.</copyright>
   <description><![CDATA[
       This is the 'Joomla' look and feel for phpDocumentor.
 

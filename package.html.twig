@@ -2,7 +2,7 @@
 
 {% macro elementSummary(element, type) %}
     <div id="{{ element.name }}" class="element ajax clickable {{ type }}">
-        <h1>{{ element.name }}<a href="{{ path(element) }}">¶</a></h1>
+        <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}<a href="{{ path(element) }}">¶</a></h1>
         <p class="short_description">{{ element.summary }}</p>
         <div class="details collapse">{{ element.description }}</div>
         <a href="{{ path(element) }}" class="more">« More »</a>
