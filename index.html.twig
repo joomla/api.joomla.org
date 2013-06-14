@@ -5,7 +5,7 @@
 {% macro renderMarkerCounter(files) %}
     {% set count = 0 %}
     {% for file in files %}
-        {% set count = count  file.markers.count %}
+        {% set count = count + file.markers.count %}
     {% endfor %}
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
@@ -13,7 +13,7 @@
 {% macro renderErrorCounter(files) %}
     {% set count = 0 %}
     {% for file in files %}
-        {% set count = count  file.allerrors.count %}
+        {% set count = count + file.allerrors.count %}
     {% endfor %}
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
