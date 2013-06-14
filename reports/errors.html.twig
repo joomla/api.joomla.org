@@ -20,10 +20,10 @@
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
                 {% for file in project.files %}
-                    {% if file.errors.count > 0 %}
+                    {% if file.allerrors.count > 0 %}
                         <li><a href="#{{ file.path }}}"><i class="icon-file"></i> {{ file.path }}</a></li>
                     {% endif %}
-                    {% set errorCount = errorCount + file.errors.count %}
+                    {% set errorCount = errorCount + file.allerrors.count %}
                 {% endfor %}
             </ul>
         </div>
@@ -40,12 +40,12 @@
 
             {% for file in project.files %}
                 <div class="package-contents">
-                    {% if file.errors.count > 0 %}
+                    {% if file.allerrors.count > 0 %}
                         <a name="{{ file.path }}" id="{{ file.path }}"></a>
                         <h3>
                             <i class="icon-file"></i>
                             {{ file.path }}
-                            <small style="float: right;padding-right: 10px;">{{ file.errors.count }}</small>
+                            <small style="float: right;padding-right: 10px;">{{ file.allerrors.count }}</small>
                         </h3>
                         <div>
                             <table class="table markers table-bordered">
@@ -57,11 +57,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for error in file.errors %}
+                                {% for error in file.allerrors %}
                                     <tr>
-                                        <td>{{ error.type }}</td>
+                                        <td>{{ error.severity }}</td>
                                         <td>{{ error.line }}</td>
-                                        <td>{{ error.message }}</td>
+                                        <td>{{ error.code|trans(error.context) }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

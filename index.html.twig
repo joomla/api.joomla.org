@@ -1,5 +1,23 @@
 {% extends 'layout.html.twig' %}
 
+{% import _self as index %}
+
+{% macro renderMarkerCounter(files) %}
+    {% set count = 0 %}
+    {% for file in files %}
+        {% set count = count  file.markers.count %}
+    {% endfor %}
+    <span class="label label-info">{{ count }}</span>
+{% endmacro %}
+
+{% macro renderErrorCounter(files) %}
+    {% set count = 0 %}
+    {% for file in files %}
+        {% set count = count  file.allerrors.count %}
+    {% endfor %}
+    <span class="label label-info">{{ count }}</span>
+{% endmacro %}
+
 {% block content %}
         <div class="row">
             <div class="span7">
@@ -42,8 +60,8 @@
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Reports</li>
-                        <li><a href="{{ path('errors.html') }}"><i class="icon-list-alt"></i> Errors</a></li>
-                        <li><a href="{{ path('markers.html') }}"><i class="icon-list-alt"></i> Markers</a></li>
+                        <li><a href="{{ path('errors.html') }}"><i class="icon-list-alt"></i> Errors {{ index.renderErrorCounter(project.files) }}</a></li>
+                        <li><a href="{{ path('markers.html') }}"><i class="icon-list-alt"></i> Markers {{ index.renderMarkerCounter(project.files) }}</a></li>
                     </ul>
                 </div>
             </div>
