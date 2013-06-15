@@ -141,7 +141,7 @@ $(document).ready(function() {
             if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, ''))
             {
                 var target = decodeURIComponent(this.hash.replace(/#/,''));
-                // note: I'm using attribute selector, because id selector can't match elements with '$' 
+                // note: I'm using attribute selector, because id selector can't match elements with '$'
                 var $target = $('[id="'+target+'"]');
 
                 if ($target.length > 0)
