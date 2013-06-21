@@ -185,4 +185,11 @@ $(document).ready(function() {
         }
         return [];
     }
+
+    // Hide API Documentation menu if it's empty
+    $('.subnav .dropdown a[id=api]').next().filter(function(el) {
+        if ($(el).children().length == 0) {
+            return true;
+        }
+    }).parent().hide();
 });

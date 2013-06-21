@@ -164,13 +164,13 @@
                         <a href="{{ path('index.html') }}">{{ project.name }}</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a id="api" href="#" class="dropdown-toggle" data-toggle="dropdown">
                             API Documentation <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            {% if (project.namespace.namespaces.count) %}
+                            {% if (project.namespace.children.count > 0) %}
                                 <li><a>Namespaces</a></li>
-                                {% for namespace in project.namespace.namespaces %}
+                                {% for namespace in project.namespace.children %}
                                 <li><a href="{{ path(namespace) }}">{{ namespace.name }}</a></li>
                                 {% endfor %}
                             {% endif %}
@@ -180,7 +180,7 @@
                         </ul>
                     </li>
                     <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a id="charts" href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Charts <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
@@ -192,7 +192,7 @@
                         </ul>
                     </li>
                     <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a id="reports" href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Reports <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">

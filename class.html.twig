@@ -1,5 +1,7 @@
 {% extends 'layout.html.twig' %}
 
+{% use 'base/class.sidebar.html.twig' %}
+
 {% macro buildBreadcrumb(element) %}
     {% import _self as self %}
 
@@ -21,63 +23,7 @@
 
     <div class="row">
         <div class="span4">
-            <span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
-                <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-            </div>
-            <ul class="side-nav nav nav-list">
-                <li class="nav-header">
-                    <i class="icon-custom icon-method"></i> Methods
-                    <ul>
-                        {% for method in node.methods %}
-                            {% if method.visibility == 'public' %}
-                            <li class="method {{ method.visibility }}{{ method.parent.name != node.name ? ' inherited' : '' }}">
-                                <a href="#method_{{ method.name }}" title="{{ method.name }} :: {{ method.summary }}">
-                                    <span class="description">{{ method.summary }}</span><pre>{{ method.name }}</pre>
-                                </a>
-                            </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li class="nav-header protected">» Protected
-                    <ul>
-                        {% for method in node.methods %}
-                            {% if method.visibility == 'protected' %}
-                                <li class="method {{ method.visibility }}{{ method.parent.name != node.name ? ' inherited' : '' }}">
-                                    <a href="#method_{{ method.name }}" title="{{ method.name }} :: {{ method.summary }}">
-                                        <span class="description">{{ method.summary }}</span><pre>{{ method.name }}</pre>
-                                    </a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li class="nav-header private">» Private
-                    <ul>
-                        {% for method in node.methods %}
-                            {% if method.visibility == 'private' %}
-                                <li class="method {{ method.visibility }}{{ method.parent.name != node.name ? ' inherited' : '' }}">
-                                    <a href="#method_{{ method.name }}" title="{{ method.name }} :: {{ method.summary }}">
-                                        <span class="description">{{ method.summary }}</span><pre>{{ method.name }}</pre>
-                                    </a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li class="nav-header">
-                    <i class="icon-custom icon-constant"></i> Constants
-                    <ul>
-                        {% for constant in node.constants %}
-                        <li class="constant {{ constant.visibility }}">
-                            <a href="#constant_{{ constant.name }}" title="{{ constant.name }} :: {{ constant.summary }}">
-                                <span class="description">{{ constant.summary }}</span><pre>{{ constant.name }}</pre>
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
+            {{ block('sidebar') }}
         </div>
 
         <div class="span8">
@@ -106,14 +52,19 @@
                                             {{ tag.type|route|join('|')|raw }}
                                         {% endif %}
                                     </th>
-                                    <td>{{ tag.description }}</td>
+                                    <td>
+                                        {% if (tag.name == "since") %}
+                                            {{ tag.version }}
+                                        {% endif %}
+                                        {{ tag.description|markdown|raw }}
+                                    </td>
                                 </tr>
                             {% endfor %}
                         {% endfor %}
                     </table>
 
                     <h3><i class="icon-custom icon-method"></i> Methods</h3>
-                    {% for method in node.methods %}
+                    {% for method in node.methods.merge(node.inheritedMethods) %}
                         <a id="method_{{ method.name }}"></a>
                         <div class="element clickable method {{ method.visibility }} method_{{ method.name }}{{ method.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".method_{{ method.name }} .collapse">
                             <h2>{{ method.summary ?: method.name }}</h2>
@@ -137,6 +88,9 @@
                                                 </th>
                                                 <td>
                                                     {% for tag in tagList %}
+                                                        {% if (tag.name == "since") %}
+                                                            {{ tag.version }}
+                                                        {% endif %}
                                                         {{ tag.description|markdown|raw }}<br />
                                                     {% endfor %}
                                                 </td>
@@ -163,9 +117,9 @@
                         </div>
                     {% endfor %}
 
-                    {% if node.constants.count > 0 %}
+                    {% if node.constants.merge(node.inheritedConstants).count > 0 %}
                         <h3><i class="icon-custom icon-constant"></i> Constants</h3>
-                        {% for constant in node.constants %}
+                        {% for constant in node.constants.merge(node.inheritedConstants) %}
                             <a id="constant_{{ constant.name }}"> </a>
                             <div class="element clickable constant  constant_{{ constant.name }}{{ constant.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".constant_{{ constant.name }} .collapse">
                                 <h2>{{ constant.summary ?: constant.name }}</h2>
@@ -182,9 +136,9 @@
                         {% endfor %}
                     {% endif %}
 
-                    {% if node.properties.count > 0 %}
+                    {% if node.properties.merge(node.inheritedProperties).count > 0 %}
                         <h3><i class="icon-custom icon-property"></i> Properties</h3>
-                        {% for property in node.properties %}
+                        {% for property in node.properties.merge(node.inheritedProperties) %}
                             <a id="property_{{ property.name }}"> </a>
                             <div class="element clickable property {{ property.visibility }} property_{{ property.name }}{{ property.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".property_{{ property.name }} .collapse">
                                 <h2>{{ property.summary ?: property.name }}</h2>
