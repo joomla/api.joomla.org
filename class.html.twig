@@ -31,7 +31,7 @@
                     </div>
                     <table class="table table-bordered">
                         {% for tagList in node.tags %}
-                            {% for tag in tagList %}
+                            {% for tag in tagList if tag.name not in ['method', 'property'] %}
                                 <tr>
                                     <th>
                                         {{ tag.name }}
@@ -40,10 +40,13 @@
                                         {% endif %}
                                     </th>
                                     <td>
-                                        {% if (tag.name == "since") %}
-                                            {{ tag.version }}
+                                        {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                            {{ tag.version|markdown|raw }}
+                                        {% elseif (tag.name == "see") %}
+                                            {{ tag.reference|route|raw }}
+                                        {% else %}
+                                            {{ tag.description|markdown|raw }}
                                         {% endif %}
-                                        {{ tag.description|markdown|raw }}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -76,10 +79,13 @@
                                                 </th>
                                                 <td>
                                                     {% for tag in tagList %}
-                                                        {% if (tag.name == "since") %}
-                                                            {{ tag.version }}
+                                                        {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                                            {{ tag.version|markdown|raw }}
+                                                        {% elseif (tag.name == "see") %}
+                                                            {{ tag.reference|route|raw }}
+                                                        {% else %}
+                                                            {{ tag.description|markdown|raw }}<br />
                                                         {% endif %}
-                                                        {{ tag.description|markdown|raw }}<br />
                                                     {% endfor %}
                                                 </td>
                                             </tr>
@@ -126,7 +132,13 @@
                                                     </th>
                                                     <td>
                                                         {% for tag in tagList %}
-                                                            {{ tag.description|markdown|raw }}
+                                                            {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                                                {{ tag.version|markdown|raw }}
+                                                            {% elseif (tag.name == "see") %}
+                                                                {{ tag.reference|route|raw }}
+                                                            {% else %}
+                                                                {{ tag.description|markdown|raw }}<br />
+                                                            {% endif %}
                                                         {% endfor %}
                                                     </td>
                                                 </tr>
@@ -145,7 +157,7 @@
                             <a id="property_{{ property.name }}"> </a>
                             <div class="element clickable property {{ property.visibility }} property_{{ property.name }}{{ property.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".property_{{ property.name }} .collapse">
                                 <h2>{{ property.summary ?: property.var.0.description ?: property.name }}</h2>
-                                <pre>{{ property.name }}</pre>
+                                <pre>{{ property.name }} : {{ property.types|join('|') }}</pre>
                                 <div class="labels">
                                     {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                     {% if property.static %}<span class="label">static</span>{% endif %}
@@ -162,12 +174,23 @@
                                                     </th>
                                                     <td>
                                                         {% for tag in tagList %}
-                                                            {{ tag.description|markdown|raw }}
+                                                            {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                                                {{ tag.version|markdown|raw }}
+                                                            {% elseif (tag.name == "see") %}
+                                                                {{ tag.reference|route|raw }}
+                                                            {% else %}
+                                                                {{ tag.description|markdown|raw }}<br />
+                                                            {% endif %}
                                                         {% endfor %}
                                                     </td>
                                                 </tr>
                                             {% endfor %}
                                         </table>
+
+                                        {% if property.types and property.types|join() != 'void' %}
+                                            <h3>Type(s)</h3>
+                                            <code>{{ property.types|route|join('|')|raw }}</code>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

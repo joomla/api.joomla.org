@@ -21,7 +21,7 @@
                 {% set errorCount = 0 %}
                 {% for file in project.files %}
                     {% if file.allerrors.count > 0 %}
-                        <li><a href="#{{ file.path }}}"><i class="icon-file"></i> {{ file.path }}</a></li>
+                        <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
                     {% endif %}
                     {% set errorCount = errorCount + file.allerrors.count %}
                 {% endfor %}

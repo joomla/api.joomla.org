@@ -17,7 +17,7 @@ function initializeContents()
     // do a background color change on hover to emphasize the clickability eveb more
     // we do not use CSS for this because when JS is disabled this behaviour does not
     // apply and we do not want the hover
-    $(".element.method,.element.function,.element.class.clickable,.element.interface.clickable")
+    $(".element.method,.element.function,.element.class.clickable,.element.interface.clickable,.element.property.clickable")
         .css("cursor", "pointer")
         .hover(function() {
             $(this).css('backgroundColor', '#F8FDF6')
@@ -25,10 +25,18 @@ function initializeContents()
             $(this).css('backgroundColor', 'white')}
         );
 
+    $("ul.side-nav.nav.nav-list li.nav-header").contents()
+        .filter(function(){return this.nodeType === 3})
+        .wrap('<span class="side-nav-header" />');
+
+    $("ul.side-nav.nav.nav-list li.nav-header span.side-nav-header")
+        .css("cursor", "pointer");
+
     // do not show tooltips on iPad; it will cause the user having to click twice
     if (!$.browser.ipad) {
-        $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
+        $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter,.icon-custom')
             .tooltip({'placement':'bottom'});
+        $('.element').tooltip({'placement':'left'});
     }
 
     $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
@@ -69,6 +77,10 @@ function initializeContents()
     }).button('toggle').click();
     $('.view button.simple').click(function(){
         $('.side-nav li').addClass('view-simple');
+    });
+
+    $('ul.side-nav.nav.nav-list li.nav-header span.side-nav-header').click(function(){
+        $(this).siblings('ul').collapse('toggle');
     });
 
 // sorting example
