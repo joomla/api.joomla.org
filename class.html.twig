@@ -40,8 +40,10 @@
                                         {% endif %}
                                     </th>
                                     <td>
-                                        {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                        {% if (tag.name == "since") %}
                                             {{ tag.version|markdown|raw }}
+                                        {% elseif (tag.name == "deprecated") %}
+                                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                         {% elseif (tag.name == "see") %}
                                             {{ tag.reference|route|raw }}
                                         {% else %}
@@ -79,12 +81,17 @@
                                                 </th>
                                                 <td>
                                                     {% for tag in tagList %}
-                                                        {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                                        {% if (tag.name == "since") %}
                                                             {{ tag.version|markdown|raw }}
+                                                        {% elseif (tag.name == "deprecated") %}
+                                                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                                         {% elseif (tag.name == "see") %}
                                                             {{ tag.reference|route|raw }}
+                                                        {% elseif (tag.name == "throws") %}
+                                                            {% set tTypes = tag.types|route|join('|')|raw %}
+                                                            {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
                                                         {% else %}
-                                                            {{ tag.description|markdown|raw }}<br />
+                                                            {{ tag.description|markdown|raw }}
                                                         {% endif %}
                                                     {% endfor %}
                                                 </td>
@@ -97,14 +104,16 @@
                                         {% for argument in method.arguments %}
                                             <div class="subelement argument">
                                                 <h4>{{ argument.name }}</h4>
-                                                <code>{{ argument.types|route|join('|')|raw }}</code><p>{{ argument.description|markdown|raw }}</p>
+                                                {% set aTypes = argument.types|route|join('|')|raw %}
+                                                {{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}
                                             </div>
                                         {% endfor %}
                                     {% endif %}
 
                                     {% if method.response.types and method.response.types|join() != 'void' %}
                                         <h3>Response</h3>
-                                        <code>{{ method.response.types|route|join('|')|raw }}</code><p>{{ method.response.description|markdown|raw }}</p>
+                                        {% set rTypes = method.response.types|route|join('|')|raw %}
+                                        {{ ('<code>' ~ rTypes ~ '</code>' ~ method.response.description)|markdown|raw }}
                                     {% endif %}
                                 </div>
                             </div>
@@ -132,12 +141,14 @@
                                                     </th>
                                                     <td>
                                                         {% for tag in tagList %}
-                                                            {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                                            {% if (tag.name == "since") %}
                                                                 {{ tag.version|markdown|raw }}
+                                                            {% elseif (tag.name == "deprecated") %}
+                                                                {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                                             {% elseif (tag.name == "see") %}
                                                                 {{ tag.reference|route|raw }}
                                                             {% else %}
-                                                                {{ tag.description|markdown|raw }}<br />
+                                                                {{ tag.description|markdown|raw }}
                                                             {% endif %}
                                                         {% endfor %}
                                                     </td>
@@ -174,12 +185,14 @@
                                                     </th>
                                                     <td>
                                                         {% for tag in tagList %}
-                                                            {% if (tag.name == "since" or tag.name == "deprecated") %}
+                                                            {% if (tag.name == "since") %}
                                                                 {{ tag.version|markdown|raw }}
+                                                            {% elseif (tag.name == "deprecated") %}
+                                                                {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                                             {% elseif (tag.name == "see") %}
                                                                 {{ tag.reference|route|raw }}
                                                             {% else %}
-                                                                {{ tag.description|markdown|raw }}<br />
+                                                                {{ tag.description|markdown|raw }}
                                                             {% endif %}
                                                         {% endfor %}
                                                     </td>

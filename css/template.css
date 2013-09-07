@@ -8866,31 +8866,24 @@ pre code
     border: none;
 }
 
-div.element div.subelement  > code
+div.element div.subelement > code, div.element div.detail-description > p > code
 {
-    font-size:    0.8em;
     float:        left;
     margin-right: 10px;
     padding:      0 5px;
     line-height:  16px;
 }
 
-div.element div.subelement  > p
-{
-    margin-left: 20px;
-    margin-right: 50px;
-}
-
 div.element div.subelement h4
 {
-    color: #666;
+    color:         #666;
     margin-bottom: 5px;
 }
 
 div.element div.subelement.response
 {
     padding-bottom: 15px;
-    margin-right: 50px;
+    margin-right:   50px;
 }
 
 div.labels
@@ -8898,14 +8891,21 @@ div.labels
     text-align: right;
 }
 
-.detail-description code {
-    white-space: pre;
-    display:     inline-block;
-    padding:     10px;
+.detail-description > p
+{
+    margin-left: 10px;
 }
 
-.visibility .btn {
+.detail-description code
+{
+    white-space:  pre;
+    display:      inline-block;
+    margin-right: 10px;
+}
+
+.visibility .btn
+{
     text-transform: uppercase;
-    font-size: 9px;
-    font-weight: bold;
+    font-size:      9px;
+    font-weight:    bold;
 }
