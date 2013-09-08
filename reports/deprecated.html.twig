@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="row-fluid">
 
-        <div class="span4">
+        <div class="span5">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
                 {% for file in project.files if file.tags.deprecated %}
@@ -16,7 +16,7 @@
             </ul>
         </div>
 
-        <div class="span8">
+        <div class="span7">
             <ul class="breadcrumb">
                 <li><a href="{{ path('/') }}"><i class="icon-stop"></i></a><span class="divider">\</span></li>
                 <li>Deprecated elements</li>

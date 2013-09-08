@@ -14,8 +14,8 @@
         </div>
 
         <div class="span7">
-            <div class="element class">
-                <h1><i class="icon-custom icon-class"></i> {{ node.name }}</h1>
+            <div class="element interface">
+                <h1><i class="icon-custom icon-interface"></i> {{ node.name }}</h1>
                 <small style="display: block; text-align: right">
                     {% if node.parent %}
                         Extends {{ node.parent|route|join(', ')|raw }}
@@ -27,10 +27,6 @@
                 <p class="short_description">{{ node.summary }}</p>
                 <div class="details">
                     <div class="long_description">
-                        <div class="labels">
-                            {% if node.final %}<span class="label">final</span>{% endif %}
-                            {% if node.abstract %}<span class="label">abstract</span>{% endif %}
-                        </div>
                         {{ node.description|markdown|raw }}
                     </div>
                     <table class="table table-bordered">
@@ -219,7 +215,7 @@
             </div>
             <a id="{{ node.fullyQualifiedStructuralElementName }}"></a>
             <ul class="breadcrumb">
-                <li><a href="{{ path('index.html') }}"><i class="icon-custom icon-class"></i></a></li>
+                <li><a href="{{ path('index.html') }}"><i class="icon-custom icon-interface"></i></a></li>
                 {{ macros.buildBreadcrumb(node.namespace) }}
                 <li class="active"><span class="divider">\</span><a href="{{ path(node) }}">{{ node.name }}</a></li>
             </ul>

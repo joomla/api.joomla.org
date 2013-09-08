@@ -27,8 +27,8 @@
     <transformation writer="twig" source="templates/joomla/index.html.twig" artifact="index.html"/>
     <transformation query="indexes.namespaces" writer="twig" source="templates/joomla/namespace.html.twig" />
     <transformation query="indexes.packages" writer="twig" source="templates/joomla/package.html.twig" />
+    <transformation query="indexes.interfaces" writer="twig" source="templates/joomla/interface.html.twig" />
     <transformation query="indexes.classes" writer="twig" source="templates/joomla/class.html.twig" />
-    <transformation query="indexes.interfaces" writer="twig" source="templates/joomla/class.html.twig" />
     <transformation writer="twig" source="templates/joomla/reports/markers.html.twig" artifact="markers.html"/>
     <transformation writer="twig" source="templates/joomla/reports/errors.html.twig" artifact="errors.html"/>
     <transformation writer="twig" source="templates/joomla/reports/deprecated.html.twig" artifact="deprecated.html"/>

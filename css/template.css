@@ -8621,7 +8621,7 @@ h2:first-of-type
 
 .package-contents h2
 {
-    background-image: url('../img/icons/icon-folder-open-big.png');
+    background-image: url('../images/icons/folder.gif');
 }
 
 .namespace-contents .element h2, .package-contents .element h2
@@ -8818,21 +8818,21 @@ ul.side-nav li.view-simple a
     height: 24px;
 }
 
-.icon-constant  { background-image: url('../img/icons/constant.png'); }
+.icon-constant  { background-image: url('../images/icons/constant.png'); }
 
-.icon-function  { background-image: url('../img/icons/function.png'); }
+.icon-function  { background-image: url('../images/icons/function.png'); }
 
-.icon-method    { background-image: url('../img/icons/method.png'); }
+.icon-method    { background-image: url('../images/icons/method.png'); }
 
-.icon-class     { background-image: url('../img/icons/class.png'); }
+.icon-class     { background-image: url('../images/icons/class.png'); }
 
-.icon-interface { background-image: url('../img/icons/interface.png'); }
+.icon-interface { background-image: url('../images/icons/interface.png'); }
 
-.icon-property  { background-image: url('../img/icons/property.png'); }
+.icon-property  { background-image: url('../images/icons/property.png'); }
 
-.icon-show-public    { background-image: url('../img/icons/visibility_public.png'); }
-.icon-show-protected { background-image: url('../img/icons/visibility_protected.png'); }
-.icon-show-private   { background-image: url('../img/icons/visibility_private.png'); }
+.icon-show-public    { background-image: url('../images/icons/visibility_public.png'); }
+.icon-show-protected { background-image: url('../images/icons/visibility_protected.png'); }
+.icon-show-private   { background-image: url('../images/icons/visibility_private.png'); }
 
 span.empty-namespace
 {
