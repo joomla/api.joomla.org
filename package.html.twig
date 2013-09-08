@@ -27,7 +27,7 @@
     {% if node.classes.count > 0 or node.interfaces.count > 0 or node.traits.count > 0 or node.functions.count > 0 or node.constants.count > 0 %}
 
         <ul class="breadcrumb">
-            <li><a href="{{ path('index.html') }}"><i class="icon-th"></i></a></li>
+            <li><a href="{{ path('index.html') }}"><i class="icon-grid-view-2"></i></a></li>
             {{ self.buildBreadcrumb(node) }}
         </ul>
 
@@ -78,7 +78,7 @@
     {% for package in node.children %}
     <li>
         <a href="{{ path(package) }}" title="{{ package.name }}">
-            <i class="icon-th"></i> {{ package.name }}
+            <i class="icon-grid-view-2"></i> {{ package.name }}
         </a>
         <ul class="nav nav-list nav-packages">
             {{ self.renderPackageSidebar(package) }}
@@ -100,7 +100,7 @@
             <div class="btn-group view pull-right" data-toggle="buttons-radio">
                 <button class="btn details" title="Show descriptions and method names">
                     <i class="icon-list"></i></button><button class="btn simple" title="Show only method names">
-                    <i class="icon-align-justify"></i>
+                    <i class="icon-paragraph-justify"></i>
                 </button>
             </div>
             <ul class="side-nav nav nav-list">
