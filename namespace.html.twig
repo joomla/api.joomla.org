@@ -94,9 +94,9 @@
 {% block content %}
     {% import _self as self %}
 
-    <div class="row">
+    <div class="row-fluid">
 
-        <div class="span4">
+        <div class="span5">
             <div class="btn-group view pull-right" data-toggle="buttons-radio">
                 <button class="btn details" title="Show descriptions and method names">
                     <i class="icon-list"></i></button><button class="btn simple" title="Show only method names">
@@ -111,7 +111,7 @@
             </ul>
         </div>
 
-        <div class="span8 namespace-contents">
+        <div class="span7 namespace-contents">
             {{ self.renderNamespaceDetails(node) }}
         </div>
     </div>

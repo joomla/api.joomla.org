@@ -5324,7 +5324,6 @@ a.badge:focus {
   .navbar-fixed-bottom .container {
     width: 1170px;
   }
-  /* Commented span widths here due to max-width: 960px
   .span12 {
     width: 1170px;
   }
@@ -5360,7 +5359,7 @@ a.badge:focus {
   }
   .span1 {
     width: 70px;
-  } */
+  }
   .offset12 {
     margin-left: 1230px;
   }
