@@ -1,9 +1,8 @@
 {% extends 'layout.html.twig' %}
 
-{% import 'base/macros.html.twig' as macros %}
-
 {% macro renderPackageDetails(node) %}
     {% import _self as self %}
+    {% import 'base/macros.html.twig' as macros %}
 
     {% if node.classes.count > 0 or node.interfaces.count > 0 or node.traits.count > 0 or node.functions.count > 0 or node.constants.count > 0 %}
 
@@ -16,7 +15,7 @@
             <div class="package-indent">
                 <h3><i class="icon-custom icon-function"></i> Functions</h3>
                 {% for function in node.functions %}
-                    {{ self.elementSummary(function, 'function') }}
+                    {{ macros.elementSummary(function, 'function') }}
                 {% endfor %}
             </div>
         {% endif %}
@@ -25,7 +24,7 @@
             <div class="package-indent">
                 <h3><i class="icon-custom icon-constant"></i> Constants</h3>
                 {% for constant in node.constants %}
-                    {{ self.elementSummary(constant, 'constant') }}
+                    {{ macros.elementSummary(constant, 'constant') }}
                 {% endfor %}
             </div>
         {% endif %}
@@ -34,15 +33,15 @@
             <div class="package-indent">
                 <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
                 {% for trait in node.traits %}
-                    {{ self.elementSummary(trait, 'trait') }}
+                    {{ macros.elementSummary(trait, 'trait') }}
                 {% endfor %}
 
                 {% for interface in node.interfaces %}
-                    {{ self.elementSummary(interface, 'interface') }}
+                    {{ macros.elementSummary(interface, 'interface') }}
                 {% endfor %}
 
                 {% for class in node.classes %}
-                    {{ self.elementSummary(class, 'class') }}
+                    {{ macros.elementSummary(class, 'class') }}
                 {% endfor %}
             </div>
         {% endif %}

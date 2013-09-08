@@ -16,7 +16,8 @@
         <div class="span7">
             <div class="element interface">
                 <h1><i class="icon-custom icon-interface"></i> {{ node.name }}</h1>
-                <small style="display: block; text-align: right">
+                {% if node.parent or node.interfaces.count %}
+                <small class="pull-right">
                     {% if node.parent %}
                         Extends {{ node.parent|route|join(', ')|raw }}
                     {% endif %}
@@ -24,10 +25,11 @@
                         Implements {{ node.interfaces|route|join(', ')|raw }}
                     {% endif %}
                 </small>
+                {% endif %}
                 <p class="short_description">{{ node.summary }}</p>
                 <div class="details">
                     <div class="long_description">
-                        {{ node.description|markdown|raw }}
+                        {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
                     </div>
                     <table class="table table-bordered">
                         {% for tagList in node.tags %}
@@ -62,8 +64,10 @@
                     {% for method in node.methods.merge(specialMethods) %}
                         <a id="method_{{ method.name }}"></a>
                         <div class="element clickable method {{ method.visibility }} method_{{ method.name }}{{ method.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".method_{{ method.name }} .collapse">
-                            <h2>{{ method.summary ?: method.name }}</h2>
-                            <pre>{{ method.name }}({% for argument in method.arguments %}{{ argument.types ? argument.types|join('|')~' ' }}{{ argument.byReference ? '&' }}{{ argument.name }}{{ argument.default ? ' = '~argument.default }}{% if not loop.last %}, {% endif %}{% endfor %}) {{ method.response.types ? ': '~method.response.types|join('|') }}</pre>
+                            <h2>{{ method.name}}</h2>
+                            {% if method.summary %}{{ method.summary|markdown|raw }}{% endif %}
+                            <pre>{{ method.name }}({% for argument in method.arguments %}{{ argument.types ? argument.types|join('|') ~ ' ' }}{{ argument.byReference ? '&' }}{{ argument.name }}{{ argument.default ? ' = ' ~ argument.default }}{% if not loop.last %}, {% endif %}{% endfor %}) {{ method.response.types ? ': ' ~ method.response.types|join('|') }}</pre>
+                            {% if (method.parent.name != node.name) or method.static or method.final or method.abstract or (method.tags.api is defined) %}
                             <div class="labels">
                                 {% if method.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                 {% if method.static %}<span class="label">static</span>{% endif %}
@@ -71,9 +75,12 @@
                                 {% if method.abstract %}<span class="label">abstract</span>{% endif %}
                                 {% if method.tags.api is defined %}<span class="label label-info">api</span>{% endif %}
                             </div>
+                            {% endif %}
                             <div class="row collapse">
                                 <div class="detail-description">
+                                    {% if method.description %}
                                     <div class="long_description">{{ method.description|markdown|raw }}</div>
+                                    {% endif %}
 
                                     <table class="table">
                                         {% for tagList in method.tags if tagList.0.name not in ['param', 'return', 'api'] %}
@@ -127,8 +134,8 @@
                         {% for constant in node.constants.merge(node.inheritedConstants) %}
                             <a id="constant_{{ constant.name }}"> </a>
                             <div class="element clickable constant  constant_{{ constant.name }}{{ constant.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".constant_{{ constant.name }} .collapse">
-                                <h2>{{ constant.summary ?: constant.name }}</h2>
-                                <pre>{{ constant.name }}</pre>
+                                <h2>{{ constant.name}}</h2>
+                                {% if constant.summary %}{{ constant.summary|markdown|raw }}{% endif %}
                                 <div class="labels">
                                     {% if constant.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                 </div>
@@ -169,8 +176,9 @@
                         {% for property in node.properties.merge(specialProperties) %}
                             <a id="property_{{ property.name }}"> </a>
                             <div class="element clickable property {{ property.visibility }} property_{{ property.name }}{{ property.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".property_{{ property.name }} .collapse">
-                                <h2>{{ property.summary ?: property.var.0.description ?: property.name }}</h2>
-                                <pre>{{ property.name }} : {{ property.types|join('|') }}</pre>
+                                <h2>{{ property.name }}</h2>
+                                {% set desc = (property.summary ?: property.var.0.description ?: '') %}
+                                {% if desc %}{{ desc|markdown|raw }}{% endif %}
                                 <div class="labels">
                                     {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                     {% if property.static %}<span class="label">static</span>{% endif %}
@@ -221,5 +229,4 @@
             </ul>
         </div>
     </div>
-
 {% endblock %}
