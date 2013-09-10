@@ -47,21 +47,21 @@
         {% endif %}
     {% endif %}
 
-    {% for package in node.children %}
-        {{ self.renderPackageDetails(package) }}
+    {% for package in node.children|keys|sort %}
+        {{ self.renderPackageDetails(node.children[package]) }}
     {% endfor %}
 {% endmacro %}
 
 {% macro renderPackageSidebar(node) %}
     {% import _self as self %}
 
-    {% for package in node.children %}
+    {% for package in node.children|keys|sort %}
     <li>
-        <a href="{{ path(package) }}" title="{{ package.name }}">
-            <i class="icon-grid-view-2"></i> {{ package.name }}
+        <a href="{{ path(node.children[package]) }}" title="{{ attribute(node.children, package).name }}">
+            <i class="icon-grid-view-2"></i> {{ attribute(node.children, package).name }}
         </a>
         <ul class="nav nav-list nav-packages">
-            {{ self.renderPackageSidebar(package) }}
+            {{ self.renderPackageSidebar(node.children[package]) }}
         </ul>
     </li>
     {% endfor %}
