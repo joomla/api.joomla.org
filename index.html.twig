@@ -5,7 +5,7 @@
 {% block content %}
         <div class="row-fluid">
             <div class="span7">
-                {% if project.namespace.namespaces.count > 0 or not project.index.packages %}
+                {% if project.namespace.namespaces|length > 0 or not project.index.packages %}
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Namespaces</li>
@@ -19,7 +19,7 @@
                     </div>
                 {% endif %}
 
-                {% if project.indexes.packages.count %}
+                {% if project.indexes.packages|length %}
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Packages</li>

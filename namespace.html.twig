@@ -4,14 +4,14 @@
     {% import _self as self %}
     {% import 'base/macros.html.twig' as macros %}
 
-    {% if node.classes.count > 0 or node.interfaces.count > 0 or node.traits.count > 0 or node.functions.count > 0 or node.constants.count > 0 %}
+    {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 or node.functions|length > 0 or node.constants|length > 0 %}
 
         <ul class="breadcrumb">
             <li><a href="{{ path('index.html') }}"><i class="icon-grid-view-2"></i></a></li>
             {{ macros.buildBreadcrumb(node) }}
         </ul>
 
-        {% if node.functions.count > 0 %}
+        {% if node.functions|length > 0 %}
             <div class="namespace-indent">
                 <h3><i class="icon-custom icon-function"></i> Functions</h3>
                 {% for function in node.functions %}
@@ -20,7 +20,7 @@
             </div>
         {% endif %}
 
-        {% if node.constants.count > 0 %}
+        {% if node.constants|length > 0 %}
             <div class="namespace-indent">
                 <h3><i class="icon-custom icon-constant"></i> Constants</h3>
                 {% for constant in node.constants %}
@@ -29,7 +29,7 @@
             </div>
         {% endif %}
 
-        {% if node.classes.count > 0 or node.interfaces.count > 0 or node.traits.count > 0 %}
+        {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 %}
             <div class="namespace-indent">
                 <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
                 {% for trait in node.traits %}

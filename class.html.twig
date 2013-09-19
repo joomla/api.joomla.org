@@ -16,12 +16,12 @@
         <div class="span7">
             <div class="element class">
                 <h1><i class="icon-custom icon-class"></i> {{ node.name }}</h1>
-                {% if node.parent or node.interfaces.count %}
+                {% if node.parent or node.interfaces|length %}
                 <small class="pull-right">
                     {% if node.parent %}
                         Extends {{ node.parent|route|join(', ')|raw }}
                     {% endif %}
-                    {% if node.interfaces.count %}
+                    {% if node.interfaces|length %}
                         Implements {{ node.interfaces|route|join(', ')|raw }}
                     {% endif %}
                 </small>
@@ -53,7 +53,11 @@
                                         {% elseif (tag.name == "deprecated") %}
                                             {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                         {% elseif (tag.name == "see") %}
-                                            {{ tag.reference|route|raw }}
+                                            {% if tag.reference|slice(1, 4) == "http" %}
+                                                <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                            {% else %}
+                                                {{ tag.reference|route|raw }}
+                                            {% endif %}
                                         {% elseif (tag.name == "package") %}
                                             <a href="{{ path('packages/' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
                                         {% elseif (tag.name == "subpackage") %}
@@ -103,7 +107,11 @@
                                                         {% elseif (tag.name == "deprecated") %}
                                                             {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                                         {% elseif (tag.name == "see") %}
-                                                            {{ tag.reference|route|raw }}
+                                                            {% if tag.reference|slice(1, 4) == "http" %}
+                                                                <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                                            {% else %}
+                                                                {{ tag.reference|route|raw }}
+                                                            {% endif %}
                                                         {% elseif (tag.name == "throws") %}
                                                             {% set tTypes = tag.types|route|join('|')|raw %}
                                                             {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
@@ -116,7 +124,7 @@
                                         {% endfor %}
                                     </table>
 
-                                    {% if method.arguments.count > 0 %}
+                                    {% if method.arguments|length > 0 %}
                                         <h3>Arguments</h3>
                                         {% for argument in method.arguments %}
                                             <div class="subelement argument">
@@ -137,7 +145,7 @@
                         </div>
                     {% endfor %}
 
-                    {% if node.constants.merge(node.inheritedConstants).count > 0 %}
+                    {% if node.constants.merge(node.inheritedConstants)|length > 0 %}
                         <h3><i class="icon-custom icon-constant"></i> Constants</h3>
                         {% for constant in node.constants.merge(node.inheritedConstants) %}
                             <a id="constant_{{ constant.name }}"> </a>
@@ -163,7 +171,11 @@
                                                             {% elseif (tag.name == "deprecated") %}
                                                                 {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                                             {% elseif (tag.name == "see") %}
-                                                                {{ tag.reference|route|raw }}
+                                                                {% if tag.reference|slice(1, 4) == "http" %}
+                                                                    <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                                                {% else %}
+                                                                    {{ tag.reference|route|raw }}
+                                                                {% endif %}
                                                             {% else %}
                                                                 {{ tag.description|markdown|raw }}
                                                             {% endif %}
@@ -179,7 +191,7 @@
                     {% endif %}
 
                     {% set specialProperties = node.magicProperties ? node.inheritedProperties.merge(node.magicProperties) : node.inheritedProperties %}
-                    {% if node.properties.merge(specialProperties).count > 0 %}
+                    {% if node.properties.merge(specialProperties)|length > 0 %}
                         <h3><i class="icon-custom icon-property"></i> Properties</h3>
                         {% for property in node.properties.merge(specialProperties) %}
                             <a id="property_{{ property.name }}"> </a>
@@ -209,7 +221,11 @@
                                                             {% elseif (tag.name == "deprecated") %}
                                                                 {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                                             {% elseif (tag.name == "see") %}
-                                                                {{ tag.reference|route|raw }}
+                                                                {% if tag.reference|slice(1, 4) == "http" %}
+                                                                    <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                                                {% else %}
+                                                                    {{ tag.reference|route|raw }}
+                                                                {% endif %}
                                                             {% else %}
                                                                 {{ tag.description|markdown|raw }}
                                                             {% endif %}

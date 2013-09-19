@@ -20,10 +20,10 @@
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
                 {% for file in project.files %}
-                    {% if file.allerrors.count > 0 %}
+                    {% if file.allerrors|length > 0 %}
                         <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
                     {% endif %}
-                    {% set errorCount = errorCount + file.allerrors.count %}
+                    {% set errorCount = errorCount + file.allerrors|length %}
                 {% endfor %}
             </ul>
         </div>
@@ -40,12 +40,12 @@
 
             {% for file in project.files %}
                 <div class="package-contents">
-                    {% if file.allerrors.count > 0 %}
+                    {% if file.allerrors|length > 0 %}
                         <a name="{{ file.path }}" id="{{ file.path }}"></a>
                         <h3>
                             <i class="icon-file"></i>
                             {{ file.path }}
-                            <small style="float: right;padding-right: 10px;">{{ file.allerrors.count }}</small>
+                            <small style="float: right;padding-right: 10px;">{{ file.allerrors|length }}</small>
                         </h3>
                         <div>
                             <table class="table markers table-bordered">

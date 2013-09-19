@@ -164,7 +164,7 @@
         </header>
 
         {% block header %}
-        <div class="subnav" data-spy="affix" data-offset-top="68">
+        <div class="subnav" data-spy="affix" data-offset-top="25">
             <div class="container">
                 <ul class="nav menu nav-pills">
                     <li>
@@ -175,13 +175,13 @@
                             API Documentation <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            {% if (project.namespace.children.count > 0) %}
+                            {% if (project.namespace.children|length > 0) %}
                                 <li><a>Namespaces</a></li>
                                 {% for namespace in project.namespace.children %}
                                 <li><a href="{{ path(namespace) }}">{{ namespace.name }}</a></li>
                                 {% endfor %}
                             {% endif %}
-                            {% if (project.index.packages.count) %}
+                            {% if (project.index.packages|length) %}
                                 <li><a>Packages</a></li>
                             {% endif %}
                         </ul>

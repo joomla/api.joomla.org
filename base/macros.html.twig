@@ -1,7 +1,7 @@
 {% macro renderMarkerCounter(files) %}
     {% set count = 0 %}
     {% for file in files %}
-        {% set count = count + file.markers.count %}
+        {% set count = count + file.markers|length %}
     {% endfor %}
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
@@ -9,7 +9,7 @@
 {% macro renderErrorCounter(files) %}
     {% set count = 0 %}
     {% for file in files %}
-        {% set count = count + file.allerrors.count %}
+        {% set count = count + file.allerrors|length %}
     {% endfor %}
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
@@ -27,10 +27,15 @@
 {% endmacro %}
 
 {% macro elementSummary(element, type) %}
-    <div id="{{ element.name }}" class="element ajax clickable {{ type }}">
-        <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}{% if path(element) %}<a href="{{ path(element) }}">¶</a>{% endif %}</h1>
+    {% if type == 'function' or type == 'constant' %}
+        {% set class = '' %}
+    {% else %}
+        {% set class = 'ajax clickable ' %}
+    {% endif %}
+    <div id="{{ element.name }}" class="element {{ class }}{{ type }}">
+        <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}{% if path(element) and (type != 'function' or type != 'constant') %}<a href="{{ path(element) }}" class="more">¶</a>{% endif %}</h1>
         <p class="short_description">{{ element.summary }}</p>
         <div class="details collapse">{{ element.description }}</div>
-        {% if path(element) %}<a href="{{ path(element) }}" class="more">« More »</a>{% endif %}
+        {% if path(element) and (type != 'function' or type != 'constant') %}<a href="{{ path(element) }}" class="more">« More »</a>{% endif %}
     </div>
 {% endmacro %}

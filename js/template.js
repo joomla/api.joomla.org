@@ -9,6 +9,7 @@ function initializeContents()
     // hide all more buttons because they are not needed with JS
     $(".element a.more").hide();
 
+	// make the entire element linkable
     $(".clickable.class,.clickable.interface").click(function() {
         document.location = $("a.more", this).attr('href');
     });
@@ -17,7 +18,8 @@ function initializeContents()
     // do a background color change on hover to emphasize the clickability eveb more
     // we do not use CSS for this because when JS is disabled this behaviour does not
     // apply and we do not want the hover
-    $(".element.method,.element.function,.element.class.clickable,.element.interface.clickable,.element.property.clickable")
+	// @TODO - Add .element.function and .element.constant back into this when they have proper pages
+    $(".element.method,.element.class.clickable,.element.interface.clickable,.element.property.clickable")
         .css("cursor", "pointer")
         .hover(function() {
             $(this).css('backgroundColor', '#F8FDF6')
@@ -121,13 +123,13 @@ $(document).ready(function() {
         $('div.namespace-contents').load(
             this.href + ' div.namespace-contents', function(){
                 initializeContents();
-                $(window).scrollTop($('div.namespace-contents').position().top);
+                $(window).scrollTop($('div.body').position().top);
             }
         );
         $('div.package-contents').load(
             this.href + ' div.package-contents', function(){
                 initializeContents();
-                $(window).scrollTop($('div.package-contents').position().top);
+                $(window).scrollTop($('div.body').position().top);
             }
         );
 

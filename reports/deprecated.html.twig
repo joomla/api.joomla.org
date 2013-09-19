@@ -27,7 +27,7 @@
                     <a name="{{ file.path }}" id="{{ file.path }}"></a>
                     <h3>
                         <i class="icon-file"></i> {{ file.path }}
-                        <small style="float: right;padding-right: 10px;">{{ file.tags.deprecated.count }}</small>
+                        <small style="float: right;padding-right: 10px;">{{ file.tags.deprecated|length }}</small>
                     </h3>
                     <div>
                         <table class="table markers table-bordered">
