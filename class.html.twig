@@ -29,10 +29,12 @@
                 <p class="short_description">{{ node.summary }}</p>
                 <div class="details">
                     <div class="long_description">
+                        {% if node.final or node.abstract %}
                         <div class="labels">
                             {% if node.final %}<span class="label">final</span>{% endif %}
                             {% if node.abstract %}<span class="label">abstract</span>{% endif %}
                         </div>
+                        {% endif %}
                         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
                     </div>
                     <table class="table table-bordered">
@@ -54,6 +56,8 @@
                                             {{ tag.reference|route|raw }}
                                         {% elseif (tag.name == "package") %}
                                             <a href="{{ path('packages/' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
+                                        {% elseif (tag.name == "subpackage") %}
+                                            <a href="{{ path('packages/' ~ node.tags["package"][0].description ~ '.' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
                                         {% else %}
                                             {{ tag.description|markdown|raw }}
                                         {% endif %}
