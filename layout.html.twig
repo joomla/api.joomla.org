@@ -81,12 +81,11 @@
                                     <li><a href="http://www.joomla.org/about-joomla.html">The Software</a></li>
                                     <li><a href="http://www.joomla.org/about-joomla/the-project.html">The Project</a></li>
                                     <li><a href="http://www.joomla.org/about-joomla/the-project/leadership-team.html">Leadership</a></li>
-                                    <li><a href="http://opensourcematters.org/index.php">Open Source Matters</a></li>
+                                    <li><a href="http://opensourcematters.org">Open Source Matters</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Community <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="http://people.joomla.org/">Joomla! People Site</a></li>
                                     <li><a href="http://community.joomla.org/events.html">Joomla! Events</a></li>
                                     <li><a href="http://community.joomla.org/connect.html">Joomla! User Groups</a></li>
                                     <li><a href="http://community.joomla.org/user-groups.html">Joomla! Connect</a></li>
@@ -94,30 +93,30 @@
                             </li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Support <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="http://forum.joomla.org/">Joomla! Forum</a></li>
-                                    <li><a href="http://docs.joomla.org/">Joomla! Documentation</a></li>
-                                    <li><a href="http://resources.joomla.org/">Joomla! Resources</a></li>
+                                    <li><a href="http://forum.joomla.org">Joomla! Forum</a></li>
+                                    <li><a href="http://docs.joomla.org">Joomla! Documentation</a></li>
+                                    <li><a href="http://resources.joomla.org">Joomla! Resources</a></li>
                                     <li><a href="http://www.joomla.org/mailing-lists.html">Joomla! Mailing Lists</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Extend <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="http://extensions.joomla.org/">Extensions Directory</a></li>
-                                    <li><a href="http://community.joomla.org/showcase/">Showcase Directory</a></li>
-                                    <li><a href="http://resources.joomla.org/">Resource Directory</a></li>
+                                    <li><a href="http://extensions.joomla.org">Extensions Directory</a></li>
+                                    <li><a href="http://community.joomla.org/showcase">Showcase Directory</a></li>
+                                    <li><a href="http://resources.joomla.org">Resource Directory</a></li>
                                     <li><a href="http://community.joomla.org/translations.html">Translations</a></li>
-                                    <li><a href="http://ideas.joomla.org/">Idea Pool</a></li>
+                                    <li><a href="http://ideas.joomla.org">Idea Pool</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Developers <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="http://developer.joomla.org/">Developer Site</a></li>
-                                    <li><a href="http://docs.joomla.org/">Documentation</a></li>
-                                    <li><a href="http://ux.joomla.org/">Joomla! User Experience</a></li>
+                                    <li><a href="http://developer.joomla.org">Developer Site</a></li>
+                                    <li><a href="http://docs.joomla.org">Documentation</a></li>
+                                    <li><a href="http://ux.joomla.org">Joomla! User Experience</a></li>
                                     <li><a href="http://docs.joomla.org/Bug_Squad">Joomla! Bug Squad</a></li>
-                                    <li><a href="http://api.joomla.org/">Joomla! API</a></li>
-                                    <li><a href="http://joomlacode.org/">JoomlaCode</a></li>
-                                    <li><a href="https://github.com/joomla/joomla-platform">Joomla! Platform</a></li>
+                                    <li class="active"><a href="http://api.joomla.org">Joomla! API</a></li>
+                                    <li><a href="http://joomlacode.org">JoomlaCode</a></li>
+                                    <li><a href="https://github.com/joomla/joomla-framework">Joomla! Framework</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -153,7 +152,7 @@
                                 </a>
                             </div>
                             <div class="btn-group">
-                                <a href="http://demo.joomla.org/" class="btn btn-large btn-primary">Demo
+                                <a href="http://demo.joomla.org" class="btn btn-large btn-primary">Demo
                                     <span class="hidden-tablet">Joomla</span>
                                 </a>
                             </div>
@@ -167,6 +166,9 @@
         <div class="subnav" data-spy="affix" data-offset-top="25">
             <div class="container">
                 <ul class="nav menu nav-pills">
+                    <li>
+                        <a href="http://api.joomla.org">Joomla! API Index</a>
+                    </li>
                     <li>
                         <a href="{{ path('index.html') }}">{{ project.name }}</a>
                     </li>
@@ -227,20 +229,20 @@
 
         <div class="footer center">
             {% block footer %}
-            <p>Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor {{ version }}</a> and generated on {{ now|date("r") }}.</p>
+            <p>Documentation is powered by <a href="http://www.phpdoc.org">phpDocumentor {{ version }}</a> and generated on {{ now|date("r") }}.</p>
             {% endblock %}
             <div class="container">
                 <div class="footer-menu">
                     <ul class="nav-inline">
-                        <li class="item97"><a href="http://www.joomla.org"><span>Home</span></a></li>
-                        <li class="item110"><a href="http://www.joomla.org/about-joomla.html"><span>About</span></a></li>
-                        <li class="item98"><a href="http://community.joomla.org"><span>Community</span></a></li>
-                        <li class="item99"><a href="http://forum.joomla.org"><span>Forum</span></a></li>
-                        <li class="item100"><a href="http://extensions.joomla.org"><span>Extensions</span></a></li>
-                        <li class="item206"><a href="http://resources.joomla.org"><span>Resources</span></a></li>
-                        <li class="item102"><a href="http://docs.joomla.org"><span>Docs</span></a></li>
-                        <li class="item101"><a href="http://developer.joomla.org"><span>Developer</span></a></li>
-                        <li class="item103"><a href="http://shop.joomla.org"><span>Shop</span></a></li>
+                        <li><a href="http://www.joomla.org"><span>Home</span></a></li>
+                        <li><a href="http://www.joomla.org/about-joomla.html"><span>About</span></a></li>
+                        <li><a href="http://community.joomla.org"><span>Community</span></a></li>
+                        <li><a href="http://forum.joomla.org"><span>Forum</span></a></li>
+                        <li><a href="http://extensions.joomla.org"><span>Extensions</span></a></li>
+                        <li><a href="http://resources.joomla.org"><span>Resources</span></a></li>
+                        <li><a href="http://docs.joomla.org"><span>Docs</span></a></li>
+                        <li><a href="http://developer.joomla.org"><span>Developer</span></a></li>
+                        <li><a href="http://shop.joomla.org"><span>Shop</span></a></li>
                     </ul>
 
                     <ul class="nav-inline">
