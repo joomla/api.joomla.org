@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
     <head>
+        <title>{% block title %}{{ project.name }}{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{{ project.name }}{% endblock %}</title>
-        <meta name="author" content="{{ author }}"/>
-        <meta name="description" content=""/>
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Joomla!"/>
+        <meta name="generator" content="phpDocumentor {{ version }}" />
+        <meta name="title" content="{{ project.name }}" />
 
         {% block javascripts %}
         <!--[if lt IE 9]>

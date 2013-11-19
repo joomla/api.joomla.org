@@ -58,7 +58,7 @@
                                 </thead>
                                 <tbody>
                                 {% for error in file.allerrors %}
-                                    <tr>
+                                    <tr class="{{ error.severity }}">
                                         <td>{{ error.severity }}</td>
                                         <td>{{ error.line }}</td>
                                         <td>{{ error.code|trans(error.context) }}</td>
