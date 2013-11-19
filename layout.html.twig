@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="Joomla!"/>
+        <meta name="author" content="Joomla!" />
         <meta name="generator" content="phpDocumentor {{ version }}" />
 
         {% block javascripts %}
@@ -24,8 +24,8 @@
         {% endblock %}
 
         {% block stylesheets %}
-        <link href="{{ path('css/template.css') }}" rel="stylesheet" media="all"/>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+        <link href="{{ path('css/template.css') }}" rel="stylesheet" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
         <style type="text/css">
             h1, h2, h3, h4, h5, h6, .site-title {
                 font-family: 'Open Sans', sans-serif;
@@ -35,10 +35,10 @@
 
         {% block icons %}
         <link rel="shortcut icon" href="{{ path('img/favicon.ico') }}"/>
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ path('img/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ path('img/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ path('img/apple-touch-icon-72-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" href="{{ path('img/apple-touch-icon-57-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ path('img/apple-touch-icon-144-precomposed.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ path('img/apple-touch-icon-114-precomposed.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ path('img/apple-touch-icon-72-precomposed.png') }}" />
+        <link rel="apple-touch-icon-precomposed" href="{{ path('img/apple-touch-icon-57-precomposed.png') }}" />
         {% endblock %}
 
     </head>
@@ -68,10 +68,10 @@
                                     <li class="nav-header"><span>Recent News</span></li>
                                     <li><a href="http://www.joomla.org/announcements.html">Announcements</a></li>
                                     <li><a href="http://community.joomla.org/blogs/community.html">Blogs</a></li>
-                                    <li><a href="http://magazine.joomla.org/">Magazine</a></li>
+                                    <li><a href="http://magazine.joomla.org">Magazine</a></li>
                                     <li class="divider"><span></span></li>
                                     <li class="nav-header"><span>Support Joomla!</span></li>
-                                    <li><a href="http://shop.joomla.org/">Shop Joomla Gear</a></li>
+                                    <li><a href="http://shop.joomla.org">Shop Joomla Gear</a></li>
                                     <li><a href="http://opensourcematters.org/support-joomla.html">Contribution</a></li>
                                 </ul>
                             </li>
@@ -128,12 +128,21 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://community.joomla.org/translations.html">Translations</a></li>
-                                    <li><a href="http://multilingual-joomla-demo.cloudaccess.net/">Multilingual Demo</a></li>
+                                    <li><a href="http://multilingual-joomla-demo.cloudaccess.net">Multilingual Demo</a></li>
                                     <li><a href="http://docs.joomla.org/Translations_Working_Group">Translation Working Group</a></li>
                                     <li><a href="http://forum.joomla.org/viewforum.php?f=11">Translations Forum</a></li>
                                 </ul>
                             </li>
                         </ul>
+                        <div id="nav-search" class="navbar-search pull-right">
+                            <form action="http://api.joomla.org/results.html" id="searchbox_007628682600509520926:myhvbnm964o" class="form-search">
+                                <input type="text" name="q" id="api-google-search" class="search-query input-medium" size="20" value="" autocomplete="off">
+                                <input type="hidden" name="cx" value="007628682600509520926:myhvbnm964o">
+                                <input name="siteurl" type="hidden" value="api.joomla.org/">
+                                <input name="ref" type="hidden" value="api.joomla.org/">
+                                <input name="ss" type="hidden" value="">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
