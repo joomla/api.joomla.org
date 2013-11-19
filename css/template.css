@@ -8288,6 +8288,13 @@ body .navbar-fixed-top {
 .btn-group > .btn + .dropdown-toggle {
   height: 18px;
 }
+/* nav-search form mod */
+div#nav-search form {
+  margin: 0;
+}
+div#nav-search form input[type="text"] {
+  color: #777777;
+}
 @media (max-width: 738px) {
   body.site {
     padding-top: 0;
