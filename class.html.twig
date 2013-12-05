@@ -39,7 +39,7 @@
                     </div>
                     <table class="table table-bordered">
                         {% for tagList in node.tags %}
-                            {% for tag in tagList if tag.name not in ['method', 'property'] %}
+                            {% for tag in tagList if tag.name not in ['method', 'property', 'CodeCoverageIgnore'] %}
                                 <tr>
                                     <th>
                                         {{ tag.name }}
