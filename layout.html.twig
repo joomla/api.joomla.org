@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Joomla!" />
-        <meta name="generator" content="phpDocumentor {{ version }}" />
+        <meta name="generator" content="phpDocumentor" />
 
         {% block javascripts %}
         <!--[if lt IE 9]>
@@ -125,7 +125,7 @@
                                     <li><a href="http://docs.joomla.org/Bug_Squad">Joomla! Bug Squad</a></li>
                                     <li><a href="http://api.joomla.org">Joomla! API</a></li>
                                     <li><a href="http://joomlacode.org">JoomlaCode</a></li>
-                                    <li><a href="https://github.com/joomla/joomla-framework">Joomla! Framework</a></li>
+                                    <li><a href="http://framework.joomla.org">Joomla! Framework</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -246,10 +246,11 @@
         </div>
 
         <div class="footer center">
-            {% block footer %}
-            <p>Documentation is powered by <a href="http://www.phpdoc.org">phpDocumentor {{ version }}</a> and generated on {{ now|date("r") }}.</p>
-            {% endblock %}
             <div class="container">
+                <hr />
+                {% block footer %}
+                <p>Documentation is powered by <a href="http://www.phpdoc.org">phpDocumentor</a> and generated on {{ now|date("r") }}.</p>
+                {% endblock %}
                 <div class="footer-menu">
                     <ul class="nav-inline">
                         <li><a href="http://www.joomla.org"><span>Home</span></a></li>
