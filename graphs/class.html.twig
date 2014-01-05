@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="http://api.joomla.org/css/jquery.iviewer.css" rel="stylesheet" media="all" />
+{% endblock %}
+
 {% block content %}
     <div class="row-fluid">
         <div class="span12">
@@ -16,7 +21,7 @@
         });
 
         $(document).ready(function() {
-            $("#viewer").iviewer({src: {{ path('classes.svg') }}, zoom_animation: false});
+            $("#viewer").iviewer({src: "{{ path('classes.svg') }}", zoom_animation: false});
             $('#viewer img').bind('dragstart', function(event){
                 event.preventDefault();
             });
