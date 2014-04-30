@@ -10,7 +10,7 @@
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
                 {% set markerCount = 0 %}
-                {% for file in project.files %}
+                {% for file in project.files|sort_asc %}
                     {% if file.markers|length > 0 %}
                     <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
                     {% endif %}
@@ -20,9 +20,8 @@
         </div>
 
         <div class="span7">
-
             <ul class="breadcrumb">
-                <li><a href="{{ path('/') }}"><i class="icon-flag"></i></a><span class="divider">\</span></li>
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a><span class="divider">\</span></li>
                 <li>Markers</li>
             </ul>
 
@@ -31,7 +30,7 @@
             {% endif %}
 
             <div id="marker-accordion">
-                {% for file in project.files %}
+                {% for file in project.files|sort_asc %}
                     {% if file.markers|length > 0 %}
                         <div class="package-contents">
                             <a name="{{ file.path }}" id="{{ file.path }}"></a>

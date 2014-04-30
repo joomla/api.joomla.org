@@ -5,7 +5,7 @@
 {% block content %}
         <div class="row-fluid">
             <div class="span7">
-                {% if project.namespace.namespaces|length > 0 or not project.index.packages %}
+                {% if project.namespace.children|length > 0 or not project.indexes.packages %}
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Namespaces</li>
@@ -51,6 +51,7 @@
                     <ul class="nav nav-list">
                         <li class="nav-header">Reports</li>
                         {% block listReports %}
+                        <li><a href="{{ path('deprecated.html') }}"><i class="icon-list-alt"></i> Deprecated {{ macros.renderDeprecatedCounter(project.indexes.elements) }}</a></li>
                         <li><a href="{{ path('errors.html') }}"><i class="icon-list-alt"></i> Errors {{ macros.renderErrorCounter(project.files) }}</a></li>
                         <li><a href="{{ path('markers.html') }}"><i class="icon-list-alt"></i> Markers {{ macros.renderMarkerCounter(project.files) }}</a></li>
                         {% endblock %}

@@ -14,6 +14,14 @@
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
 
+{% macro renderDeprecatedCounter(elements) %}
+    {% set count = 0 %}
+    {% for element in elements if element.deprecated %}
+        {% set count = count + element.tags.deprecated.count %}
+    {% endfor %}
+    <span class="label label-info">{{ count }}</span>
+{% endmacro %}
+
 {% macro buildBreadcrumb(element) %}
     {% import _self as self %}
 

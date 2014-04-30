@@ -4,17 +4,16 @@
     {% import _self as self %}
     {% import 'base/macros.html.twig' as macros %}
 
+    <ul class="breadcrumb">
+        <li><a href="{{ path('index.html') }}"><i class="icon-grid-view-2"></i></a></li>
+        {{ macros.buildBreadcrumb(node) }}
+    </ul>
+
     {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 or node.functions|length > 0 or node.constants|length > 0 %}
-
-        <ul class="breadcrumb">
-            <li><a href="{{ path('index.html') }}"><i class="icon-grid-view-2"></i></a></li>
-            {{ macros.buildBreadcrumb(node) }}
-        </ul>
-
         {% if node.functions|length > 0 %}
             <div class="package-indent">
                 <h3><i class="icon-custom icon-function"></i> Functions</h3>
-                {% for function in node.functions %}
+                {% for function in node.functions|sort_asc %}
                     {{ macros.elementSummary(function, 'function') }}
                 {% endfor %}
             </div>
@@ -23,7 +22,7 @@
         {% if node.constants|length > 0 %}
             <div class="package-indent">
                 <h3><i class="icon-custom icon-constant"></i> Constants</h3>
-                {% for constant in node.constants %}
+                {% for constant in node.constants|sort_asc %}
                     {{ macros.elementSummary(constant, 'constant') }}
                 {% endfor %}
             </div>
@@ -32,36 +31,36 @@
         {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 %}
             <div class="package-indent">
                 <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
-                {% for trait in node.traits %}
+                {% for trait in node.traits|sort_asc %}
                     {{ macros.elementSummary(trait, 'trait') }}
                 {% endfor %}
 
-                {% for interface in node.interfaces %}
+                {% for interface in node.interfaces|sort_asc %}
                     {{ macros.elementSummary(interface, 'interface') }}
                 {% endfor %}
 
-                {% for class in node.classes %}
+                {% for class in node.classes|sort_asc %}
                     {{ macros.elementSummary(class, 'class') }}
                 {% endfor %}
             </div>
         {% endif %}
     {% endif %}
 
-    {% for package in node.children|keys|sort %}
-        {{ self.renderPackageDetails(node.children[package]) }}
+    {% for package in node.children|sort_asc %}
+        {{ self.renderPackageDetails(package) }}
     {% endfor %}
 {% endmacro %}
 
 {% macro renderPackageSidebar(node) %}
     {% import _self as self %}
 
-    {% for package in node.children|keys|sort %}
+    {% for package in node.children|sort_asc %}
     <li>
-        <a href="{{ path(node.children[package]) }}" title="{{ attribute(node.children, package).name }}">
-            <i class="icon-grid-view-2"></i> {{ attribute(node.children, package).name }}
+        <a href="{{ path(package) }}" title="{{ package.name }}">
+            <i class="icon-grid-view-2"></i> {{ package.name }}
         </a>
         <ul class="nav nav-list nav-packages">
-            {{ self.renderPackageSidebar(node.children[package]) }}
+            {{ self.renderPackageSidebar(package) }}
         </ul>
     </li>
     {% endfor %}
@@ -75,7 +74,6 @@
     {% import _self as self %}
 
     <div class="row-fluid">
-
         <div class="span5">
             <div class="btn-group view pull-right" data-toggle="buttons-radio">
                 <button class="btn details" title="Show descriptions and method names">

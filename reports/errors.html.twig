@@ -7,7 +7,6 @@
 {% block content %}
 <div class="row-fluid">
         <div class="span5">
-
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Filter type</li>
                 <li>
@@ -19,7 +18,7 @@
                 </li>
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
-                {% for file in project.files %}
+                {% for file in project.files|sort_asc %}
                     {% if file.allerrors|length > 0 %}
                         <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
                     {% endif %}
@@ -30,7 +29,7 @@
 
         <div class="span7">
             <ul class="breadcrumb">
-                <li><a href="{{ path('/') }}"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
                 <li>Compilation Errors</li>
             </ul>
 
@@ -38,7 +37,7 @@
                 <div class="alert alert-info">No errors have been found in this project.</div>
             {% endif %}
 
-            {% for file in project.files %}
+            {% for file in project.files|sort_asc %}
                 <div class="package-contents">
                     {% if file.allerrors|length > 0 %}
                         <a name="{{ file.path }}" id="{{ file.path }}"></a>
