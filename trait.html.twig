@@ -14,8 +14,8 @@
         </div>
 
         <div class="span7">
-            <div class="element class">
-                <h1><i class="icon-custom icon-class"></i> {{ node.name }}</h1>
+            <div class="element trait">
+                <h1><i class="icon-custom icon-trait"></i> {{ node.name }}</h1>
                 {% if node.parent or node.interfaces|length %}
                 <small class="pull-right">
                     {% if node.parent %}
@@ -29,17 +29,11 @@
                 <p class="short_description">{{ node.summary }}</p>
                 <div class="details">
                     <div class="long_description">
-                        {% if node.final or node.abstract %}
-                        <div class="labels">
-                            {% if node.final %}<span class="label">final</span>{% endif %}
-                            {% if node.abstract %}<span class="label">abstract</span>{% endif %}
-                        </div>
-                        {% endif %}
                         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
                     </div>
                     <table class="table table-bordered">
                         {% for tagList in node.tags %}
-                            {% for tag in tagList if tag.name not in ['method', 'property', 'CodeCoverageIgnore'] %}
+                            {% for tag in tagList if tag.name not in ['method', 'property'] %}
                                 <tr>
                                     <th>
                                         {{ tag.name }}
@@ -199,7 +193,6 @@
                                 <h2>{{ property.name }}</h2>
                                 {% set desc = (property.summary ?: property.var.0.description ?: '') %}
                                 {% if desc %}{{ desc|markdown|raw }}{% endif %}
-                                <pre>{{ property.name }} : {{ property.types|join('|') }}</pre>
                                 <div class="labels">
                                     {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                     {% if property.static %}<span class="label">static</span>{% endif %}
@@ -248,7 +241,7 @@
             </div>
             <a id="{{ node.fullyQualifiedStructuralElementName }}"></a>
             <ul class="breadcrumb">
-                <li><a href="{{ path('index.html') }}"><i class="icon-custom icon-class"></i></a></li>
+                <li><a href="{{ path('index.html') }}"><i class="icon-custom icon-trait"></i></a></li>
                 {{ macros.buildBreadcrumb(node.namespace) }}
                 <li class="active"><span class="divider">\</span><a href="{{ path(node) }}">{{ node.name }}</a></li>
             </ul>

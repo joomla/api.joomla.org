@@ -105,12 +105,12 @@ div.element.private
     border-left-color: red;
 }
 
-div.element.class, div.element.interface
+div.element.class, div.element.interface, div.element.trait
 {
     border-left-color: #e0e0e0;
 }
 
-div.element.class.abstract h1, div.element.interface.abstract h1
+div.element.class.abstract h1, div.element.interface.abstract h1, div.element.trait.abstract h1
 {
     font-style: italic;
 }
@@ -285,6 +285,8 @@ ul.side-nav li.view-simple a
 .icon-class     { background-image: url('../images/icons/class.png'); }
 
 .icon-interface { background-image: url('../images/icons/interface.png'); }
+
+.icon-trait { background-image: url('../images/icons/trait.png'); }
 
 .icon-property  { background-image: url('../images/icons/property.png'); }
 

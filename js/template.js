@@ -10,7 +10,7 @@ function initializeContents()
     $(".element a.more").hide();
 
 	// make the entire element linkable
-    $(".clickable.class,.clickable.interface").click(function() {
+    $(".clickable.class,.clickable.interface,.clickable.trait").click(function() {
         document.location = $("a.more", this).attr('href');
     });
 
@@ -19,7 +19,7 @@ function initializeContents()
     // we do not use CSS for this because when JS is disabled this behaviour does not
     // apply and we do not want the hover
 	// @TODO - Add .element.function and .element.constant back into this when they have proper pages
-    $(".element.method,.element.class.clickable,.element.interface.clickable,.element.property.clickable")
+    $(".element.method,.element.class.clickable,.element.interface.clickable,.element.trait.clickable,.element.property.clickable")
         .css("cursor", "pointer")
         .hover(function() {
             $(this).css('backgroundColor', '#F8FDF6')

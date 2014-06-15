@@ -22,6 +22,7 @@
     <transformation writer="twig" query="indexes.packages" source="templates/joomla/package.html.twig" />
     <transformation writer="twig" query="indexes.interfaces" source="templates/joomla/interface.html.twig" />
     <transformation writer="twig" query="indexes.classes" source="templates/joomla/class.html.twig" />
+    <transformation writer="twig" query="indexes.traits" source="templates/joomla/trait.html.twig" />
     <transformation writer="twig" source="templates/joomla/index.html.twig" artifact="index.html"/>
     <transformation writer="twig" source="templates/joomla/reports/markers.html.twig" artifact="markers.html"/>
     <transformation writer="twig" source="templates/joomla/reports/errors.html.twig" artifact="errors.html"/>
