@@ -7,4 +7,3 @@ Disallow: /1.5/
 Disallow: /11.4/
 Disallow: /12.1/
 Disallow: /cgi-bin/
-Sitemap: http://api.joomla.org/sitemap.xml
