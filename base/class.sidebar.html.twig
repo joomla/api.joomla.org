@@ -66,6 +66,7 @@
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
+            {% if node.constants.merge(node.inheritedConstants)|length > 0 %}
             <ul>
                 {% for constant in node.constants.merge(node.inheritedConstants)|sort_asc %}
                 <li class="constant {{ constant.visibility }}">
@@ -75,6 +76,7 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% endif %}
         </li>
     </ul>
 {% endblock %}
