@@ -8544,3 +8544,8 @@ div#nav-search form input[type="text"] {
     display: none;
   }
 }
+@media (max-width: 768px) and (min-width: 481px) {
+  .subnav.affix {
+    position: static
+  }
+}
