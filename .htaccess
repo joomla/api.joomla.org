@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCondition %{SERVER_PORT} !^443$
+RewriteRule ^(.*)$ https://api.joomla.org/$1 [R=301,L]
