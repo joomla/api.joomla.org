@@ -43,7 +43,13 @@
     <div id="{{ element.name }}" class="element {{ class }}{{ type }}">
         <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}{% if path(element) and (type != 'function' or type != 'constant') %}<a href="{{ path(element) }}" class="more">¶</a>{% endif %}</h1>
         <p class="short_description">{{ element.summary }}</p>
-        <div class="details collapse">{{ element.description }}</div>
+        <div class="details collapse">
+            {% if type == 'function' %}
+                {% include 'method.html.twig' with {'method': method} %}
+            {% else %}
+                {{ element.description }}
+            {% endif %}
+        </div>
         {% if path(element) and (type != 'function' or type != 'constant') %}<a href="{{ path(element) }}" class="more">« More »</a>{% endif %}
     </div>
 {% endmacro %}
