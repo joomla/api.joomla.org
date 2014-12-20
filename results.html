@@ -86,7 +86,7 @@
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Support <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://forum.joomla.org">Joomla! Forum</a></li>
-                                    <li><a href="http://docs.joomla.org">Joomla! Documentation</a></li>
+                                    <li><a href="https://docs.joomla.org">Joomla! Documentation</a></li>
                                     <li><a href="http://issues.joomla.org">Joomla! Issue Tracker</a></li>
                                     <li><a href="http://resources.joomla.org">Joomla! Resources</a></li>
                                 </ul>
@@ -110,9 +110,9 @@
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Developers <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://developer.joomla.org">Developer Site</a></li>
-                                    <li><a href="http://docs.joomla.org">Documentation</a></li>
-                                    <li><a href="http://docs.joomla.org/Bug_Squad">Joomla! Bug Squad</a></li>
-                                    <li><a href="http://api.joomla.org">Joomla! API</a></li>
+                                    <li><a href="https://docs.joomla.org">Documentation</a></li>
+                                    <li><a href="https://docs.joomla.org/Bug_Squad">Joomla! Bug Squad</a></li>
+                                    <li><a href="https://api.joomla.org">Joomla! API</a></li>
                                     <li><a href="http://joomlacode.org">JoomlaCode</a></li>
                                     <li><a href="http://framework.joomla.org">Joomla! Framework</a></li>
                                 </ul>
@@ -125,8 +125,8 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://community.joomla.org/translations.html">Translations</a></li>
-                                    <li><a href="http://multilingual-joomla-demo.cloudaccess.net">Multilingual Demo</a></li>
-                                    <li><a href="http://docs.joomla.org/Translations_Working_Group">Translation Working Group</a></li>
+                                    <li><a href="https://demo.joomla.org/multilingual">Multilingual Demo</a></li>
+                                    <li><a href="https://docs.joomla.org/Translations_Working_Group">Translation Working Group</a></li>
                                     <li><a href="http://forum.joomla.org/viewforum.php?f=11">Translations Forum</a></li>
                                 </ul>
                             </li>
@@ -159,7 +159,7 @@
                                 </a>
                             </div>
                             <div class="btn-group">
-                                <a href="http://demo.joomla.org" class="btn btn-large btn-primary">Demo
+                                <a href="https://demo.joomla.org" class="btn btn-large btn-primary">Demo
                                     <span class="hidden-tablet">Joomla</span>
                                 </a>
                             </div>
@@ -169,13 +169,15 @@
             </div>
         </header>
 
-        <div class="subnav" data-spy="affix" data-offset-top="25">
-            <div class="container">
-                <ul class="nav menu nav-pills">
-                    <li>
-                        <a href="//api.joomla.org">Joomla! API Index</a>
-                    </li>
-                </ul>
+        <div class="subnav-wrapper">
+            <div class="subnav">
+                <div class="container">
+                    <ul class="nav menu nav-pills">
+                        <li>
+                            <a href="//api.joomla.org">Joomla! API Index</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -216,7 +218,7 @@
                         <li><a href="http://forum.joomla.org"><span>Forum</span></a></li>
                         <li><a href="http://extensions.joomla.org"><span>Extensions</span></a></li>
                         <li><a href="http://resources.joomla.org"><span>Resources</span></a></li>
-                        <li><a href="http://docs.joomla.org"><span>Docs</span></a></li>
+                        <li><a href="https://docs.joomla.org"><span>Docs</span></a></li>
                         <li><a href="http://developer.joomla.org"><span>Developer</span></a></li>
                         <li><a href="http://shop.joomla.org"><span>Shop</span></a></li>
                     </ul>
@@ -231,6 +233,14 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+       		jQuery(document).ready(function($) {
+       			$('.subnav-wrapper').height($('.subnav').height());
+       			$('.subnav').affix({
+       				offset: {top: $('.subnav').offset().top - $('nav.navbar').height()}
+       			});
+       		});
+       	</script>
         <script>
             (function(i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
