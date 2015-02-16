@@ -1,16 +1,15 @@
 $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
-$.browser.ipad   = /ipad/.test(navigator.userAgent.toLowerCase());
+$.browser.ipad = /ipad/.test(navigator.userAgent.toLowerCase());
 
 /**
  * Initializes page contents for progressive enhancement.
  */
-function initializeContents()
-{
+function initializeContents() {
     // hide all more buttons because they are not needed with JS
     $(".element a.more").hide();
 
-	// make the entire element linkable
-    $(".clickable.class,.clickable.interface,.clickable.trait").click(function() {
+    // make the entire element linkable
+    $(".clickable.class,.clickable.interface,.clickable.trait").click(function () {
         document.location = $("a.more", this).attr('href');
     });
 
@@ -18,17 +17,20 @@ function initializeContents()
     // do a background color change on hover to emphasize the clickability eveb more
     // we do not use CSS for this because when JS is disabled this behaviour does not
     // apply and we do not want the hover
-	// @TODO - Add .element.function and .element.constant back into this when they have proper pages
+    // @TODO - Add .element.function and .element.constant back into this when they have proper pages
     $(".element.method,.element.class.clickable,.element.interface.clickable,.element.trait.clickable,.element.property.clickable")
         .css("cursor", "pointer")
-        .hover(function() {
+        .hover(function () {
             $(this).css('backgroundColor', '#F8FDF6')
-        }, function(){
-            $(this).css('backgroundColor', 'white')}
-        );
+        }, function () {
+            $(this).css('backgroundColor', 'white')
+        }
+    );
 
     $("ul.side-nav.nav.nav-list li.nav-header").contents()
-        .filter(function(){return this.nodeType === 3})
+        .filter(function () {
+            return this.nodeType === 3
+        })
         .wrap('<span class="side-nav-header" />');
 
     $("ul.side-nav.nav.nav-list li.nav-header span.side-nav-header")
@@ -37,67 +39,80 @@ function initializeContents()
     // do not show tooltips on iPad; it will cause the user having to click twice
     if (!$.browser.ipad) {
         $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter,.icon-custom')
-            .tooltip({'placement':'bottom'});
-        $('.element').tooltip({'placement':'left'});
+            .tooltip({'placement': 'bottom'});
+        $('.element').tooltip({'placement': 'left'});
     }
 
     $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
         .show()
         .find('button')
-        .find('i').click(function(){ $(this).parent().click(); });
+        .find('i').click(function () {
+            $(this).parent().click();
+        });
 
     // set the events for the visibility buttons and enable by default.
-    $('.visibility button.public').click(function(){
+    $('.visibility button.public').click(function () {
         $('.element.public,.side-nav li.public').toggle($(this).hasClass('active'));
     }).click();
-    $('.visibility button.protected').click(function(){
+    $('.visibility button.protected').click(function () {
         $('.element.protected,.side-nav li.protected').toggle($(this).hasClass('active'));
     }).click();
-    $('.visibility button.private').click(function(){
+    $('.visibility button.private').click(function () {
         $('.element.private,.side-nav li.private').toggle($(this).hasClass('active'));
     }).click();
-    $('.visibility button.inherited').click(function(){
+    $('.visibility button.inherited').click(function () {
         $('.element.inherited,.side-nav li.inherited').toggle($(this).hasClass('active'));
     }).click();
 
-    $('.type-filter button.critical').click(function(){
+    $('.type-filter button.critical').click(function () {
         $('tr.critical').toggle($(this).hasClass('active'));
     });
-    $('.type-filter button.error').click(function(){
+    $('.type-filter button.error').click(function () {
         $('tr.error').toggle($(this).hasClass('active'));
     });
-    $('.type-filter button.notice').click(function(){
+    $('.type-filter button.notice').click(function () {
         $('tr.notice').toggle($(this).hasClass('active'));
     });
 
-    $('.view button.details').click(function(){
+    $('.view button.details').click(function () {
         $('.side-nav li.view-simple').removeClass('view-simple');
     }).button('toggle').click();
 
-    $('.view button.details').click(function(){
+    $('.view button.details').click(function () {
         $('.side-nav li.view-simple').removeClass('view-simple');
     }).button('toggle').click();
-    $('.view button.simple').click(function(){
+    $('.view button.simple').click(function () {
         $('.side-nav li').addClass('view-simple');
     });
 
-    $('ul.side-nav.nav.nav-list li.nav-header span.side-nav-header').click(function(){
+    $('ul.side-nav.nav.nav-list li.nav-header span.side-nav-header').click(function () {
         $(this).siblings('ul').collapse('toggle');
     });
-
-// sorting example
-//    $('ol li').sort(
-//        function(a, b) { return a.innerHTML.toLowerCase() > b.innerHTML.toLowerCase() ? 1 : -1; }
-//    ).appendTo('ol');
 }
 
-$(document).ready(function() {
+function processScrollInit() {
+    if ($('.subnav-wrapper').length) {
+        navTop = $('.subnav-wrapper').length && $('.subnav-wrapper').offset().top - 30;
+
+        // Only apply the scrollspy when the toolbar is not collapsed
+        if (document.body.clientWidth > 480) {
+            $('.subnav-wrapper').height($('.subnav').height());
+            $('.subnav').affix({
+                offset: {top: $('.subnav').offset().top - $('nav.navbar').height()}
+            });
+        }
+    }
+}
+
+$(document).ready(function () {
     prettyPrint();
 
     initializeContents();
 
+    processScrollInit();
+
     // do not show tooltips on iPad; it will cause the user having to click twice
-    if(!$.browser.ipad) {
+    if (!$.browser.ipad) {
         $(".side-nav a").tooltip({'placement': 'top'});
     }
 
@@ -111,23 +126,22 @@ $(document).ready(function() {
         );
     }
 
-    $('ul.nav-namespaces li a, ul.nav-packages li a').click(function(){
+    $('ul.nav-namespaces li a, ul.nav-packages li a').click(function () {
         // Google Chrome does not do Ajax locally
-        if ($.browser.chrome && (window.location.protocol == 'file:'))
-        {
+        if ($.browser.chrome && (window.location.protocol == 'file:')) {
             return true;
         }
 
         $(this).parents('.side-nav').find('.active').removeClass('active');
         $(this).parent().addClass('active');
         $('div.namespace-contents').load(
-            this.href + ' div.namespace-contents', function(){
+            this.href + ' div.namespace-contents', function () {
                 initializeContents();
                 $(window).scrollTop($('div.body').position().top);
             }
         );
         $('div.package-contents').load(
-            this.href + ' div.package-contents', function(){
+            this.href + ' div.package-contents', function () {
                 initializeContents();
                 $(window).scrollTop($('div.body').position().top);
             }
@@ -136,8 +150,7 @@ $(document).ready(function() {
         return false;
     });
 
-    function filterPath(string)
-    {
+    function filterPath(string) {
         return string
             .replace(/^\//, '')
             .replace(/(index|default).[a-zA-Z]{3,4}$/, '')
@@ -149,25 +162,20 @@ $(document).ready(function() {
     // the ipad already smoothly scrolls and does not detect the scrollable
     // element if top=0; as such we disable this behaviour for the iPad
     if (!$.browser.ipad) {
-        $('a[href*=#]').each(function ()
-        {
+        $('a[href*=#]').each(function () {
             var thisPath = filterPath(this.pathname) || locationPath;
-            if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, ''))
-            {
-                var target = decodeURIComponent(this.hash.replace(/#/,''));
+            if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
+                var target = decodeURIComponent(this.hash.replace(/#/, ''));
                 // note: I'm using attribute selector, because id selector can't match elements with '$'
-                var $target = $('[id="'+target+'"]');
+                var $target = $('[id="' + target + '"]');
 
-                if ($target.length > 0)
-                {
-                    $(this).click(function (event)
-                    {
+                if ($target.length > 0) {
+                    $(this).click(function (event) {
                         var scrollElem = scrollableElement('html', 'body');
                         var targetOffset = $target.offset().top;
 
                         event.preventDefault();
-                        $(scrollElem).animate({scrollTop:targetOffset}, 400, function ()
-                        {
+                        $(scrollElem).animate({scrollTop: targetOffset}, 400, function () {
                             location.hash = target;
                         });
                     });
@@ -177,22 +185,17 @@ $(document).ready(function() {
     }
 
     // use the first element that is "scrollable"
-    function scrollableElement(els)
-    {
-        for (var i = 0, argLength = arguments.length; i < argLength; i++)
-        {
+    function scrollableElement(els) {
+        for (var i = 0, argLength = arguments.length; i < argLength; i++) {
             var el = arguments[i], $scrollElement = $(el);
-            if ($scrollElement.scrollTop() > 0)
-            {
+            if ($scrollElement.scrollTop() > 0) {
                 return el;
             }
-            else
-            {
+            else {
                 $scrollElement.scrollTop(1);
                 var isScrollable = $scrollElement.scrollTop() > 0;
                 $scrollElement.scrollTop(0);
-                if (isScrollable)
-                {
+                if (isScrollable) {
                     return el;
                 }
             }
@@ -201,7 +204,7 @@ $(document).ready(function() {
     }
 
     // Hide API Documentation menu if it's empty
-    $('.subnav .dropdown a[id=api]').next().filter(function(el) {
+    $('.subnav .dropdown a[id=api]').next().filter(function (el) {
         if ($(el).children().length == 0) {
             return true;
         }
