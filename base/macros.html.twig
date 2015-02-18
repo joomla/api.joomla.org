@@ -38,18 +38,18 @@
     {% if type == 'function' or type == 'constant' %}
         {% set class = '' %}
     {% else %}
-        {% set class = 'ajax clickable ' %}
+        {% set class = 'ajax ' %}
     {% endif %}
-    <div id="{{ element.name }}" class="element {{ class }}{{ type }}">
-        <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}{% if path(element) and (type != 'function' or type != 'constant') %}<a href="{{ path(element) }}" class="more">¶</a>{% endif %}</h1>
+    <div id="{{ element.name }}" class="element clickable {{ class }}{{ type }}{% if type == 'function' or type == 'constant' %} {{ element.visibility }} method_{{ element.name }}{% endif %}"{% if type == 'function' or type == 'constant' %} data-toggle="collapse" data-target=".method_{{ element.name }} .collapse"{% endif %}>
+        <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}{% if path(element) and type != 'function' and type != 'constant' %}<a href="{{ path(element) }}" class="more">¶</a>{% endif %}</h1>
         <p class="short_description">{{ element.summary }}</p>
         <div class="details collapse">
-            {% if type == 'function' %}
-                {% include 'method.html.twig' with {'method': method} %}
+            {% if type == 'function' or type == 'constant' %}
+                {% include 'method.html.twig' with {'method': element} %}
             {% else %}
                 {{ element.description }}
             {% endif %}
         </div>
-        {% if path(element) and (type != 'function' or type != 'constant') %}<a href="{{ path(element) }}" class="more">« More »</a>{% endif %}
+        {% if path(element) and type != 'function' and type != 'constant' %}<a href="{{ path(element) }}" class="more">« More »</a>{% endif %}
     </div>
 {% endmacro %}

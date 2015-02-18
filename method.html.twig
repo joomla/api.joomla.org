@@ -3,38 +3,40 @@
 <div class="row collapse">
     <div class="detail-description">
         {% if method.description %}
-        <div class="long_description">{{ method.description|markdown|raw }}</div>
+            <div class="long_description">{{ method.description|markdown|raw }}</div>
         {% endif %}
 
-        <table class="table">
-            {% for tagList in method.tags if tagList.0.name not in ['param', 'return', 'api'] %}
-                <tr>
-                    <th>
-                        {{ tagList.0.name }}
-                    </th>
-                    <td>
-                        {% for tag in tagList %}
-                            {% if (tag.name == "since") %}
-                                {{ tag.version|markdown|raw }}
-                            {% elseif (tag.name == "deprecated") %}
-                                {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
-                            {% elseif (tag.name == "see") %}
-                                {% if tag.reference|slice(1, 4) == "http" %}
-                                    <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+        {% if method.tags|length > 0 %}
+            <table class="table">
+                {% for tagList in method.tags if tagList.0.name not in ['param', 'return', 'api', 'CodeCoverageIgnore'] %}
+                    <tr>
+                        <th>
+                            {{ tagList.0.name }}
+                        </th>
+                        <td>
+                            {% for tag in tagList %}
+                                {% if (tag.name == "since") %}
+                                    {{ tag.version|markdown|raw }}
+                                {% elseif (tag.name == "deprecated") %}
+                                    {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                {% elseif (tag.name == "see") %}
+                                    {% if tag.reference|slice(1, 4) == "http" %}
+                                        <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                    {% else %}
+                                        {{ tag.reference|route|raw }}
+                                    {% endif %}
+                                {% elseif (tag.name == "throws") %}
+                                    {% set tTypes = tag.types|route|join('|')|raw %}
+                                    {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
                                 {% else %}
-                                    {{ tag.reference|route|raw }}
+                                    {{ tag.description|markdown|raw }}
                                 {% endif %}
-                            {% elseif (tag.name == "throws") %}
-                                {% set tTypes = tag.types|route|join('|')|raw %}
-                                {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
-                            {% else %}
-                                {{ tag.description|markdown|raw }}
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
 
         {% if method.arguments|length > 0 %}
             <h3>Arguments</h3>

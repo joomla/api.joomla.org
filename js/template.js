@@ -18,7 +18,7 @@ function initializeContents() {
     // we do not use CSS for this because when JS is disabled this behaviour does not
     // apply and we do not want the hover
     // @TODO - Add .element.function and .element.constant back into this when they have proper pages
-    $(".element.method,.element.class.clickable,.element.interface.clickable,.element.trait.clickable,.element.property.clickable")
+    $(".element.method,.element.class.clickable,.element.interface.clickable,.element.trait.clickable,.element.property.clickable,.element.function.clickable,.element.constant.clickable")
         .css("cursor", "pointer")
         .hover(function () {
             $(this).css('backgroundColor', '#F8FDF6')
@@ -90,26 +90,14 @@ function initializeContents() {
     });
 }
 
-function processScrollInit() {
-    if ($('.subnav-wrapper').length) {
-        navTop = $('.subnav-wrapper').length && $('.subnav-wrapper').offset().top - 30;
-
-        // Only apply the scrollspy when the toolbar is not collapsed
-        if (document.body.clientWidth > 480) {
-            $('.subnav-wrapper').height($('.subnav').height());
-            $('.subnav').affix({
-                offset: {top: $('.subnav').offset().top - $('nav.navbar').height()}
-            });
-        }
-    }
-}
-
 $(document).ready(function () {
+    var navTop;
+    var isFixed = false;
+
     prettyPrint();
-
     initializeContents();
-
     processScrollInit();
+    processScroll();
 
     // do not show tooltips on iPad; it will cause the user having to click twice
     if (!$.browser.ipad) {
@@ -150,13 +138,6 @@ $(document).ready(function () {
         return false;
     });
 
-    function filterPath(string) {
-        return string
-            .replace(/^\//, '')
-            .replace(/(index|default).[a-zA-Z]{3,4}$/, '')
-            .replace(/\/$/, '');
-    }
-
     var locationPath = filterPath(location.pathname);
 
     // the ipad already smoothly scrolls and does not detect the scrollable
@@ -184,6 +165,47 @@ $(document).ready(function () {
         });
     }
 
+    // Hide API Documentation menu if it's empty
+    $('.subnav .dropdown a[id=api]').next().filter(function (el) {
+        if ($(el).children().length == 0) {
+            return true;
+        }
+    }).parent().hide();
+
+    function filterPath(string) {
+        return string
+            .replace(/^\//, '')
+            .replace(/(index|default).[a-zA-Z]{3,4}$/, '')
+            .replace(/\/$/, '');
+    }
+
+    function processScrollInit() {
+        if ($('.subnav-wrapper').length) {
+            navTop = $('.subnav-wrapper').length && $('.subnav-wrapper').offset().top - 30;
+
+            // Only apply the scrollspy when the toolbar is not collapsed
+            if (document.body.clientWidth > 480) {
+                $('.subnav-wrapper').height($('.subnav').height());
+                $('.subnav').affix({
+                    offset: {top: $('.subnav').offset().top - $('nav.navbar').height()}
+                });
+            }
+        }
+    }
+
+    function processScroll() {
+        if ($('.subnav-wrapper').length) {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop >= navTop && !isFixed) {
+                isFixed = true;
+                $('.subnav-wrapper').addClass('subhead-fixed');
+            } else if (scrollTop <= navTop && isFixed) {
+                isFixed = false;
+                $('.subnav-wrapper').removeClass('subhead-fixed');
+            }
+        }
+    }
+
     // use the first element that is "scrollable"
     function scrollableElement(els) {
         for (var i = 0, argLength = arguments.length; i < argLength; i++) {
@@ -202,11 +224,4 @@ $(document).ready(function () {
         }
         return [];
     }
-
-    // Hide API Documentation menu if it's empty
-    $('.subnav .dropdown a[id=api]').next().filter(function (el) {
-        if ($(el).children().length == 0) {
-            return true;
-        }
-    }).parent().hide();
 });

@@ -29,10 +29,11 @@
                 <p class="short_description">{{ node.summary }}</p>
                 <div class="details">
                     <div class="long_description">
-                        {% if node.final or node.abstract %}
+                        {% if node.final or node.abstract or (node.tags.deprecated is defined) %}
                         <div class="labels">
                             {% if node.final %}<span class="label">final</span>{% endif %}
                             {% if node.abstract %}<span class="label">abstract</span>{% endif %}
+                            {% if node.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                         </div>
                         {% endif %}
                         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
@@ -86,10 +87,11 @@
                                 {% if method.final %}<span class="label">final</span>{% endif %}
                                 {% if method.abstract %}<span class="label">abstract</span>{% endif %}
                                 {% if method.tags.api is defined %}<span class="label label-info">api</span>{% endif %}
+                                {% if method.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                             </div>
                             {% endif %}
+                            {% include 'method.html.twig' with {'method': method} %}
                         </div>
-                        {% include 'method.html.twig' with {'method': method} %}
                     {% endfor %}
 
                     {% if node.constants.merge(node.inheritedConstants)|length > 0 %}
@@ -101,12 +103,13 @@
                                 {% if constant.summary %}{{ constant.summary|markdown|raw }}{% endif %}
                                 <div class="labels">
                                     {% if constant.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
+                                    {% if constant.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                                 </div>
                                 <div class="row collapse">
                                     <div class="detail-description">
                                         <div class="long_description">{{ constant.description|markdown|raw }}</div>
                                         <table class="table">
-                                            {% for tagList in constant.tags %}
+                                            {% for tagList in constant.tags if tagList.0.name not in ['var'] %}
                                                 <tr>
                                                     <th>
                                                         {{ tagList.0.name }}
@@ -150,13 +153,14 @@
                                 <div class="labels">
                                     {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                     {% if property.static %}<span class="label">static</span>{% endif %}
+                                    {% if property.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                                 </div>
                                 <div class="row collapse">
                                     <div class="detail-description">
                                         <div class="long_description">{{ property.description|markdown|raw }}</div>
 
                                         <table class="table">
-                                            {% for tagList in property.tags %}
+                                            {% for tagList in property.tags if tagList.0.name not in ['var'] %}
                                                 <tr>
                                                     <th>
                                                         {{ tagList.0.name }}

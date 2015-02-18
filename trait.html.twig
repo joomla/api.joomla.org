@@ -29,11 +29,18 @@
                 <p class="short_description">{{ node.summary }}</p>
                 <div class="details">
                     <div class="long_description">
+                        {% if node.final or node.abstract or (node.tags.deprecated is defined) %}
+                        <div class="labels">
+                            {% if node.final %}<span class="label">final</span>{% endif %}
+                            {% if node.abstract %}<span class="label">abstract</span>{% endif %}
+                            {% if node.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
+                        </div>
+                        {% endif %}
                         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
                     </div>
                     <table class="table table-bordered">
                         {% for tagList in node.tags %}
-                            {% for tag in tagList if tag.name not in ['method', 'property'] %}
+                            {% for tag in tagList if tag.name not in ['method', 'property', 'CodeCoverageIgnore'] %}
                                 <tr>
                                     <th>
                                         {{ tag.name }}
@@ -80,62 +87,10 @@
                                 {% if method.final %}<span class="label">final</span>{% endif %}
                                 {% if method.abstract %}<span class="label">abstract</span>{% endif %}
                                 {% if method.tags.api is defined %}<span class="label label-info">api</span>{% endif %}
+                                {% if method.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                             </div>
                             {% endif %}
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    {% if method.description %}
-                                    <div class="long_description">{{ method.description|markdown|raw }}</div>
-                                    {% endif %}
-
-                                    <table class="table">
-                                        {% for tagList in method.tags if tagList.0.name not in ['param', 'return', 'api'] %}
-                                            <tr>
-                                                <th>
-                                                    {{ tagList.0.name }}
-                                                </th>
-                                                <td>
-                                                    {% for tag in tagList %}
-                                                        {% if (tag.name == "since") %}
-                                                            {{ tag.version|markdown|raw }}
-                                                        {% elseif (tag.name == "deprecated") %}
-                                                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
-                                                        {% elseif (tag.name == "see") %}
-                                                            {% if tag.reference|slice(1, 4) == "http" %}
-                                                                <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
-                                                            {% else %}
-                                                                {{ tag.reference|route|raw }}
-                                                            {% endif %}
-                                                        {% elseif (tag.name == "throws") %}
-                                                            {% set tTypes = tag.types|route|join('|')|raw %}
-                                                            {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
-                                                        {% else %}
-                                                            {{ tag.description|markdown|raw }}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </table>
-
-                                    {% if method.arguments|length > 0 %}
-                                        <h3>Arguments</h3>
-                                        {% for argument in method.arguments %}
-                                            <div class="subelement argument">
-                                                <h4>{{ argument.name }}</h4>
-                                                {% set aTypes = argument.types|route|join('|')|raw %}
-                                                {{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
-
-                                    {% if method.response.types and method.response.types|join() != 'void' %}
-                                        <h3>Response</h3>
-                                        {% set rTypes = method.response.types|route|join('|')|raw %}
-                                        {{ ('<code>' ~ rTypes ~ '</code>' ~ method.response.description)|markdown|raw }}
-                                    {% endif %}
-                                </div>
-                            </div>
+                            {% include 'method.html.twig' with {'method': method} %}
                         </div>
                     {% endfor %}
 
@@ -148,12 +103,13 @@
                                 {% if constant.summary %}{{ constant.summary|markdown|raw }}{% endif %}
                                 <div class="labels">
                                     {% if constant.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
+                                    {% if constant.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                                 </div>
                                 <div class="row collapse">
                                     <div class="detail-description">
                                         <div class="long_description">{{ constant.description|markdown|raw }}</div>
                                         <table class="table">
-                                            {% for tagList in constant.tags %}
+                                            {% for tagList in constant.tags if tagList.0.name not in ['var'] %}
                                                 <tr>
                                                     <th>
                                                         {{ tagList.0.name }}
@@ -196,13 +152,14 @@
                                 <div class="labels">
                                     {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
                                     {% if property.static %}<span class="label">static</span>{% endif %}
+                                    {% if property.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
                                 </div>
                                 <div class="row collapse">
                                     <div class="detail-description">
                                         <div class="long_description">{{ property.description|markdown|raw }}</div>
 
                                         <table class="table">
-                                            {% for tagList in property.tags %}
+                                            {% for tagList in property.tags if tagList.0.name not in ['var'] %}
                                                 <tr>
                                                     <th>
                                                         {{ tagList.0.name }}
