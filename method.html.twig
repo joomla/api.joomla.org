@@ -8,7 +8,7 @@
 
         {% if method.tags|length > 0 %}
             <table class="table">
-                {% for tagList in method.tags if tagList.0.name not in ['param', 'return', 'api', 'CodeCoverageIgnore'] %}
+                {% for tagList in method.tags if tagList.0.name not in ['param', 'return', 'api', 'codeCoverageIgnore'] %}
                     <tr>
                         <th>
                             {{ tagList.0.name }}
