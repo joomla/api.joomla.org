@@ -1,0 +1,19 @@
+{% import 'base/macros.html.twig' as macros %}
+
+<a id="method_{{ method.name }}"></a>
+<div class="element clickable method {{ method.visibility }} method_{{ method.name }}{{ method.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".method_{{ method.name }} .collapse">
+    <h2>{{ method.name}}</h2>
+    {% if method.summary %}{{ method.summary|markdown|raw }}{% endif %}
+    <pre>{{ method.name }}({% for argument in method.arguments %}{{ argument.types ? argument.types|join('|') ~ ' ' }}{{ argument.byReference ? '&' }}{{ argument.name }}{{ argument.default ? ' = ' ~ argument.default }}{% if not loop.last %}, {% endif %}{% endfor %}) {{ method.response.types ? ': ' ~ method.response.types|join('|') }}</pre>
+    {% if (method.parent.name != node.name) or method.static or method.final or method.abstract or (method.tags.api is defined) or (method.tags.deprecated is defined) %}
+    <div class="labels">
+        {% if method.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
+        {% if method.static %}<span class="label">static</span>{% endif %}
+        {% if method.final %}<span class="label">final</span>{% endif %}
+        {% if method.abstract %}<span class="label">abstract</span>{% endif %}
+        {% if method.tags.api is defined %}<span class="label label-info">api</span>{% endif %}
+        {% if method.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
+    </div>
+    {% endif %}
+    {% include 'class/details.method.html.twig' with {'method': method} %}
+</div>

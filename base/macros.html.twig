@@ -45,7 +45,7 @@
         <p class="short_description">{{ element.summary }}</p>
         <div class="details collapse">
             {% if type == 'function' or type == 'constant' %}
-                {% include 'method.html.twig' with {'method': element} %}
+                {% include 'class/details.method.html.twig' with {'method': element} %}
             {% else %}
                 {{ element.description }}
             {% endif %}

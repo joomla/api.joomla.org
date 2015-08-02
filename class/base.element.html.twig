@@ -1,0 +1,80 @@
+{% import 'base/macros.html.twig' as macros %}
+
+<h1><i class="icon-custom icon-{{ type }}"></i> {{ node.name }}</h1>
+{% if node.parent or node.interfaces|length %}
+<small class="pull-right">
+    {% if node.parent %}
+        Extends {{ node.parent|route|join(', ')|raw }}
+    {% endif %}
+    {% if node.interfaces|length %}
+        Implements {{ node.interfaces|route|join(', ')|raw }}
+    {% endif %}
+</small>
+{% endif %}
+<p class="short_description">{{ node.summary }}</p>
+<div class="details">
+    <div class="long_description">
+        {% if node.final or node.abstract or (node.tags.deprecated is defined) %}
+        <div class="labels">
+            {% if node.final %}<span class="label">final</span>{% endif %}
+            {% if node.abstract %}<span class="label">abstract</span>{% endif %}
+            {% if node.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
+        </div>
+        {% endif %}
+        {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
+    </div>
+    <table class="table table-bordered">
+        {% for tagList in node.tags %}
+            {% for tag in tagList if tag.name not in ['method', 'property', 'codeCoverageIgnore'] %}
+                <tr>
+                    <th>
+                        {{ tag.name }}
+                        {% if tag.type %}
+                            {{ tag.type|route|join('|')|raw }}
+                        {% endif %}
+                    </th>
+                    <td>
+                        {% if (tag.name == "since") %}
+                            {{ tag.version|markdown|raw }}
+                        {% elseif (tag.name == "deprecated") %}
+                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                        {% elseif (tag.name == "see") %}
+                            {% if tag.reference|slice(1, 4) == "http" %}
+                                <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                            {% else %}
+                                {{ tag.reference|route|raw }}
+                            {% endif %}
+                        {% elseif (tag.name == "package") %}
+                            <a href="{{ path('packages/' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
+                        {% elseif (tag.name == "subpackage") %}
+                            <a href="{{ path('packages/' ~ node.tags["package"][0].description ~ '.' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
+                        {% else %}
+                            {{ tag.description|markdown|raw }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+
+    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+    {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
+    {% for method in node.methods.merge(specialMethods)|sort_asc %}
+        {% include 'class/method.html.twig' with {'method': method} %}
+    {% endfor %}
+
+    {% if node.constants.merge(node.inheritedConstants)|length > 0 %}
+        <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+        {% for constant in node.constants.merge(node.inheritedConstants) %}
+            {% include 'class/constant.html.twig' with {'constant': constant} %}
+        {% endfor %}
+    {% endif %}
+
+    {% set specialProperties = node.magicProperties ? node.inheritedProperties.merge(node.magicProperties) : node.inheritedProperties %}
+    {% if node.properties.merge(specialProperties)|length > 0 %}
+        <h3><i class="icon-custom icon-property"></i> Properties</h3>
+        {% for property in node.properties.merge(specialProperties) %}
+            {% include 'class/property.html.twig' with {'property': property} %}
+        {% endfor %}
+    {% endif %}
+</div>

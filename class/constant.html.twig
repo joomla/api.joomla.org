@@ -1,0 +1,44 @@
+{% import 'base/macros.html.twig' as macros %}
+
+<a id="constant_{{ constant.name }}"> </a>
+<div class="element clickable constant constant_{{ constant.name }}{{ constant.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".constant_{{ constant.name }} .collapse">
+    <h2>{{ constant.name}}</h2>
+    {% if constant.summary %}{{ constant.summary|markdown|raw }}{% endif %}
+    {% if (constant.parent.name != node.name) or (constant.tags.deprecated is defined) %}
+    <div class="labels">
+        {% if constant.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
+        {% if constant.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
+    </div>
+    {% endif %}
+    <div class="row collapse">
+        <div class="detail-description">
+            <div class="long_description">{{ constant.description|markdown|raw }}</div>
+            <table class="table">
+                {% for tagList in constant.tags if tagList.0.name not in ['var'] %}
+                    <tr>
+                        <th>
+                            {{ tagList.0.name }}
+                        </th>
+                        <td>
+                            {% for tag in tagList %}
+                                {% if (tag.name == "since") %}
+                                    {{ tag.version|markdown|raw }}
+                                {% elseif (tag.name == "deprecated") %}
+                                    {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                {% elseif (tag.name == "see") %}
+                                    {% if tag.reference|slice(1, 4) == "http" %}
+                                        <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                    {% else %}
+                                        {{ tag.reference|route|raw }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ tag.description|markdown|raw }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>

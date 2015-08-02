@@ -1,0 +1,52 @@
+{% import 'base/macros.html.twig' as macros %}
+
+<a id="property_{{ property.name }}"> </a>
+<div class="element clickable property {{ property.visibility }} property_{{ property.name }}{{ property.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".property_{{ property.name }} .collapse">
+    <h2>{{ property.name }}</h2>
+    {% set desc = (property.summary ?: property.var.0.description ?: '') %}
+    {% if desc %}{{ desc|markdown|raw }}{% endif %}
+    {% if (property.parent.name != node.name) or property.static or (property.tags.deprecated is defined) %}
+    <div class="labels">
+        {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
+        {% if property.static %}<span class="label">static</span>{% endif %}
+        {% if property.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
+    </div>
+    {% endif %}
+    <div class="row collapse">
+        <div class="detail-description">
+            <div class="long_description">{{ property.description|markdown|raw }}</div>
+
+            <table class="table">
+                {% for tagList in property.tags if tagList.0.name not in ['var'] %}
+                    <tr>
+                        <th>
+                            {{ tagList.0.name }}
+                        </th>
+                        <td>
+                            {% for tag in tagList %}
+                                {% if (tag.name == "since") %}
+                                    {{ tag.version|markdown|raw }}
+                                {% elseif (tag.name == "deprecated") %}
+                                    {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                {% elseif (tag.name == "see") %}
+                                    {% if tag.reference|slice(1, 4) == "http" %}
+                                        <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                    {% else %}
+                                        {{ tag.reference|route|raw }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ tag.description|markdown|raw }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            {% if property.types and property.types|join() != 'void' %}
+                <h3>Type(s)</h3>
+                <code>{{ property.types|route|join('|')|raw }}</code>
+            {% endif %}
+        </div>
+    </div>
+</div>
