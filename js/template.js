@@ -183,6 +183,9 @@ $(document).ready(function () {
         if ($('.subnav-wrapper').length) {
             navTop = $('.subnav-wrapper').length && $('.subnav-wrapper').offset().top - 30;
 
+            // Fix the container top
+            $('.body .container-main').css('top', $('.subnav-wrapper').height() + $('nav.navbar').height());
+
             // Only apply the scrollspy when the toolbar is not collapsed
             if (document.body.clientWidth > 480) {
                 $('.subnav-wrapper').height($('.subnav').height());
@@ -199,6 +202,9 @@ $(document).ready(function () {
             if (scrollTop >= navTop && !isFixed) {
                 isFixed = true;
                 $('.subnav-wrapper').addClass('subhead-fixed');
+
+                // Fix the container top
+                $('.body .container-main').css('top', $('.subnav-wrapper').height() + $('nav.navbar').height());
             } else if (scrollTop <= navTop && isFixed) {
                 isFixed = false;
                 $('.subnav-wrapper').removeClass('subhead-fixed');
