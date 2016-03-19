@@ -11,11 +11,16 @@
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
+                {% set fileCounts = [] %}
                 {% for element in project.indexes.elements if element.deprecated %}
                     {% if element.file.path != previousPath %}
                         <li><a href="#{{ element.file.path }}"><i class="icon-file"></i> {{ element.file.path }}</a></li>
                     {% endif %}
                     {% set errorCount = errorCount + element.tags.deprecated.count %}
+                    {% if fileCounts[element.file.path] is not defined %}
+                        {% set fileCounts = fileCounts|merge({(element.file.path): 0}) %}
+                    {% endif %}
+                    {% set fileCounts = fileCounts|merge({(element.file.path): fileCounts[element.file.path] + 1}) %}
                     {% set previousPath = element.file.path %}
                 {% endfor %}
             </ul>
@@ -41,23 +46,27 @@
                         <a name="{{ element.file.path }}" id="{{ element.file.path }}"></a>
                         <h3>
                             <i class="icon-file"></i> {{ element.file.path }}
-                            <span class="pull-right badge badge-info">{{ element.tags.deprecated.count }}</span>
+                            <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
                         </h3>
                         <div>
                             <table class="table markers table-bordered">
-                                <tr>
-                                    <th>Element</th>
-                                    <th>Line</th>
-                                    <th>Description</th>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
                     {% endif %}
-                            {% for tag in element.tags.deprecated %}
-                                <tr>
-                                    <td>{{ element.fullyQualifiedStructuralElementName }}</td>
-                                    <td>{{ element.line }}</td>
-                                    <td>{{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}</td>
-                                </tr>
-                            {% endfor %}
+                                <tbody>
+                                {% for tag in element.tags.deprecated %}
+                                    <tr>
+                                        <td>{{ element.fullyQualifiedStructuralElementName }}</td>
+                                        <td>{{ element.line }}</td>
+                                        <td>{{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
                     {% set previousPath = element.file.path %}
                 {% endfor %}
                     </table>
