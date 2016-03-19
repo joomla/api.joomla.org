@@ -67,7 +67,7 @@
 {% endmacro %}
 
 {% block title %}
-    {{ project.title }} &raquo; {{ node.FullyQualifiedStructuralElementName }}
+    {{ parent() }} &raquo; {{ node.FullyQualifiedStructuralElementName }}
 {% endblock %}
 
 {% block content %}
