@@ -18,11 +18,21 @@
                 </li>
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
+                {% set fileCounts = [] %}
                 {% for file in project.files|sort_asc %}
                     {% if file.allerrors|length > 0 %}
-                        <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
+                        {% set fileCount = 0 %}
+                        {% for error in file.allerrors %}
+                            {% if error.code != 'PPC:ERR-50000' %}
+                                {% set fileCount = fileCount + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if fileCount > 1 %}
+                            {% set fileCounts = fileCounts|merge({(file.path): fileCount}) %}
+                            <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
+                        {% endif %}
+                        {% set errorCount = errorCount + fileCount %}
                     {% endif %}
-                    {% set errorCount = errorCount + file.allerrors|length %}
                 {% endfor %}
             </ul>
         </div>
@@ -39,12 +49,12 @@
 
             {% for file in project.files|sort_asc %}
                 <div class="package-contents">
-                    {% if file.allerrors|length > 0 %}
+                    {% if file.allerrors|length > 0 and fileCounts[file.path] is defined %}
                         <a name="{{ file.path }}" id="{{ file.path }}"></a>
                         <h3>
                             <i class="icon-file"></i>
                             {{ file.path }}
-                            <span class="pull-right badge badge-info">{{ file.allerrors|length }}</span>
+                            <span class="pull-right badge badge-info">{{ fileCounts[file.path] }}</span>
                         </h3>
                         <div>
                             <table class="table markers table-bordered">
@@ -57,11 +67,13 @@
                                 </thead>
                                 <tbody>
                                 {% for error in file.allerrors %}
-                                    <tr class="{{ error.severity }}">
-                                        <td>{{ error.severity }}</td>
-                                        <td>{{ error.line }}</td>
-                                        <td>{{ error.code|trans(error.context) }}</td>
-                                    </tr>
+                                    {% if error.code != 'PPC:ERR-50000' %}
+                                        <tr class="{{ error.severity }}">
+                                            <td>{{ error.severity }}</td>
+                                            <td>{{ error.line }}</td>
+                                            <td>{{ error.code|trans(error.context) }}</td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                             </table>

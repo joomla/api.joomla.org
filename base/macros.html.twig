@@ -9,7 +9,11 @@
 {% macro renderErrorCounter(files) %}
     {% set count = 0 %}
     {% for file in files %}
-        {% set count = count + file.allerrors|length %}
+        {% for error in file.allerrors %}
+            {% if error.code != 'PPC:ERR-50000' %}
+                {% set count = count + 1 %}
+            {% endif %}
+        {% endfor %}
     {% endfor %}
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
