@@ -27,7 +27,7 @@
                                 {% set fileCount = fileCount + 1 %}
                             {% endif %}
                         {% endfor %}
-                        {% if fileCount > 1 %}
+                        {% if fileCount > 0 %}
                             {% set fileCounts = fileCounts|merge({(file.path): fileCount}) %}
                             <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
                         {% endif %}
