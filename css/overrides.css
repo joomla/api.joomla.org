@@ -214,43 +214,16 @@ ul.side-nav li
 ul.side-nav li a
 {
     background:     transparent no-repeat 5px 3px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
 }
 
 ul.side-nav li pre
 {
-    font-size:        0.8em;
-    margin:           5px 15px 0 15px;
-    padding:          2px 5px;
-    background-color: #f8f8f8;
-    color:            gray;
-    font-style:       normal;
+    border:           none;
     word-wrap:        break-word;
     text-indent:      0;
-}
-
-ul.side-nav li.view-simple span.description
-{
-    display: none;
-}
-
-ul.side-nav li.view-simple pre
-{
-    font-size:        inherit;
-    margin:           inherit;
-    padding:          inherit;
-    background-color: inherit;
-    border:           none;
-    color:            inherit;
-    font-family:      inherit;
-    font-style:       inherit;
     padding-bottom:   0;
     padding-left:     5px;
-}
-
-ul.side-nav li.view-simple a
-{
-    padding-bottom: 0px;
 }
 
 .icon-custom
