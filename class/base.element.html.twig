@@ -45,7 +45,9 @@
                                 {{ tag.reference|route|raw }}
                             {% endif %}
                         {% elseif (tag.name == "package") %}
+                            {% if tag.description != 'Default' %}
                             <a href="{{ path('packages/' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
+                            {% endif %}
                         {% elseif (tag.name == "subpackage") %}
                             <a href="{{ path('packages/' ~ node.tags["package"][0].description ~ '.' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
                         {% else %}
