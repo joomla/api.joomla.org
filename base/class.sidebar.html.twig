@@ -20,7 +20,7 @@
 {% block sidebar_content %}
     <ul class="side-nav nav nav-list">
         <li class="nav-header">
-            <i class="icon-custom icon-method"></i> Methods
+            Methods
             <ul>
                 {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
                 {% for item in node.methods.merge(specialMethods)|sort_asc %}
@@ -52,7 +52,7 @@
             </ul>
         </li>
         <li class="nav-header">
-            <i class="icon-custom icon-constant"></i> Constants
+            Constants
             {% if node.constants.merge(node.inheritedConstants)|length > 0 %}
             <ul>
                 {% for constant in node.constants.merge(node.inheritedConstants)|sort_asc %}

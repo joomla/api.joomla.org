@@ -12,7 +12,7 @@
     {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 or node.functions|length > 0 or node.constants|length > 0 %}
         {% if node.functions|length > 0 %}
             <div class="package-indent">
-                <h3><i class="icon-custom icon-function"></i> Functions</h3>
+                <h3>Functions</h3>
                 {% for function in node.functions|sort_asc %}
                     {{ macros.elementSummary(function, 'function') }}
                 {% endfor %}
@@ -21,7 +21,7 @@
 
         {% if node.constants|length > 0 %}
             <div class="package-indent">
-                <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                <h3>Constants</h3>
                 {% for constant in node.constants|sort_asc %}
                     {{ macros.elementSummary(constant, 'constant') }}
                 {% endfor %}
@@ -30,7 +30,7 @@
 
         {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 %}
             <div class="package-indent">
-                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                <h3>Classes, interfaces and traits</h3>
                 {% for trait in node.traits|sort_asc %}
                     {{ macros.elementSummary(trait, 'trait') }}
                 {% endfor %}

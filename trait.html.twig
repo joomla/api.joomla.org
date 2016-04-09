@@ -19,7 +19,6 @@
             </div>
             <a id="{{ node.fullyQualifiedStructuralElementName }}"></a>
             <ul class="breadcrumb">
-                <li><a href="{{ path('index.html') }}"><i class="icon-custom icon-trait"></i></a></li>
                 {{ macros.buildBreadcrumb(node.namespace) }}
                 <li class="active"><span class="divider">\</span><a href="{{ path(node) }}">{{ node.name }}</a></li>
             </ul>

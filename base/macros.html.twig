@@ -45,7 +45,7 @@
         {% set class = 'ajax ' %}
     {% endif %}
     <div id="{{ element.name }}" class="element clickable {{ class }}{{ type }}{% if type == 'function' or type == 'constant' %} {{ element.visibility }} method_{{ element.name }}{% endif %}"{% if type == 'function' or type == 'constant' %} data-toggle="collapse" data-target=".method_{{ element.name }} .collapse"{% endif %}>
-        <h1><i class="icon-custom icon-{{ type }}"></i> {{ element.name }}{% if path(element) and type != 'function' and type != 'constant' %}<a href="{{ path(element) }}" class="more">¶</a>{% endif %}</h1>
+        <h1>{{ element.name }}{% if path(element) and type != 'function' and type != 'constant' %}<a href="{{ path(element) }}" class="more">¶</a>{% endif %}</h1>
         <p class="short_description">{{ element.summary }}</p>
         <div class="details collapse">
             {% if type == 'function' or type == 'constant' %}

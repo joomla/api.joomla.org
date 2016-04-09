@@ -249,20 +249,6 @@ ul.side-nav li pre
     height: 24px;
 }
 
-.icon-constant  { background-image: url('../images/icons/constant.png'); }
-
-.icon-function  { background-image: url('../images/icons/function.png'); }
-
-.icon-method    { background-image: url('../images/icons/method.png'); }
-
-.icon-class     { background-image: url('../images/icons/class.png'); }
-
-.icon-interface { background-image: url('../images/icons/interface.png'); }
-
-.icon-trait { background-image: url('../images/icons/trait.png'); }
-
-.icon-property  { background-image: url('../images/icons/property.png'); }
-
 .icon-show-public    { background-image: url('../images/icons/visibility_public.png'); }
 .icon-show-protected { background-image: url('../images/icons/visibility_protected.png'); }
 .icon-show-private   { background-image: url('../images/icons/visibility_private.png'); }
