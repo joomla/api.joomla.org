@@ -45,8 +45,7 @@ if (typeof jQuery === 'undefined') {
 
             // do not show tooltips on iPad; it will cause the user having to click twice
             if (!jQuery.browser.ipad) {
-                jQuery('.btn-group.visibility, .btn-group.type-filter, .icon-custom')
-                    .tooltip({'placement': 'bottom'});
+                jQuery('.btn-group.visibility, .btn-group.type-filter').tooltip({'placement': 'bottom'});
                 jQuery('.element').tooltip({'placement': 'left'});
             }
 
