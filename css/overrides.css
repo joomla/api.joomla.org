@@ -286,3 +286,13 @@ div.labels
     font-size:      9px;
     font-weight:    bold;
 }
+
+@media (min-width: 768px) {
+    :target:before {
+        display: block;
+        content: " ";
+        margin-top: -90px;
+        height: 90px;
+        visibility: hidden;
+    }
+}
