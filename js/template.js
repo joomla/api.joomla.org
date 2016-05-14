@@ -111,7 +111,7 @@ if (typeof jQuery === 'undefined') {
                 if (document.body.clientWidth > 480) {
                     var subnav = jQuery('.subnav');
 
-                    subnavWrapper.height(subnav.height());
+                    subnavWrapper.height(subnav.outerHeight());
                     subnav.affix({
                         offset: {top: subnav.offset().top - jQuery('nav.navbar').height()}
                     });
