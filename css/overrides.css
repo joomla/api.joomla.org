@@ -217,13 +217,6 @@ span.empty-namespace
     color: silver;
 }
 
-footer
-{
-    text-align: right;
-    font-size: 0.8em;
-    opacity: 0.5;
-}
-
 #mapHolder
 {
     border:   4px solid #555;
