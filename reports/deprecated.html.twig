@@ -7,7 +7,7 @@
 {% block content %}
     <div class="row-fluid">
 
-        <div class="span5">
+        <aside class="span5">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
@@ -24,9 +24,9 @@
                     {% set previousPath = element.file.path %}
                 {% endfor %}
             </ul>
-        </div>
+        </aside>
 
-        <div class="span7">
+        <main class="span7">
             <ul class="breadcrumb">
                 <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a><span class="divider">\</span></li>
                 <li>Deprecated elements</li>
@@ -71,7 +71,7 @@
                 {% endfor %}
                     </table>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
 {% endblock %}

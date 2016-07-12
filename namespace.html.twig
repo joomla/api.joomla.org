@@ -74,17 +74,17 @@
     {% import _self as self %}
 
     <div class="row-fluid">
-        <div class="span5">
+        <aside class="span5">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">
                     <i class="icon-map-marker"></i> Namespaces
                 </li>
                 {{ self.renderNamespaceSidebar(node) }}
             </ul>
-        </div>
+        </aside>
 
-        <div class="span7 namespace-contents">
+        <main class="span7 namespace-contents">
             {{ self.renderNamespaceDetails(node) }}
-        </div>
+        </main>
     </div>
 {% endblock %}

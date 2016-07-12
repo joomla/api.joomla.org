@@ -9,11 +9,11 @@
 
 {% block content %}
     <div class="row-fluid">
-        <div class="span5">
+        <aside class="span5">
             {{ block('sidebar') }}
-        </div>
+        </aside>
 
-        <div class="span7">
+        <main class="span7">
             <div class="element class">
                 {% include 'class/base.element.html.twig' with {'node': node, 'type': 'class'} %}
             </div>
@@ -22,6 +22,6 @@
                 {{ macros.buildBreadcrumb(node.namespace) }}
                 <li class="active"><span class="divider">\</span><a href="{{ path(node) }}">{{ node.name }}</a></li>
             </ul>
-        </div>
+        </main>
     </div>
 {% endblock %}

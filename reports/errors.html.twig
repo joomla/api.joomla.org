@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="row-fluid">
-        <div class="span5">
+    <div class="row-fluid">
+        <aside class="span5">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Filter type</li>
                 <li>
@@ -35,9 +35,9 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        </div>
+        </aside>
 
-        <div class="span7">
+        <main class="span7">
             <ul class="breadcrumb">
                 <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
                 <li>Compilation Errors</li>
@@ -81,6 +81,6 @@
                     {% endif %}
                 </div>
             {% endfor %}
-        </div>
+        </main>
     </div>
 {% endblock %}
