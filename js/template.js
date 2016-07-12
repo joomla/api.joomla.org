@@ -105,7 +105,7 @@ if (typeof jQuery === 'undefined') {
                 JoomlaApi.navTop = subnavWrapper.length && subnavWrapper.offset().top - 30;
 
                 // Fix the container top
-                jQuery('.body .container-main').css('top', subnavWrapper.height() + jQuery('nav.navbar').height());
+                jQuery('.body .container-main').css('top', subnavWrapper.height() + jQuery('#mega-menu').height());
 
                 // Only apply the scrollspy when the toolbar is not collapsed
                 if (document.body.clientWidth > 480) {
@@ -133,7 +133,7 @@ if (typeof jQuery === 'undefined') {
                     subnav.addClass('subhead-fixed');
 
                     // Fix the container top
-                    jQuery('.body .container-main').css('top', subnav.height() + jQuery('nav.navbar').height());
+                    jQuery('.body .container-main').css('top', subnav.height() + jQuery('#mega-menu').height());
                 } else if (scrollTop <= JoomlaApi.navTop && JoomlaApi.isFixed) {
                     JoomlaApi.isFixed = false;
                     subnav.removeClass('subhead-fixed');
