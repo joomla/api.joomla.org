@@ -113,7 +113,7 @@ if (typeof jQuery === 'undefined') {
 
                     subnavWrapper.height(subnav.outerHeight());
                     subnav.affix({
-                        offset: {top: subnav.offset().top - jQuery('nav.navbar').height()}
+                        offset: {top: subnav.offset().top - jQuery('#mega-menu').height()}
                     });
                 }
             }
