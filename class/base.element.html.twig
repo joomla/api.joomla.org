@@ -1,9 +1,9 @@
 {% import 'base/macros.html.twig' as macros %}
 
 <h1>{{ node.name }}</h1>
-{% if node.parent or node.interfaces|length %}
+{% if node.parent|length or node.interfaces|length %}
 <small class="pull-right">
-    {% if node.parent %}
+    {% if node.parent|length %}
         Extends {{ node.parent|route|join(', ')|raw }}
     {% endif %}
     {% if node.interfaces|length %}
