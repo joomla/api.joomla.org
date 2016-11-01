@@ -22,16 +22,21 @@
         <meta property="og:site_name" content="Joomla! API" />
         <title>{% block title %}{{ project.name }}{% endblock %}</title>
         {% block icons %}
-            <link href="https://api.joomla.org/images/apple-touch-icon-144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144" />
-            <link href="https://api.joomla.org/images/apple-touch-icon-114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114" />
-            <link href="https://api.joomla.org/images/apple-touch-icon-72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72" />
-            <link href="https://api.joomla.org/images/apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72" />
+            <link href="https://api.joomla.org/images/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" />
+            <link href="https://api.joomla.org/images/apple-touch-icon.png" rel="apple-touch-icon" />
             <link href="https://api.joomla.org/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
         {% endblock %}
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdn.joomla.org/template/css/template_2.1.0.min.css" />
-            <link rel="stylesheet" href="https://api.joomla.org/css/overrides.css" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+            <link href="https://cdn.joomla.org/template/css/template_2.1.1.min.css" rel="stylesheet" />
+            <link href="https://api.joomla.org/css/overrides.css" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
             <style>
                 h1, h2, h3, h4, h5, h6 {
                     font-family: 'Open Sans', sans-serif;
@@ -77,7 +82,8 @@
                                         <li class="divider"><span></span></li>
                                         <li class="nav-header"><span>Support <span dir="ltr">Joomla!</span></span></li>
                                         <li><a href="https://www.joomla.org/contribute-to-joomla.html">Contribute</a></li>
-                                        <li><a href="https://shop.joomla.org">The <span dir="ltr">Joomla!</span> Shop</a></li>
+                                        <li><a href="https://community.joomla.org/the-joomla-shop.html">The <span dir="ltr">Joomla!</span> Shop</a>
+                                        </li>
                                         <li><a href="https://www.joomla.org/sponsorship">Sponsorship</a></li>
                                     </ul>
                                 </li>
@@ -89,6 +95,16 @@
                                         <li><a href="https://www.joomla.org/about-joomla/the-project.html">The Project</a></li>
                                         <li><a href="https://www.joomla.org/about-joomla/the-project/leadership-team.html">Leadership</a></li>
                                         <li><a href="http://opensourcematters.org">Open Source Matters</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Download &amp; Extend <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="https://downloads.joomla.org">Joomla! Downloads</a></li>
+                                        <li><a href="https://extensions.joomla.org">Extensions Directory</a></li>
+                                        <li><a href="https://showcase.joomla.org">Showcase Directory</a></li>
+                                        <li><a href="https://community.joomla.org/translations.html">Language Packages</a></li>
+                                        <li><a href="https://certification.joomla.org">Certification Program</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -105,7 +121,7 @@
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Community <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="https://community.joomla.org">Community Portal</a></li>
-                                        <li><a href="https://events.joomla.org"><span dir="ltr">Joomla!</span> Events</a></li>
+                                        <li><a href="https://community.joomla.org/events.html"><span dir="ltr">Joomla!</span> Events</a></li>
                                         <li><a href="https://tm.joomla.org">Trademark &amp; Licensing</a></li>
                                         <li><a href="https://community.joomla.org/user-groups.html">User Groups</a></li>
                                         <li><a href="https://volunteers.joomla.org">Volunteers Portal</a></li>
@@ -114,20 +130,12 @@
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="http://forum.joomla.org">Forum</a></li>
+                                        <li><a href="https://forum.joomla.org">Forum</a></li>
                                         <li><a href="https://docs.joomla.org">Documentation</a></li>
                                         <li><a href="https://issues.joomla.org">Issue Tracker</a></li>
                                         <li><a href="http://resources.joomla.org">Resources Directory</a></li>
-                                        <li><a href="https://community.joomla.org/joomla-training.html"><span dir="ltr">Joomla!</span> Training</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Extend <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="https://extensions.joomla.org">Extensions Directory</a></li>
-                                        <li><a href="http://showcase.joomla.org">Showcase Directory</a></li>
-                                        <li><a href="https://community.joomla.org/translations.html">Language Packages</a></li>
-                                        <li><a href="https://certification.joomla.org">Certification Program</a></li>
+                                        <li><a href="https://community.joomla.org/joomla-training.html"><span dir="ltr">Joomla!</span> Training</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -136,7 +144,7 @@
                                         <li><a href="https://developer.joomla.org">Developer Network</a></li>
                                         <li><a href="https://docs.joomla.org">Documentation</a></li>
                                         <li><a href="https://docs.joomla.org/Bug_Squad">Bug Squad</a></li>
-                                        <li><a href="https://developer.joomla.org/security-centre.html">Security Centre</a></li>
+                                        <li><a href="https://developer.joomla.org/security.html">Security Centre</a></li>
                                         <li><a href="https://api.joomla.org">API Documentation</a></li>
                                         <li><a href="http://joomlacode.org">JoomlaCode</a></li>
                                         <li><a href="https://framework.joomla.org"><span dir="ltr">Joomla!</span> Framework</a></li>
@@ -162,12 +170,12 @@
             <div class="container">
                 <div class="row-fluid">
                     <div class="span7">
-                        <h1 class="page-title"><a href="https://api.joomla.org">{{ project.name }}</a></h1>
+                        <h1 class="page-title"><a href="https://api.joomla.org">Joomla! API</a></h1>
                     </div>
                     <div class="span5">
                         <div class="btn-toolbar pull-right">
                             <div class="btn-group">
-                                <a href="https://www.joomla.org/download.html" class="btn btn-large btn-warning">Download</a>
+                                <a href="https://downloads.joomla.org" class="btn btn-large btn-warning">Download</a>
                             </div>
                             <div class="btn-group">
                                 <a href="https://demo.joomla.org" class="btn btn-large btn-primary">Demo</a>
@@ -267,17 +275,18 @@
                         <li><a href="https://www.joomla.org"><span>Home</span></a></li>
                         <li><a href="https://www.joomla.org/about-joomla.html"><span>About</span></a></li>
                         <li><a href="https://community.joomla.org"><span>Community</span></a></li>
-                        <li><a href="http://forum.joomla.org"><span>Forum</span></a></li>
+                        <li><a href="https://forum.joomla.org"><span>Forum</span></a></li>
                         <li><a href="https://extensions.joomla.org"><span>Extensions</span></a></li>
                         <li><a href="http://resources.joomla.org"><span>Resources</span></a></li>
                         <li><a href="https://docs.joomla.org"><span>Docs</span></a></li>
                         <li><a href="https://developer.joomla.org"><span>Developer</span></a></li>
-                        <li><a href="https://shop.joomla.org"><span>Shop</span></a></li>
+                        <li><a href="https://community.joomla.org/the-joomla-shop.html"><span>Shop</span></a></li>
                     </ul>
 
                     <ul class="nav-inline">
                         <li><a href="https://www.joomla.org/accessibility-statement.html">Accessibility Statement</a></li>
                         <li><a href="https://www.joomla.org/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="https://crowdin.com/projects/Joomla">Help Translate</a></li>
                         <li><a href="https://github.com/joomla/joomla-websites/issues/new?title=%5Bjapi%5D%20&body=Please%20describe%20the%20problem%20or%20your%20issue">Report an Issue</a></li>
                     </ul>
 
