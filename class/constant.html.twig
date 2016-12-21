@@ -26,8 +26,8 @@
                                 {% elseif (tag.name == "deprecated") %}
                                     {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
                                 {% elseif (tag.name == "see") %}
-                                    {% if tag.reference|slice(1, 4) == "http" %}
-                                        <a href="{{ tag.reference|slice(1) }}" target="_blank">{{ tag.reference|slice(1)|markdown|raw }}</a>
+                                    {% if tag.reference|slice(0, 4) == "http" %}
+                                        <a href="{{ tag.reference|slice(0) }}" target="_blank">{{ tag.reference|slice(0)|markdown|raw }}</a>
                                     {% else %}
                                         {{ tag.reference|route|raw }}
                                     {% endif %}
