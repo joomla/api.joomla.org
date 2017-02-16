@@ -24,7 +24,7 @@
             <ul>
                 {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
                 {% for item in node.methods.merge(specialMethods)|sort_asc %}
-                    {% set type='method' %}
+                    {% set type = 'method' %}
                     {% if item.visibility == '' or item.visibility == 'public' %}
                         {{ block('sidebar_entry') }}
                     {% endif %}
@@ -35,6 +35,7 @@
             <ul>
                 {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
                 {% for item in node.methods.merge(specialMethods)|sort_asc %}
+                    {% set type = 'method' %}
                     {% if item.visibility == 'protected' %}
                         {{ block('sidebar_entry') }}
                     {% endif %}
@@ -45,6 +46,7 @@
             <ul>
                 {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
                 {% for method in node.methods.merge(specialMethods)|sort_asc %}
+                    {% set type = 'method' %}
                     {% if item.visibility == 'private' %}
                         {{ block('sidebar_entry') }}
                     {% endif %}
