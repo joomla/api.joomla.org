@@ -23,41 +23,46 @@
         {% endif %}
         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
     </div>
+    {% if node.tags|length %}
     <table class="table table-bordered">
-        {% for tagList in node.tags %}
-            {% for tag in tagList if tag.name not in ['method', 'property', 'codeCoverageIgnore'] %}
-                <tr>
-                    <th>
-                        {{ tag.name }}
-                        {% if tag.type %}
-                            {{ tag.type|route|join('|')|raw }}
-                        {% endif %}
-                    </th>
-                    <td>
-                        {% if (tag.name == "since") %}
-                            {{ tag.version|markdown|raw }}
-                        {% elseif (tag.name == "deprecated") %}
-                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
-                        {% elseif (tag.name == "see") %}
-                            {% if tag.reference|slice(0, 4) == "http" %}
-                                <a href="{{ tag.reference|slice(0) }}" target="_blank">{{ tag.reference|slice(0)|markdown|raw }}</a>
-                            {% else %}
-                                {{ tag.reference|route|raw }}
+        {% for tagList in node.tags if tagList|length %}
+            {% if tagList.0.name not in ['method', 'property', 'codeCoverageIgnore'] %}
+                {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}
+                    {# Do not display the package tag if its value is "Default" #}
+                {% else %}
+                    <tr>
+                        <th>
+                            {{ tagList.0.name }}
+                            {% if tagList.0.type %}
+                                {{ tagList.0.type|route|join('|')|raw }}
                             {% endif %}
-                        {% elseif (tag.name == "package") %}
-                            {% if tag.description != 'Default' %}
-                            <a href="{{ path('packages/' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
-                            {% endif %}
-                        {% elseif (tag.name == "subpackage") %}
-                            <a href="{{ path('packages/' ~ node.tags["package"][0].description ~ '.' ~ tag.description ~ '.html') }}">{{ tag.description|markdown|raw }}</a>
-                        {% else %}
-                            {{ tag.description|markdown|raw }}
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
+                        </th>
+                        <td>
+                            {% for tag in tagList %}
+                                {% if tag.name == 'since' %}
+                                    {{ tag.version|markdown|raw }}
+                                {% elseif tag.name == 'deprecated' %}
+                                    {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                {% elseif tag.name == 'see' %}
+                                    {% if tag.reference|slice(0, 4) == 'http' %}
+                                        {{ tag.reference|markdown|raw }}
+                                    {% else %}
+                                        {{ tag.reference|route|raw }}
+                                    {% endif %}
+                                {% elseif tag.name == 'throws' %}
+                                    {% set tTypes = tag.types|route|join('|')|raw %}
+                                    {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
+                                {% else %}
+                                    {{ tag.description|markdown|raw }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endif %}
         {% endfor %}
     </table>
+    {% endif %}
 
     <h3>Methods</h3>
     {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
