@@ -24,7 +24,7 @@
         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
     </div>
     {% if node.tags|length %}
-    <table class="table table-bordered">
+    <table class="table table-condensed">
         {% for tagList in node.tags if tagList|length %}
             {% if tagList.0.name not in ['method', 'property', 'codeCoverageIgnore'] %}
                 {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}

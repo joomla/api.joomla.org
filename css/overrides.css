@@ -196,11 +196,6 @@ ul.side-nav li pre
     padding-left:     5px;
 }
 
-.table.markers
-{
-    background: white;
-}
-
 /* JS only functionality; disable by default */
 .btn-group.visibility, .btn-group.view, .btn-group.type-filter
 {

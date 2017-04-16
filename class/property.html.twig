@@ -16,7 +16,7 @@
         <div class="detail-description">
             <div class="long_description">{{ property.description|markdown|raw }}</div>
 
-            <table class="table">
+            <table class="table table-condensed">
                 {% for tagList in method.tags if tagList|length %}
                     {% if tagList.0.name not in ['var'] %}
                         <tr>
