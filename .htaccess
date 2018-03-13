@@ -15,9 +15,32 @@
 	Header always set X-Content-Type-Options nosniff
 	# Referrer Policy
 	Header always set Referrer-Policy "no-referrer-when-downgrade"
+	# Strict-Transport-Security
+	Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	# Content-Security-Policy-Report-Only
+	Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-/5E6zLxPOzxAM09WN5S/OLOYujyVqNqh2O8TYfHyWGE=' 'sha256-IdGCicCStclh9gcSb3HOLfSv+uYUeKV7MLAn0YH7mJw=' 'sha256-jWUL8SPRc6RLWm6Dsgi/j3WazpOVqhUkSV7lQ1CglJg=' https://*.google-analytics.com https://netdna.bootstrapcdn.com https://www.googletagmanager.com https://*.googleapis.com https://www.gstatic.com https://code.jquery.com https://cdnjs.cloudflare.com https://*.pingdom.net; style-src 'self' 'sha256-1YvJdQQmg6uOVTYYFv7RZlsdSxEYBbG0Z1Fo7pFmcOQ=' 'sha256-uOtB/8JkT+/L0LDZlxc42nzI/dqQ+q0S/TComR30jHk=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' https://*.joomla.org https://fonts.googleapis.com; connect-src 'self' https://*.pingdom.net https://*.doubleclick.net https://*.google-analytics.com; frame-src 'self' https://www.google.com https://*.googletagmanager.com; font-src 'self' https://fonts.gstatic.com https://netdna.bootstrapcdn.com https://*.joomla.org; img-src 'self' https://*.google-analytics.com https://*.joomla.org https://*.pingdom.net https://*.doubleclick.net; report-uri https://community.joomla.org/scripts/csp-reporter.php?source=api.joomla.org"
+
+	# Override the csp for the results.html, 404.html & 403.html file
+	<Files ~ "results.html">
+		# Content-Security-Policy-Report-Only
+		Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google-analytics.com https://netdna.bootstrapcdn.com https://www.googletagmanager.com https://*.googleapis.com https://www.gstatic.com https://code.jquery.com https://cdnjs.cloudflare.com https://*.pingdom.net https://*.google.com; style-src 'self' 'unsafe-inline' https://*.joomla.org https://fonts.googleapis.com https://*.google.com; connect-src 'self' https://*.pingdom.net https://*.doubleclick.net; frame-src 'self' https://www.google.com https://*.googletagmanager.com https://cse.google.com/; font-src 'self' https://fonts.gstatic.com https://netdna.bootstrapcdn.com https://*.joomla.org; img-src 'self' https://*.google-analytics.com https://*.joomla.org https://*.pingdom.net https://*.doubleclick.net https://*.gstatic.com https://*.google.com https://*.googleapis.com; report-uri https://community.joomla.org/scripts/csp-reporter.php?source=api.joomla.org"
+	</Files>
+	<Files ~ "404.html">
+		# Content-Security-Policy-Report-Only
+		Header always set Content-Security-Policy"default-src 'self'; style-src 'self' 'unsafe-inline'; report-uri https://community.joomla.org/scripts/csp-reporter.php?source=api.joomla.org"
+	</Files>
+	<Files ~ "403.html">
+		# Content-Security-Policy-Report-Only
+		Header always set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'; report-uri https://community.joomla.org/scripts/csp-reporter.php?source=api.joomla.org"
+	</Files>
+
 </IfModule>
 
 ###########################################
+
+# Custom 404 & 403 Page
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
 
 ###########################################
 # ======= Enable the Rewrite Engine =======
