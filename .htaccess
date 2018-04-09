@@ -36,10 +36,362 @@
 </IfModule>
 
 ###########################################
+# ========== Custom Error Pages ===========
 
-# Custom 404 & 403 Page
 ErrorDocument 404 /404.html
 ErrorDocument 403 /403.html
+
+###########################################
+
+
+###########################################
+# ======= Redirect Renamed Classes ========
+
+Redirect 301 /cms-3/classes/JApplicationAdministrator.html /cms-3/classes/Joomla.CMS.Application.AdministratorApplication.html
+Redirect 301 /cms-3/classes/JApplicationHelper.html /cms-3/classes/Joomla.CMS.Application.ApplicationHelper.html
+Redirect 301 /cms-3/classes/JApplicationBase.html /cms-3/classes/Joomla.CMS.Application.BaseApplication.html
+Redirect 301 /cms-3/classes/JApplicationCli.html /cms-3/classes/Joomla.CMS.Application.CliApplication.html
+Redirect 301 /cms-3/classes/JApplicationCms.html /cms-3/classes/Joomla.CMS.Application.CMSApplication.html
+Redirect 301 /cms-3/classes/JApplicationDaemon.html /cms-3/classes/Joomla.CMS.Application.DaemonApplication.html
+Redirect 301 /cms-3/classes/JApplicationSite.html /cms-3/classes/Joomla.CMS.Application.SiteApplication.html
+Redirect 301 /cms-3/classes/JApplicationWeb.html /cms-3/classes/Joomla.CMS.Application.WebApplication.html
+Redirect 301 /cms-3/classes/JApplicationWebClient.html /cms-3/classes/Joomla.Application.Web.WebClient.html
+Redirect 301 /cms-3/classes/JDaemon.html /cms-3/classes/Joomla.CMS.Application.DaemonApplication.html
+Redirect 301 /cms-3/classes/JCli.html /cms-3/classes/Joomla.CMS.Application.CliApplication.html
+Redirect 301 /cms-3/classes/JWeb.html /cms-3/classes/Joomla.CMS.Application.WebApplication.html
+Redirect 301 /cms-3/classes/JWebClient.html /cms-3/classes/Joomla.Application.Web.WebClient.html
+Redirect 301 /cms-3/classes/JModelAdmin.html /cms-3/classes/Joomla.CMS.MVC.Model.AdminModel.html
+Redirect 301 /cms-3/classes/JModelForm.html /cms-3/classes/Joomla.CMS.MVC.Model.FormModel.html
+Redirect 301 /cms-3/classes/JModelItem.html /cms-3/classes/Joomla.CMS.MVC.Model.ItemModel.html
+Redirect 301 /cms-3/classes/JModelList.html /cms-3/classes/Joomla.CMS.MVC.Model.ListModel.html
+Redirect 301 /cms-3/classes/JModelLegacy.html /cms-3/classes/Joomla.CMS.MVC.Model.BaseDatabaseModel.html
+Redirect 301 /cms-3/classes/JViewCategories.html /cms-3/classes/Joomla.CMS.MVC.View.CategoriesView.html
+Redirect 301 /cms-3/classes/JViewCategory.html /cms-3/classes/Joomla.CMS.MVC.View.CategoryView.html
+Redirect 301 /cms-3/classes/JViewCategoryfeed.html /cms-3/classes/Joomla.CMS.MVC.View.CategoryFeedView.html
+Redirect 301 /cms-3/classes/JViewLegacy.html /cms-3/classes/Joomla.CMS.MVC.View.HtmlView.html
+Redirect 301 /cms-3/classes/JControllerAdmin.html /cms-3/classes/Joomla.CMS.MVC.Controller.AdminController.html
+Redirect 301 /cms-3/classes/JControllerLegacy.html /cms-3/classes/Joomla.CMS.MVC.Controller.BaseController.html
+Redirect 301 /cms-3/classes/JControllerForm.html /cms-3/classes/Joomla.CMS.MVC.Controller.FormController.html
+Redirect 301 /cms-3/classes/JTableInterface.html /cms-3/classes/Joomla.CMS.Table.TableInterface.html
+Redirect 301 /cms-3/classes/JTable.html /cms-3/classes/Joomla.CMS.Table.Table.html
+Redirect 301 /cms-3/classes/JTableNested.html /cms-3/classes/Joomla.CMS.Table.Nested.html
+Redirect 301 /cms-3/classes/JTableAsset.html /cms-3/classes/Joomla.CMS.Table.Asset.html
+Redirect 301 /cms-3/classes/JTableExtension.html /cms-3/classes/Joomla.CMS.Table.Extension.html
+Redirect 301 /cms-3/classes/JTableLanguage.html /cms-3/classes/Joomla.CMS.Table.Language.html
+Redirect 301 /cms-3/classes/JTableUpdate.html /cms-3/classes/Joomla.CMS.Table.Update.html
+Redirect 301 /cms-3/classes/JTableUpdatesite.html /cms-3/classes/Joomla.CMS.Table.UpdateSite.html
+Redirect 301 /cms-3/classes/JTableUser.html /cms-3/classes/Joomla.CMS.Table.User.html
+Redirect 301 /cms-3/classes/JTableUsergroup.html /cms-3/classes/Joomla.CMS.Table.Usergroup.html
+Redirect 301 /cms-3/classes/JTableViewlevel.html /cms-3/classes/Joomla.CMS.Table.ViewLevel.html
+Redirect 301 /cms-3/classes/JTableContenthistory.html /cms-3/classes/Joomla.CMS.Table.ContentHistory.html
+Redirect 301 /cms-3/classes/JTableContenttype.html /cms-3/classes/Joomla.CMS.Table.ContentType.html
+Redirect 301 /cms-3/classes/JTableCorecontent.html /cms-3/classes/Joomla.CMS.Table.CoreContent.html
+Redirect 301 /cms-3/classes/JTableUcm.html /cms-3/classes/Joomla.CMS.Table.Ucm.html
+Redirect 301 /cms-3/classes/JTableCategory.html /cms-3/classes/Joomla.CMS.Table.Category.html
+Redirect 301 /cms-3/classes/JTableContent.html /cms-3/classes/Joomla.CMS.Table.Content.html
+Redirect 301 /cms-3/classes/JTableMenu.html /cms-3/classes/Joomla.CMS.Table.Menu.html
+Redirect 301 /cms-3/classes/JTableMenuType.html /cms-3/classes/Joomla.CMS.Table.MenuType.html
+Redirect 301 /cms-3/classes/JTableModule.html /cms-3/classes/Joomla.CMS.Table.Module.html
+Redirect 301 /cms-3/classes/JTableObserver.html /cms-3/classes/Joomla.CMS.Table.Observer.AbstractObserver.html
+Redirect 301 /cms-3/classes/JTableObserverContenthistory.html /cms-3/classes/Joomla.CMS.Table.Observer.ContentHistory.html
+Redirect 301 /cms-3/classes/JTableObserverTags.html /cms-3/classes/Joomla.CMS.Table.Observer.Tags.html
+Redirect 301 /cms-3/classes/JAccess.html /cms-3/classes/Joomla.CMS.Access.Access.html
+Redirect 301 /cms-3/classes/JAccessRule.html /cms-3/classes/Joomla.CMS.Access.Rule.html
+Redirect 301 /cms-3/classes/JAccessRules.html /cms-3/classes/Joomla.CMS.Access.Rules.html
+Redirect 301 /cms-3/classes/JAccessWrapperAccess.html /cms-3/classes/Joomla.CMS.Access.Wrapper.Access.html
+Redirect 301 /cms-3/classes/JAccessExceptionNotallowed.html /cms-3/classes/Joomla.CMS.Access.Exception.NotAllowed.html
+Redirect 301 /cms-3/classes/JRule.html /cms-3/classes/Joomla.CMS.Access.Rule.html
+Redirect 301 /cms-3/classes/JRules.html /cms-3/classes/Joomla.CMS.Access.Rules.html
+Redirect 301 /cms-3/classes/JHelp.html /cms-3/classes/Joomla.CMS.Help.Help.html
+Redirect 301 /cms-3/classes/JCaptcha.html /cms-3/classes/Joomla.CMS.Captcha.Captcha.html
+Redirect 301 /cms-3/classes/JLanguageAssociations.html /cms-3/classes/Joomla.CMS.Language.Associations.html
+Redirect 301 /cms-3/classes/JLanguage.html /cms-3/classes/Joomla.CMS.Language.Language.html
+Redirect 301 /cms-3/classes/JLanguageHelper.html /cms-3/classes/Joomla.CMS.Language.LanguageHelper.html
+Redirect 301 /cms-3/classes/JLanguageStemmer.html /cms-3/classes/Joomla.CMS.Language.LanguageStemmer.html
+Redirect 301 /cms-3/classes/JLanguageMultilang.html /cms-3/classes/Joomla.CMS.Language.Multilanguage.html
+Redirect 301 /cms-3/classes/JText.html /cms-3/classes/Joomla.CMS.Language.Text.html
+Redirect 301 /cms-3/classes/JLanguageTransliterate.html /cms-3/classes/Joomla.CMS.Language.Transliterate.html
+Redirect 301 /cms-3/classes/JLanguageStemmerPorteren.html /cms-3/classes/Joomla.CMS.Language.Stemmer.Porteren.html
+Redirect 301 /cms-3/classes/JLanguageWrapperText.html /cms-3/classes/Joomla.CMS.Language.Wrapper.JTextWrapper.html
+Redirect 301 /cms-3/classes/JLanguageWrapperHelper.html /cms-3/classes/Joomla.CMS.Language.Wrapper.LanguageHelperWrapper.html
+Redirect 301 /cms-3/classes/JLanguageWrapperTransliterate.html /cms-3/classes/Joomla.CMS.Language.Wrapper.TransliterateWrapper.html
+Redirect 301 /cms-3/classes/JComponentHelper.html /cms-3/classes/Joomla.CMS.Component.ComponentHelper.html
+Redirect 301 /cms-3/classes/JComponentRecord.html /cms-3/classes/Joomla.CMS.Component.ComponentRecord.html
+Redirect 301 /cms-3/classes/JComponentExceptionMissing.html /cms-3/classes/Joomla.CMS.Component.Exception.MissingComponentException.html
+Redirect 301 /cms-3/classes/JComponentRouterBase.html /cms-3/classes/Joomla.CMS.Component.Router.RouterBase.html
+Redirect 301 /cms-3/classes/JComponentRouterInterface.html /cms-3/classes/Joomla.CMS.Component.Router.RouterInterface.html
+Redirect 301 /cms-3/classes/JComponentRouterLegacy.html /cms-3/classes/Joomla.CMS.Component.Router.RouterLegacy.html
+Redirect 301 /cms-3/classes/JComponentRouterView.html /cms-3/classes/Joomla.CMS.Component.Router.RouterView.html
+Redirect 301 /cms-3/classes/JComponentRouterViewconfiguration.html /cms-3/classes/Joomla.CMS.Component.Router.RouterViewConfiguration.html
+Redirect 301 /cms-3/classes/JComponentRouterRulesMenu.html /cms-3/classes/Joomla.CMS.Component.Router.Rules.MenuRules.html
+Redirect 301 /cms-3/classes/JComponentRouterRulesNomenu.html /cms-3/classes/Joomla.CMS.Component.Router.Rules.NomenuRules.html
+Redirect 301 /cms-3/classes/JComponentRouterRulesInterface.html /cms-3/classes/Joomla.CMS.Component.Router.Rules.RulesInterface.html
+Redirect 301 /cms-3/classes/JComponentRouterRulesStandard.html /cms-3/classes/Joomla.CMS.Component.Router.Rules.StandardRules.html
+Redirect 301 /cms-3/classes/JEditor.html /cms-3/classes/Joomla.CMS.Editor.Editor.html
+Redirect 301 /cms-3/classes/JErrorPage.html /cms-3/classes/Joomla.CMS.Exception.ExceptionHandler.html
+Redirect 301 /cms-3/classes/JAuthenticationHelper.html /cms-3/classes/Joomla.CMS.Helper.AuthenticationHelper.html
+Redirect 301 /cms-3/classes/JHelper.html /cms-3/classes/Joomla.CMS.Helper.CMSHelper.html
+Redirect 301 /cms-3/classes/JHelperContent.html /cms-3/classes/Joomla.CMS.Helper.ContentHelper.html
+Redirect 301 /cms-3/classes/JHelperContenthistory.html /cms-3/classes/Joomla.CMS.Helper.ContentHistoryHelper.html
+Redirect 301 /cms-3/classes/JLibraryHelper.html /cms-3/classes/Joomla.CMS.Helper.LibraryHelper.html
+Redirect 301 /cms-3/classes/JHelperMedia.html /cms-3/classes/Joomla.CMS.Helper.MediaHelper.html
+Redirect 301 /cms-3/classes/JModuleHelper.html /cms-3/classes/Joomla.CMS.Helper.ModuleHelper.html
+Redirect 301 /cms-3/classes/JHelperRoute.html /cms-3/classes/Joomla.CMS.Helper.RouteHelper.html
+Redirect 301 /cms-3/classes/JSearchHelper.html /cms-3/classes/Joomla.CMS.Helper.SearchHelper.html
+Redirect 301 /cms-3/classes/JHelperTags.html /cms-3/classes/Joomla.CMS.Helper.TagsHelper.html
+Redirect 301 /cms-3/classes/JHelperUsergroups.html /cms-3/classes/Joomla.CMS.Helper.UserGroupsHelper.html
+Redirect 301 /cms-3/classes/JLayoutBase.html /cms-3/classes/Joomla.CMS.Layout.BaseLayout.html
+Redirect 301 /cms-3/classes/JLayoutFile.html /cms-3/classes/Joomla.CMS.Layout.FileLayout.html
+Redirect 301 /cms-3/classes/JLayoutHelper.html /cms-3/classes/Joomla.CMS.Layout.LayoutHelper.html
+Redirect 301 /cms-3/classes/JLayout.html /cms-3/classes/Joomla.CMS.Layout.LayoutInterface.html
+Redirect 301 /cms-3/classes/JResponseJson.html /cms-3/classes/Joomla.CMS.Response.JsonResponse.html
+Redirect 301 /cms-3/classes/JPlugin.html /cms-3/classes/Joomla.CMS.Plugin.CMSPlugin.html
+Redirect 301 /cms-3/classes/JPluginHelper.html /cms-3/classes/Joomla.CMS.Plugin.PluginHelper.html
+Redirect 301 /cms-3/classes/JMenu.html /cms-3/classes/Joomla.CMS.Menu.AbstractMenu.html
+Redirect 301 /cms-3/classes/JMenuAdministrator.html /cms-3/classes/Joomla.CMS.Menu.AdministratorMenu.html
+Redirect 301 /cms-3/classes/JMenuItem.html /cms-3/classes/Joomla.CMS.Menu.MenuItem.html
+Redirect 301 /cms-3/classes/JMenuSite.html /cms-3/classes/Joomla.CMS.Menu.SiteMenu.html
+Redirect 301 /cms-3/classes/JPagination.html /cms-3/classes/Joomla.CMS.Pagination.Pagination.html
+Redirect 301 /cms-3/classes/JPaginationObject.html /cms-3/classes/Joomla.CMS.Pagination.PaginationObject.html
+Redirect 301 /cms-3/classes/JPathway.html /cms-3/classes/Joomla.CMS.Pathway.Pathway.html
+Redirect 301 /cms-3/classes/JPathwaySite.html /cms-3/classes/Joomla.CMS.Pathway.SitePathway.html
+Redirect 301 /cms-3/classes/JSchemaChangeitem.html /cms-3/classes/Joomla.CMS.Schema.ChangeItem.html
+Redirect 301 /cms-3/classes/JSchemaChangeset.html /cms-3/classes/Joomla.CMS.Schema.ChangeSet.html
+Redirect 301 /cms-3/classes/JSchemaChangeitemMysql.html /cms-3/classes/Joomla.CMS.Schema.ChangeItem.MysqlChangeItem.html
+Redirect 301 /cms-3/classes/JSchemaChangeitemPostgresql.html /cms-3/classes/Joomla.CMS.Schema.ChangeItem.PostgresqlChangeItem.html
+Redirect 301 /cms-3/classes/JSchemaChangeitemSqlsrv.html /cms-3/classes/Joomla.CMS.Schema.ChangeItem.SqlsrvChangeItem.html
+Redirect 301 /cms-3/classes/JUcm.html /cms-3/classes/Joomla.CMS.UCM.UCM.html
+Redirect 301 /cms-3/classes/JUcmBase.html /cms-3/classes/Joomla.CMS.UCM.UCMBase.html
+Redirect 301 /cms-3/classes/JUcmContent.html /cms-3/classes/Joomla.CMS.UCM.UCMContent.html
+Redirect 301 /cms-3/classes/JUcmType.html /cms-3/classes/Joomla.CMS.UCM.UCMType.html
+Redirect 301 /cms-3/classes/JToolbar.html /cms-3/classes/Joomla.CMS.Toolbar.Toolbar.html
+Redirect 301 /cms-3/classes/JToolbarButton.html /cms-3/classes/Joomla.CMS.Toolbar.ToolbarButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonConfirm.html /cms-3/classes/Joomla.CMS.Toolbar.Button.ConfirmButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonCustom.html /cms-3/classes/Joomla.CMS.Toolbar.Button.CustomButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonHelp.html /cms-3/classes/Joomla.CMS.Toolbar.Button.HelpButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonLink.html /cms-3/classes/Joomla.CMS.Toolbar.Button.LinkButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonPopup.html /cms-3/classes/Joomla.CMS.Toolbar.Button.PopupButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonSeparator.html /cms-3/classes/Joomla.CMS.Toolbar.Button.SeparatorButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonSlider.html /cms-3/classes/Joomla.CMS.Toolbar.Button.SliderButton.html
+Redirect 301 /cms-3/classes/JToolbarButtonStandard.html /cms-3/classes/Joomla.CMS.Toolbar.Button.StandardButton.html
+Redirect 301 /cms-3/classes/JButton.html /cms-3/classes/Joomla.CMS.Toolbar.ToolbarButton.html
+Redirect 301 /cms-3/classes/JVersion.html /cms-3/classes/Joomla.CMS.Version.html
+Redirect 301 /cms-3/classes/JAuthentication.html /cms-3/classes/Joomla.CMS.Authentication.Authentication.html
+Redirect 301 /cms-3/classes/JAuthenticationResponse.html /cms-3/classes/Joomla.CMS.Authentication.AuthenticationResponse.html
+Redirect 301 /cms-3/classes/JBrowser.html /cms-3/classes/Joomla.CMS.Environment.Browser.html
+Redirect 301 /cms-3/classes/JAssociationExtensionInterface.html /cms-3/classes/Joomla.CMS.Association.AssociationExtensionInterface.html
+Redirect 301 /cms-3/classes/JAssociationExtensionHelper.html /cms-3/classes/Joomla.CMS.Association.AssociationExtensionHelper.html
+Redirect 301 /cms-3/classes/JDocument.html /cms-3/classes/Joomla.CMS.Document.Document.html
+Redirect 301 /cms-3/classes/JDocumentError.html /cms-3/classes/Joomla.CMS.Document.ErrorDocument.html
+Redirect 301 /cms-3/classes/JDocumentFeed.html /cms-3/classes/Joomla.CMS.Document.FeedDocument.html
+Redirect 301 /cms-3/classes/JDocumentHtml.html /cms-3/classes/Joomla.CMS.Document.HtmlDocument.html
+Redirect 301 /cms-3/classes/JDocumentImage.html /cms-3/classes/Joomla.CMS.Document.ImageDocument.html
+Redirect 301 /cms-3/classes/JDocumentJson.html /cms-3/classes/Joomla.CMS.Document.JsonDocument.html
+Redirect 301 /cms-3/classes/JDocumentOpensearch.html /cms-3/classes/Joomla.CMS.Document.OpensearchDocument.html
+Redirect 301 /cms-3/classes/JDocumentRaw.html /cms-3/classes/Joomla.CMS.Document.RawDocument.html
+Redirect 301 /cms-3/classes/JDocumentRenderer.html /cms-3/classes/Joomla.CMS.Document.DocumentRenderer.html
+Redirect 301 /cms-3/classes/JDocumentXml.html /cms-3/classes/Joomla.CMS.Document.XmlDocument.html
+Redirect 301 /cms-3/classes/JDocumentRendererFeedAtom.html /cms-3/classes/Joomla.CMS.Document.Renderer.Feed.AtomRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererFeedRss.html /cms-3/classes/Joomla.CMS.Document.Renderer.Feed.RssRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererHtmlComponent.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.ComponentRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererHtmlHead.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.HeadRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererHtmlMessage.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.MessageRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererHtmlModule.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.ModuleRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererHtmlModules.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.ModulesRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererAtom.html /cms-3/classes/Joomla.CMS.Document.Renderer.Feed.AtomRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererRSS.html /cms-3/classes/Joomla.CMS.Document.Renderer.Feed.RssRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererComponent.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.ComponentRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererHead.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.HeadRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererMessage.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.MessageRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererModule.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.ModuleRenderer.html
+Redirect 301 /cms-3/classes/JDocumentRendererModules.html /cms-3/classes/Joomla.CMS.Document.Renderer.Html.ModulesRenderer.html
+Redirect 301 /cms-3/classes/JFeedEnclosure.html /cms-3/classes/Joomla.CMS.Document.Feed.FeedEnclosure.html
+Redirect 301 /cms-3/classes/JFeedImage.html /cms-3/classes/Joomla.CMS.Document.Feed.FeedImage.html
+Redirect 301 /cms-3/classes/JFeedItem.html /cms-3/classes/Joomla.CMS.Document.Feed.FeedItem.html
+Redirect 301 /cms-3/classes/JOpenSearchImage.html /cms-3/classes/Joomla.CMS.Document.Opensearch.OpensearchImage.html
+Redirect 301 /cms-3/classes/JOpenSearchUrl.html /cms-3/classes/Joomla.CMS.Document.Opensearch.OpensearchUrl.html
+Redirect 301 /cms-3/classes/JFilterInput.html /cms-3/classes/Joomla.CMS.Filter.InputFilter.html
+Redirect 301 /cms-3/classes/JFilterOutput.html /cms-3/classes/Joomla.CMS.Filter.OutputFilter.html
+Redirect 301 /cms-3/classes/JFilterWrapperOutput.html /cms-3/classes/Joomla.CMS.Filter.Wrapper.OutputFilterWrapper.html
+Redirect 301 /cms-3/classes/JHttp.html /cms-3/classes/Joomla.CMS.Http.Http.html
+Redirect 301 /cms-3/classes/JHttpFactory.html /cms-3/classes/Joomla.CMS.Http.HttpFactory.html
+Redirect 301 /cms-3/classes/JHttpResponse.html /cms-3/classes/Joomla.CMS.Http.Response.html
+Redirect 301 /cms-3/classes/JHttpTransport.html /cms-3/classes/Joomla.CMS.Http.TransportInterface.html
+Redirect 301 /cms-3/classes/JHttpTransportCurl.html /cms-3/classes/Joomla.CMS.Http.Transport.CurlTransport.html
+Redirect 301 /cms-3/classes/JHttpTransportSocket.html /cms-3/classes/Joomla.CMS.Http.Transport.SocketTransport.html
+Redirect 301 /cms-3/classes/JHttpTransportStream.html /cms-3/classes/Joomla.CMS.Http.Transport.StreamTransport.html
+Redirect 301 /cms-3/classes/JHttpWrapperFactory.html /cms-3/classes/Joomla.CMS.Http.Wrapper.FactoryWrapper.html
+Redirect 301 /cms-3/classes/JInstaller.html /cms-3/classes/Joomla.CMS.Installer.Installer.html
+Redirect 301 /cms-3/classes/JInstallerAdapter.html /cms-3/classes/Joomla.CMS.Installer.InstallerAdapter.html
+Redirect 301 /cms-3/classes/JInstallerExtension.html /cms-3/classes/Joomla.CMS.Installer.InstallerExtension.html
+Redirect 301 /cms-3/classes/JExtension.html /cms-3/classes/Joomla.CMS.Installer.InstallerExtension.html
+Redirect 301 /cms-3/classes/JInstallerHelper.html /cms-3/classes/Joomla.CMS.Installer.InstallerHelper.html
+Redirect 301 /cms-3/classes/JInstallerScript.html /cms-3/classes/Joomla.CMS.Installer.InstallerScript.html
+Redirect 301 /cms-3/classes/JInstallerManifest.html /cms-3/classes/Joomla.CMS.Installer.Manifest.html
+Redirect 301 /cms-3/classes/JInstallerAdapterComponent.html /cms-3/classes/Joomla.CMS.Installer.Adapter.ComponentAdapter.html
+Redirect 301 /cms-3/classes/JInstallerComponent.html /cms-3/classes/Joomla.CMS.Installer.Adapter.ComponentAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterFile.html /cms-3/classes/Joomla.CMS.Installer.Adapter.FileAdapter.html
+Redirect 301 /cms-3/classes/JInstallerFile.html /cms-3/classes/Joomla.CMS.Installer.Adapter.FileAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterLanguage.html /cms-3/classes/Joomla.CMS.Installer.Adapter.LanguageAdapter.html
+Redirect 301 /cms-3/classes/JInstallerLanguage.html /cms-3/classes/Joomla.CMS.Installer.Adapter.LanguageAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterLibrary.html /cms-3/classes/Joomla.CMS.Installer.Adapter.LibraryAdapter.html
+Redirect 301 /cms-3/classes/JInstallerLibrary.html /cms-3/classes/Joomla.CMS.Installer.Adapter.LibraryAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterModule.html /cms-3/classes/Joomla.CMS.Installer.Adapter.ModuleAdapter.html
+Redirect 301 /cms-3/classes/JInstallerModule.html /cms-3/classes/Joomla.CMS.Installer.Adapter.ModuleAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterPackage.html /cms-3/classes/Joomla.CMS.Installer.Adapter.PackageAdapter.html
+Redirect 301 /cms-3/classes/JInstallerPackage.html /cms-3/classes/Joomla.CMS.Installer.Adapter.PackageAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterPlugin.html /cms-3/classes/Joomla.CMS.Installer.Adapter.PluginAdapter.html
+Redirect 301 /cms-3/classes/JInstallerPlugin.html /cms-3/classes/Joomla.CMS.Installer.Adapter.PluginAdapter.html
+Redirect 301 /cms-3/classes/JInstallerAdapterTemplate.html /cms-3/classes/Joomla.CMS.Installer.Adapter.TemplateAdapter.html
+Redirect 301 /cms-3/classes/JInstallerTemplate.html /cms-3/classes/Joomla.CMS.Installer.Adapter.TemplateAdapter.html
+Redirect 301 /cms-3/classes/JInstallerManifestLibrary.html /cms-3/classes/Joomla.CMS.Installer.Manifest.LibraryManifest.html
+Redirect 301 /cms-3/classes/JInstallerManifestPackage.html /cms-3/classes/Joomla.CMS.Installer.Manifest.PackageManifest.html
+Redirect 301 /cms-3/classes/JRouterAdministrator.html /cms-3/classes/Joomla.CMS.Router.AdministratorRouter.html
+Redirect 301 /cms-3/classes/JRoute.html /cms-3/classes/Joomla.CMS.Router.Route.html
+Redirect 301 /cms-3/classes/JRouter.html /cms-3/classes/Joomla.CMS.Router.Router.html
+Redirect 301 /cms-3/classes/JRouterSite.html /cms-3/classes/Joomla.CMS.Router.SiteRouter.html
+Redirect 301 /cms-3/classes/JCategories.html /cms-3/classes/Joomla.CMS.Categories.Categories.html
+Redirect 301 /cms-3/classes/JCategoryNode.html /cms-3/classes/Joomla.CMS.Categories.CategoryNode.html
+Redirect 301 /cms-3/classes/JDate.html /cms-3/classes/Joomla.CMS.Date.Date.html
+Redirect 301 /cms-3/classes/JLog.html /cms-3/classes/Joomla.CMS.Log.Log.html
+Redirect 301 /cms-3/classes/JLogEntry.html /cms-3/classes/Joomla.CMS.Log.LogEntry.html
+Redirect 301 /cms-3/classes/JLogLogger.html /cms-3/classes/Joomla.CMS.Log.Logger.html
+Redirect 301 /cms-3/classes/JLogger.html /cms-3/classes/Joomla.CMS.Log.Logger.html
+Redirect 301 /cms-3/classes/JLogLoggerCallback.html /cms-3/classes/Joomla.CMS.Log.Logger.CallbackLogger.html
+Redirect 301 /cms-3/classes/JLogLoggerDatabase.html /cms-3/classes/Joomla.CMS.Log.Logger.DatabaseLogger.html
+Redirect 301 /cms-3/classes/JLogLoggerEcho.html /cms-3/classes/Joomla.CMS.Log.Logger.EchoLogger.html
+Redirect 301 /cms-3/classes/JLogLoggerFormattedtext.html /cms-3/classes/Joomla.CMS.Log.Logger.FormattedtextLogger.html
+Redirect 301 /cms-3/classes/JLogLoggerMessagequeue.html /cms-3/classes/Joomla.CMS.Log.Logger.MessagequeueLogger.html
+Redirect 301 /cms-3/classes/JLogLoggerSyslog.html /cms-3/classes/Joomla.CMS.Log.Logger.SyslogLogger.html
+Redirect 301 /cms-3/classes/JLogLoggerW3c.html /cms-3/classes/Joomla.CMS.Log.Logger.W3cLogger.html
+Redirect 301 /cms-3/classes/JProfiler.html /cms-3/classes/Joomla.CMS.Profiler.Profiler.html
+Redirect 301 /cms-3/classes/JUri.html /cms-3/classes/Joomla.CMS.Uri.Uri.html
+Redirect 301 /cms-3/classes/JCache.html /cms-3/classes/Joomla.CMS.Cache.Cache.html
+Redirect 301 /cms-3/classes/JCacheController.html /cms-3/classes/Joomla.CMS.Cache.CacheController.html
+Redirect 301 /cms-3/classes/JCacheStorage.html /cms-3/classes/Joomla.CMS.Cache.CacheStorage.html
+Redirect 301 /cms-3/classes/JCacheControllerCallback.html /cms-3/classes/Joomla.CMS.Cache.Controller.CallbackController.html
+Redirect 301 /cms-3/classes/JCacheControllerOutput.html /cms-3/classes/Joomla.CMS.Cache.Controller.OutputController.html
+Redirect 301 /cms-3/classes/JCacheControllerPage.html /cms-3/classes/Joomla.CMS.Cache.Controller.PageController.html
+Redirect 301 /cms-3/classes/JCacheControllerView.html /cms-3/classes/Joomla.CMS.Cache.Controller.ViewController.html
+Redirect 301 /cms-3/classes/JCacheStorageApc.html /cms-3/classes/Joomla.CMS.Cache.Storage.ApcStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageApcu.html /cms-3/classes/Joomla.CMS.Cache.Storage.ApcuStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageHelper.html /cms-3/classes/Joomla.CMS.Cache.Storage.CacheStorageHelper.html
+Redirect 301 /cms-3/classes/JCacheStorageCachelite.html /cms-3/classes/Joomla.CMS.Cache.Storage.CacheliteStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageFile.html /cms-3/classes/Joomla.CMS.Cache.Storage.FileStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageMemcached.html /cms-3/classes/Joomla.CMS.Cache.Storage.MemcachedStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageMemcache.html /cms-3/classes/Joomla.CMS.Cache.Storage.MemcacheStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageRedis.html /cms-3/classes/Joomla.CMS.Cache.Storage.RedisStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageWincache.html /cms-3/classes/Joomla.CMS.Cache.Storage.WincacheStorage.html
+Redirect 301 /cms-3/classes/JCacheStorageXcache.html /cms-3/classes/Joomla.CMS.Cache.Storage.XcacheStorage.html
+Redirect 301 /cms-3/classes/JCacheException.html /cms-3/classes/Joomla.CMS.Cache.Exception.CacheExceptionInterface.html
+Redirect 301 /cms-3/classes/JCacheExceptionConnecting.html /cms-3/classes/Joomla.CMS.Cache.Exception.CacheConnectingException.html
+Redirect 301 /cms-3/classes/JCacheExceptionUnsupported.html /cms-3/classes/Joomla.CMS.Cache.Exception.UnsupportedCacheException.html
+Redirect 301 /cms-3/classes/JSession.html /cms-3/classes/Joomla.CMS.Session.Session.html
+Redirect 301 /cms-3/classes/JSessionExceptionUnsupported.html /cms-3/classes/Joomla.CMS.Session.Exception.UnsupportedStorageException.html
+Redirect 301 /cms-3/classes/JUser.html /cms-3/classes/Joomla.CMS.User.User.html
+Redirect 301 /cms-3/classes/JUserHelper.html /cms-3/classes/Joomla.CMS.User.UserHelper.html
+Redirect 301 /cms-3/classes/JUserWrapperHelper.html /cms-3/classes/Joomla.CMS.User.UserWrapper.html
+Redirect 301 /cms-3/classes/JForm.html /cms-3/classes/Joomla.CMS.Form.Form.html
+Redirect 301 /cms-3/classes/JFormField.html /cms-3/classes/Joomla.CMS.Form.FormField.html
+Redirect 301 /cms-3/classes/JFormHelper.html /cms-3/classes/Joomla.CMS.Form.FormHelper.html
+Redirect 301 /cms-3/classes/JFormRule.html /cms-3/classes/Joomla.CMS.Form.FormRule.html
+Redirect 301 /cms-3/classes/JFormWrapper.html /cms-3/classes/Joomla.CMS.Form.FormWrapper.html
+Redirect 301 /cms-3/classes/JFormFieldAuthor.html /cms-3/classes/Joomla.CMS.Form.Field.AuthorField.html
+Redirect 301 /cms-3/classes/JFormFieldCaptcha.html /cms-3/classes/Joomla.CMS.Form.Field.CaptchaField.html
+Redirect 301 /cms-3/classes/JFormFieldChromeStyle.html /cms-3/classes/Joomla.CMS.Form.Field.ChromestyleField.html
+Redirect 301 /cms-3/classes/JFormFieldContenthistory.html /cms-3/classes/Joomla.CMS.Form.Field.ContenthistoryField.html
+Redirect 301 /cms-3/classes/JFormFieldContentlanguage.html /cms-3/classes/Joomla.CMS.Form.Field.ContentlanguageField.html
+Redirect 301 /cms-3/classes/JFormFieldContenttype.html /cms-3/classes/Joomla.CMS.Form.Field.ContenttypeField.html
+Redirect 301 /cms-3/classes/JFormFieldEditor.html /cms-3/classes/Joomla.CMS.Form.Field.EditorField.html
+Redirect 301 /cms-3/classes/JFormFieldFrontend_Language.html /cms-3/classes/Joomla.CMS.Form.Field.FrontendlanguageField.html
+Redirect 301 /cms-3/classes/JFormFieldHeadertag.html /cms-3/classes/Joomla.CMS.Form.Field.HeadertagField.html
+Redirect 301 /cms-3/classes/JFormFieldHelpsite.html /cms-3/classes/Joomla.CMS.Form.Field.HelpsiteField.html
+Redirect 301 /cms-3/classes/JFormFieldLastvisitDateRange.html /cms-3/classes/Joomla.CMS.Form.Field.LastvisitdaterangeField.html
+Redirect 301 /cms-3/classes/JFormFieldLimitbox.html /cms-3/classes/Joomla.CMS.Form.Field.LimitboxField.html
+Redirect 301 /cms-3/classes/JFormFieldMedia.html /cms-3/classes/Joomla.CMS.Form.Field.MediaField.html
+Redirect 301 /cms-3/classes/JFormFieldMenu.html /cms-3/classes/Joomla.CMS.Form.Field.MenuField.html
+Redirect 301 /cms-3/classes/JFormFieldMenuitem.html /cms-3/classes/Joomla.CMS.Form.Field.MenuitemField.html
+Redirect 301 /cms-3/classes/JFormFieldModuleOrder.html /cms-3/classes/Joomla.CMS.Form.Field.ModuleorderField.html
+Redirect 301 /cms-3/classes/JFormFieldModulePosition.html /cms-3/classes/Joomla.CMS.Form.Field.ModulepositionField.html
+Redirect 301 /cms-3/classes/JFormFieldModuletag.html /cms-3/classes/Joomla.CMS.Form.Field.ModuletagField.html
+Redirect 301 /cms-3/classes/JFormFieldOrdering.html /cms-3/classes/Joomla.CMS.Form.Field.OrderingField.html
+Redirect 301 /cms-3/classes/JFormFieldPlugin_Status.html /cms-3/classes/Joomla.CMS.Form.Field.PluginstatusField.html
+Redirect 301 /cms-3/classes/JFormFieldRedirect_Status.html /cms-3/classes/Joomla.CMS.Form.Field.RedirectStatusField.html
+Redirect 301 /cms-3/classes/JFormFieldRegistrationDateRange.html /cms-3/classes/Joomla.CMS.Form.Field.RegistrationdaterangeField.html
+Redirect 301 /cms-3/classes/JFormFieldStatus.html /cms-3/classes/Joomla.CMS.Form.Field.StatusField.html
+Redirect 301 /cms-3/classes/JFormFieldTag.html /cms-3/classes/Joomla.CMS.Form.Field.TagField.html
+Redirect 301 /cms-3/classes/JFormFieldTemplatestyle.html /cms-3/classes/Joomla.CMS.Form.Field.TemplatestyleField.html
+Redirect 301 /cms-3/classes/JFormFieldUserActive.html /cms-3/classes/Joomla.CMS.Form.Field.UseractiveField.html
+Redirect 301 /cms-3/classes/JFormFieldUserGroupList.html /cms-3/classes/Joomla.CMS.Form.Field.UsergrouplistField.html
+Redirect 301 /cms-3/classes/JFormFieldUserState.html /cms-3/classes/Joomla.CMS.Form.Field.UserstateField.html
+Redirect 301 /cms-3/classes/JFormFieldUser.html /cms-3/classes/Joomla.CMS.Form.Field.UserField.html
+Redirect 301 /cms-3/classes/JFormRuleBoolean.html /cms-3/classes/Joomla.CMS.Form.Rule.BooleanRule.html
+Redirect 301 /cms-3/classes/JFormRuleCalendar.html /cms-3/classes/Joomla.CMS.Form.Rule.CalendarRule.html
+Redirect 301 /cms-3/classes/JFormRuleCaptcha.html /cms-3/classes/Joomla.CMS.Form.Rule.CaptchaRule.html
+Redirect 301 /cms-3/classes/JFormRuleColor.html /cms-3/classes/Joomla.CMS.Form.Rule.ColorRule.html
+Redirect 301 /cms-3/classes/JFormRuleEmail.html /cms-3/classes/Joomla.CMS.Form.Rule.EmailRule.html
+Redirect 301 /cms-3/classes/JFormRuleEquals.html /cms-3/classes/Joomla.CMS.Form.Rule.EqualsRule.html
+Redirect 301 /cms-3/classes/JFormRuleNotequals.html /cms-3/classes/Joomla.CMS.Form.Rule.NotequalsRule.html
+Redirect 301 /cms-3/classes/JFormRuleNumber.html /cms-3/classes/Joomla.CMS.Form.Rule.NumberRule.html
+Redirect 301 /cms-3/classes/JFormRuleOptions.html /cms-3/classes/Joomla.CMS.Form.Rule.OptionsRule.html
+Redirect 301 /cms-3/classes/JFormRulePassword.html /cms-3/classes/Joomla.CMS.Form.Rule.PasswordRule.html
+Redirect 301 /cms-3/classes/JFormRuleRules.html /cms-3/classes/Joomla.CMS.Form.Rule.RulesRule.html
+Redirect 301 /cms-3/classes/JFormRuleTel.html /cms-3/classes/Joomla.CMS.Form.Rule.TelRule.html
+Redirect 301 /cms-3/classes/JFormRuleUrl.html /cms-3/classes/Joomla.CMS.Form.Rule.UrlRule.html
+Redirect 301 /cms-3/classes/JFormRuleUsername.html /cms-3/classes/Joomla.CMS.Form.Rule.UsernameRule.html
+Redirect 301 /cms-3/classes/JMicrodata.html /cms-3/classes/Joomla.CMS.Microdata.Microdata.html
+Redirect 301 /cms-3/classes/JFactory.html /cms-3/classes/Joomla.CMS.Factory.html
+Redirect 301 /cms-3/classes/JMail.html /cms-3/classes/Joomla.CMS.Mail.Mail.html
+Redirect 301 /cms-3/classes/JMailHelper.html /cms-3/classes/Joomla.CMS.Mail.MailHelper.html
+Redirect 301 /cms-3/classes/JMailWrapperHelper.html /cms-3/classes/Joomla.CMS.Mail.MailWrapper.html
+Redirect 301 /cms-3/classes/JClientHelper.html /cms-3/classes/Joomla.CMS.Client.ClientHelper.html
+Redirect 301 /cms-3/classes/JClientWrapperHelper.html /cms-3/classes/Joomla.CMS.Client.ClientWrapper.html
+Redirect 301 /cms-3/classes/JClientFtp.html /cms-3/classes/Joomla.CMS.Client.FtpClient.html
+Redirect 301 /cms-3/classes/JFTP.html /cms-3/classes/Joomla.CMS.Client.FtpClient.html
+Redirect 301 /cms-3/classes/JUpdate.html /cms-3/classes/Joomla.CMS.Updater.Update.html
+Redirect 301 /cms-3/classes/JUpdateAdapter.html /cms-3/classes/Joomla.CMS.Updater.UpdateAdapter.html
+Redirect 301 /cms-3/classes/JUpdater.html /cms-3/classes/Joomla.CMS.Updater.Updater.html
+Redirect 301 /cms-3/classes/JUpdaterCollection.html /cms-3/classes/Joomla.CMS.Updater.Adapter.CollectionAdapter.html
+Redirect 301 /cms-3/classes/JUpdaterExtension.html /cms-3/classes/Joomla.CMS.Updater.Adapter.ExtensionAdapter.html
+Redirect 301 /cms-3/classes/JCrypt.html /cms-3/classes/Joomla.CMS.Crypt.Crypt.html
+Redirect 301 /cms-3/classes/JCryptCipher.html /cms-3/classes/Joomla.CMS.Crypt.CipherInterface.html
+Redirect 301 /cms-3/classes/JCryptKey.html /cms-3/classes/Joomla.CMS.Crypt.Key.html
+Redirect 301 /cms-3/classes/JCryptPassword.html /cms-3/classes/Joomla.CMS.Crypt.CryptPassword.html
+Redirect 301 /cms-3/classes/JCryptCipherBlowfish.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.BlowfishCipher.html
+Redirect 301 /cms-3/classes/JCryptCipherCrypto.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.CryptoCipher.html
+Redirect 301 /cms-3/classes/JCryptCipherMcrypt.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.McryptCipher.html
+Redirect 301 /cms-3/classes/JCryptCipherRijndael256.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.Rijndael256Cipher.html
+Redirect 301 /cms-3/classes/JCryptCipherSimple.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.SimpleCipher.html
+Redirect 301 /cms-3/classes/JCryptCipherSodium.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.SodiumCipher.html
+Redirect 301 /cms-3/classes/JCryptCipher3Des.html /cms-3/classes/Joomla.CMS.Crypt.Cipher.TripleDesCipher.html
+Redirect 301 /cms-3/classes/JCryptPasswordSimple.html /cms-3/classes/Joomla.CMS.Crypt.Password.SimpleCryptPassword.html
+Redirect 301 /cms-3/classes/JStringPunycode.html /cms-3/classes/Joomla.CMS.String.PunycodeHelper.html
+Redirect 301 /cms-3/classes/JBuffer.html /cms-3/classes/Joomla.CMS.Utility.BufferStreamHandler.html
+Redirect 301 /cms-3/classes/JUtility.html /cms-3/classes/Joomla.CMS.Utility.Utility.html
+Redirect 301 /cms-3/classes/JInputCli.html /cms-3/classes/Joomla.CMS.Input.Cli.html
+Redirect 301 /cms-3/classes/JInputCookie.html /cms-3/classes/Joomla.CMS.Input.Cookie.html
+Redirect 301 /cms-3/classes/JInputFiles.html /cms-3/classes/Joomla.CMS.Input.Files.html
+Redirect 301 /cms-3/classes/JInput.html /cms-3/classes/Joomla.CMS.Input.Input.html
+Redirect 301 /cms-3/classes/JInputJSON.html /cms-3/classes/Joomla.CMS.Input.Json.html
+Redirect 301 /cms-3/classes/JFeed.html /cms-3/classes/Joomla.CMS.Feed.Feed.html
+Redirect 301 /cms-3/classes/JFeedEntry.html /cms-3/classes/Joomla.CMS.Feed.FeedEntry.html
+Redirect 301 /cms-3/classes/JFeedFactory.html /cms-3/classes/Joomla.CMS.Feed.FeedFactory.html
+Redirect 301 /cms-3/classes/JFeedLink.html /cms-3/classes/Joomla.CMS.Feed.FeedLink.html
+Redirect 301 /cms-3/classes/JFeedParser.html /cms-3/classes/Joomla.CMS.Feed.FeedParser.html
+Redirect 301 /cms-3/classes/JFeedPerson.html /cms-3/classes/Joomla.CMS.Feed.FeedPerson.html
+Redirect 301 /cms-3/classes/JFeedParserAtom.html /cms-3/classes/Joomla.CMS.Feed.Parser.AtomParser.html
+Redirect 301 /cms-3/classes/JFeedParserNamespace.html /cms-3/classes/Joomla.CMS.Feed.Parser.NamespaceParserInterface.html
+Redirect 301 /cms-3/classes/JFeedParserRss.html /cms-3/classes/Joomla.CMS.Feed.Parser.RssParser.html
+Redirect 301 /cms-3/classes/JFeedParserRssItunes.html /cms-3/classes/Joomla.CMS.Feed.Parser.Rss.ItunesRssParser.html
+Redirect 301 /cms-3/classes/JFeedParserRssMedia.html /cms-3/classes/Joomla.CMS.Feed.Parser.Rss.MediaRssParser.html
+Redirect 301 /cms-3/classes/JImage.html /cms-3/classes/Joomla.CMS.Image.Image.html
+Redirect 301 /cms-3/classes/JImageFilter.html /cms-3/classes/Joomla.CMS.Image.ImageFilter.html
+Redirect 301 /cms-3/classes/JObject.html /cms-3/classes/Joomla.CMS.Object.CMSObject.html
+Redirect 301 /cms-3/classes/JExtensionHelper.html /cms-3/classes/Joomla.CMS.Extension.ExtensionHelper.html
+Redirect 301 /cms-3/classes/JHtml.html /cms-3/classes/Joomla.CMS.HTML.HTMLHelper.html
+
+###########################################
+
 
 ###########################################
 # ======= Enable the Rewrite Engine =======
@@ -50,7 +402,7 @@ RewriteEngine On
 
 
 ###########################################
-# ======= No directory listings =======
+# ========= No directory listings =========
 
 IndexIgnore *
 Options +FollowSymLinks
@@ -60,7 +412,7 @@ Options -Indexes
 
 
 ###########################################
-# === Optimal default expiration time ===
+# ==== Optimal default expiration time ====
 
 <IfModule mod_expires.c>
 	# Enable expiration control
