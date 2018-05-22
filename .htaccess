@@ -524,3 +524,4 @@ RewriteCond %{HTTP_HOST} ^api.joomla.org
 RewriteRule (.*) https://api.joomla.org/$1 [R=301,L]
 
 ###########################################
+
