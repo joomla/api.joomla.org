@@ -42,35 +42,37 @@
                         {% if previousPath %}
                                 </table>
                             </div>
+                        </div>
                         {% endif %}
-                        <a name="{{ element.file.path }}" id="{{ element.file.path }}"></a>
-                        <h3>
-                            <i class="icon-file"></i> {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
-                        </h3>
-                        <div>
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Element</th>
-                                        <th>Line</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                    {% endif %}
-                                <tbody>
-                                {% for tag in element.tags.deprecated %}
-                                    <tr>
-                                        <td>{{ element.fullyQualifiedStructuralElementName }}</td>
-                                        <td>{{ element.line }}</td>
-                                        <td>{{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                    {% set previousPath = element.file.path %}
+                        <div class="package-contents">
+                            <a name="{{ element.file.path }}" id="{{ element.file.path }}"></a>
+                            <h3>
+                                <i class="icon-file"></i> {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
+                            </h3>
+                            <div>
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Element</th>
+                                            <th>Line</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                        {% endif %}
+                                    <tbody>
+                                    {% for tag in element.tags.deprecated %}
+                                        <tr>
+                                            <td>{{ element.fullyQualifiedStructuralElementName }}</td>
+                                            <td>{{ element.line }}</td>
+                                            <td>{{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                        {% set previousPath = element.file.path %}
                 {% endfor %}
-                    </table>
-                </div>
-            </main>
-        </div>
+                                </table>
+                            </div>
+                        </div>
+        </main>
     </div>
 {% endblock %}
