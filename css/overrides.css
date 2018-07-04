@@ -3,6 +3,10 @@
     border-left: 1px dashed #f0f0f0;
 }
 
+.namespace-indent h3, .package-indent h3 {
+    font-size: 1.75em;
+}
+
 .element h3 i, .namespace-contents h3 i, .package-contents h3 i {
     margin-top: 2px;
     margin-right: 5px;
@@ -54,7 +58,7 @@ h2:first-of-type {
 div.element {
     border-left: 10px solid #55A72F;
     border-radius: 5px;
-    padding: 7px 7px 2px 7px;
+    padding: 7px;
     margin-bottom: 15px;
     margin-left: 0;
 }
@@ -71,25 +75,23 @@ div.element.class, div.element.interface, div.element.trait {
     border-left-color: #e0e0e0;
 }
 
-div.element h1 {
-    font-size: 1.7em;
+div.element .item_name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: .75em;
     line-height: 1.5em;
-    margin-bottom: 10px;
-    margin-top: 0;
-    background: transparent no-repeat left 2px;
-    word-wrap: break-word;
 }
 
-div.element h1 a {
+div.element .item_name a {
     color: transparent;
     margin-left: 10px;
 }
 
-div.element h1:hover a {
+div.element .item_name:hover a {
     color: silver;
 }
 
-div.element h1 a:hover {
+div.element .item_name a:hover {
     color: navy;
 }
 
