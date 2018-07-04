@@ -30,33 +30,29 @@
             {% endif %}
 
             <div id="marker-accordion">
-                {% for file in project.files|sort_asc %}
-                    {% if file.markers|length > 0 %}
-                        <div class="package-contents">
-                            <a name="{{ file.path }}" id="{{ file.path }}"></a>
-                            <h3>
-                            <i class="icon-file"></i>
-                                {{ file.path }}
-                                <span class="pull-right badge badge-info">{{ file.markers|length }}</span>
-                            </h3>
-                            <div>
-                                <table class="table table-bordered">
+                {% for file in project.files|sort_asc if file.markers|length > 0 %}
+                    <div class="package-contents">
+                        <a name="{{ file.path }}" id="{{ file.path }}"></a>
+                        <h3>
+                            <i class="icon-file"></i> {{ file.path }} <span class="pull-right badge badge-info">{{ file.markers|length }}</span>
+                        </h3>
+                        <div>
+                            <table class="table table-bordered table-condensed">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                {% for marker in file.markers %}
                                     <tr>
-                                        <th>Type</th>
-                                        <th>Line</th>
-                                        <th>Description</th>
+                                        <td>{{ marker.type }}</td>
+                                        <td>{{ marker.line }}</td>
+                                        <td>{{ marker.message }}</td>
                                     </tr>
-                                    {% for marker in file.markers %}
-                                        <tr>
-                                            <td>{{ marker.type }}</td>
-                                            <td>{{ marker.line }}</td>
-                                            <td>{{ marker.message }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
+                                {% endfor %}
+                            </table>
                         </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </main>

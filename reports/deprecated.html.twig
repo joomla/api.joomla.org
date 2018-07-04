@@ -45,11 +45,10 @@
                         {% endif %}
                         <a name="{{ element.file.path }}" id="{{ element.file.path }}"></a>
                         <h3>
-                            <i class="icon-file"></i> {{ element.file.path }}
-                            <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
+                            <i class="icon-file"></i> {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
                         </h3>
                         <div>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Element</th>

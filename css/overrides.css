@@ -3,22 +3,19 @@
     border-left: 1px dashed #f0f0f0;
 }
 
-.namespace-indent h3, .package-indent h3 {
+.element h3, .package-indent h3, .namespace-contents h3, .package-contents h3 {
     font-size: 1.75em;
-}
-
-.element h3 i, .namespace-contents h3 i, .package-contents h3 i {
-    margin-top: 2px;
-    margin-right: 5px;
-}
-
-.element h3, .namespace-contents h3, .package-contents h3 {
     margin-top: 25px;
     margin-bottom: 20px;
     border-bottom: 1px solid silver;
 }
 
-.element h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type {
+.element h3 i, .package-indent h3 i, .namespace-contents h3 i, .package-contents h3 i {
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.element h3:first-of-type, .package-indent h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type {
     margin-top: 30px;
 }
 
@@ -111,14 +108,6 @@ div.element a.more {
     padding: 5px 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-
-div.element p {
-    font-size: 0.9em;
-}
-
-div.element .table {
-    font-size: 0.9em;
 }
 
 div.element .table th {

@@ -48,16 +48,14 @@
             {% endif %}
 
             {% for file in project.files|sort_asc %}
-                <div class="package-contents">
-                    {% if file.allerrors|length > 0 and fileCounts[file.path] is defined %}
+                {% if file.allerrors|length > 0 and fileCounts[file.path] is defined %}
+                    <div class="package-contents">
                         <a name="{{ file.path }}" id="{{ file.path }}"></a>
                         <h3>
-                            <i class="icon-file"></i>
-                            {{ file.path }}
-                            <span class="pull-right badge badge-info">{{ fileCounts[file.path] }}</span>
+                            <i class="icon-file"></i> {{ file.path }} <span class="pull-right badge badge-info">{{ fileCounts[file.path] }}</span>
                         </h3>
                         <div>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-condensed">
                                 <thead>
                                 <tr>
                                     <th>Type</th>
@@ -78,8 +76,8 @@
                             </tbody>
                             </table>
                         </div>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         </main>
     </div>
