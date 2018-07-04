@@ -44,10 +44,10 @@
                             </div>
                         </div>
                         {% endif %}
-                        <div class="package-contents">
+                        <div class="deprecated-file">
                             <a name="{{ element.file.path }}" id="{{ element.file.path }}"></a>
                             <h3>
-                                <i class="icon-file"></i> {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
+                                {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
                             </h3>
                             <div>
                                 <table class="table table-bordered table-condensed">

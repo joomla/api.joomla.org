@@ -3,19 +3,19 @@
     border-left: 1px dashed #f0f0f0;
 }
 
-.element h3, .package-indent h3, .namespace-contents h3, .package-contents h3 {
+.element h3, .package-indent h3, .namespace-contents h3, .package-contents h3, .deprecated-file h3 {
     font-size: 1.75em;
     margin-top: 25px;
     margin-bottom: 20px;
     border-bottom: 1px solid silver;
 }
 
-.element h3 i, .package-indent h3 i, .namespace-contents h3 i, .package-contents h3 i {
+.element h3 i, .package-indent h3 i, .namespace-contents h3 i, .package-contents h3 i, .deprecated-file h3 i {
     margin-top: 2px;
     margin-right: 5px;
 }
 
-.element h3:first-of-type, .package-indent h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type {
+.element h3:first-of-type, .package-indent h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type, .deprecated-file h3:first-of-type {
     margin-top: 30px;
 }
 
@@ -160,10 +160,6 @@ ul.side-nav li pre {
 /* JS only functionality; disable by default */
 .btn-group.visibility, .btn-group.view, .btn-group.type-filter {
     display: none;
-}
-
-.visibility button {
-    height: 24px;
 }
 
 span.empty-namespace {
