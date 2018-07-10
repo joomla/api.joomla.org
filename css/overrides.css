@@ -72,6 +72,10 @@ div.element.class, div.element.interface, div.element.trait {
     border-left-color: #e0e0e0;
 }
 
+div.element.class {
+    border: 0;
+}
+
 div.element .item_name {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
@@ -217,10 +221,6 @@ div.labels {
     text-transform: uppercase;
     font-size: 9px;
     font-weight: bold;
-}
-
-main > .element {
-    border: 0;
 }
 
 @media (min-width: 768px) {
