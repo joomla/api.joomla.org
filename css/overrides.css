@@ -219,6 +219,10 @@ div.labels {
     font-weight: bold;
 }
 
+main > .element {
+    border: 0;
+}
+
 @media (min-width: 768px) {
     :target:before {
         display: block;
