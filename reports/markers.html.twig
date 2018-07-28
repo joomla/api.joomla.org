@@ -20,11 +20,6 @@
         </aside>
 
         <main class="span7">
-            <ul class="breadcrumb">
-                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
-                <li class="active">Markers</li>
-            </ul>
-
             <h1>Markers</h1>
 
             {% if markerCount <= 0 %}
@@ -59,6 +54,11 @@
                     {% endfor %}
                 </div>
             {% endif %}
+
+            <ul class="breadcrumb">
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
+                <li class="active">Markers</li>
+            </ul>
         </main>
     </div>
 {% endblock %}

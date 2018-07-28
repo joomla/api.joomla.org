@@ -27,11 +27,6 @@
         </aside>
 
         <main class="span7">
-            <ul class="breadcrumb">
-                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
-                <li class="active">Deprecated Elements</li>
-            </ul>
-
             <h1>Deprecated Elements</h1>
 
             {% if errorCount <= 0 %}
@@ -71,6 +66,11 @@
                             </table>
                         </div>
             {% endif %}
+
+            <ul class="breadcrumb">
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
+                <li class="active">Deprecated Elements</li>
+            </ul>
         </main>
     </div>
 {% endblock %}

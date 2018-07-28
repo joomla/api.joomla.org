@@ -38,11 +38,6 @@
         </aside>
 
         <main class="span7">
-            <ul class="breadcrumb">
-                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-remove-sign"></i></a> <span class="divider">/</span></li>
-                <li class="active">Compilation Errors</li>
-            </ul>
-
             <h1>Compilation Errors</h1>
 
             {% if errorCount <= 0 %}
@@ -80,6 +75,11 @@
                     {% endfor %}
                 </div>
             {% endif %}
+
+            <ul class="breadcrumb">
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
+                <li class="active">Compilation Errors</li>
+            </ul>
         </main>
     </div>
 {% endblock %}
