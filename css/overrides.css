@@ -16,40 +16,52 @@
     margin-bottom: 1em;
 }
 
-.element h3, .package-indent h3, .namespace-contents h3, .package-contents h3 {
+.element,
+.element__node {
+    border-left: .75em solid #e0e0e0;
+    border-radius: 5px;
+    padding: .5em;
+    margin-bottom: 1em;
+}
+
+.element__node code {
+    margin-right: .75em;
+}
+
+.node--visibility-public {
+    border-left-color: #55A72F;
+}
+
+.node--visibility-protected {
+    border-left-color: orange;
+}
+
+.node--visibility-private {
+    border-left-color: red;
+}
+
+.node__header {
+    font-family: inherit;
+    font-size: 1.2em;
+    font-weight: normal;
+    border-bottom: 1px dashed #55A72F;
+    padding-left: .25em;
+}
+
+.package-indent h3, .namespace-contents h3, .package-contents h3 {
     font-size: 1.75em;
     margin-top: 25px;
     margin-bottom: 20px;
     border-bottom: 1px solid silver;
 }
 
-.element h3 i, .package-indent h3 i, .namespace-contents h3 i, .package-contents h3 i {
+.package-indent h3 i, .namespace-contents h3 i, .package-contents h3 i {
     margin-top: 2px;
     margin-right: 5px;
 }
 
-.element h3:first-of-type, .package-indent h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type {
+.package-indent h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type {
     margin-top: 30px;
-}
-
-.element h2 {
-    font-family: inherit;
-    font-size: 1.2em;
-    font-weight: normal;
-    color: black;
-    border-bottom: 1px dashed #55A72F;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding-bottom: 0;
-    padding-left: 5px;
-}
-
-.element h2:first-of-type {
-    margin-top: 0;
-}
-
-.element .type {
-    font-weight: bold;
 }
 
 #search-query {
@@ -59,26 +71,6 @@
 .dropdown-menu a {
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-div.element {
-    border-left: 10px solid #55A72F;
-    border-radius: 5px;
-    padding: 7px;
-    margin-bottom: 15px;
-    margin-left: 0;
-}
-
-div.element.protected {
-    border-left-color: orange;
-}
-
-div.element.private {
-    border-left-color: red;
-}
-
-div.element.class, div.element.interface, div.element.trait {
-    border-left-color: #e0e0e0;
 }
 
 div.element .item_name {
@@ -121,10 +113,6 @@ div.element a.more {
 
 div.element .table th {
     text-transform: capitalize;
-}
-
-div.detail-description {
-    padding-left: 30px;
 }
 
 div.detail-description table th {
@@ -206,20 +194,6 @@ div.element div.subelement h4 {
 div.element div.subelement.response {
     padding-bottom: 15px;
     margin-right: 50px;
-}
-
-div.labels {
-    text-align: right;
-}
-
-.detail-description > p {
-    margin-left: 10px;
-}
-
-.detail-description code {
-    white-space: pre;
-    display: inline-block;
-    margin-right: 10px;
 }
 
 .visibility .btn,

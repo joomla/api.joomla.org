@@ -1,29 +1,36 @@
 {% import 'base/macros.html.twig' as macros %}
 
-<h1>{{ node.name }}</h1>
+<h1 class="element__header">{{ node.name }}</h1>
+
 {% if node.parent|length or node.interfaces|length %}
-<small class="pull-right">
-    {% if node.parent|length %}
-        Extends {{ node.parent|route|join(', ')|raw }}
-    {% endif %}
-    {% if node.interfaces|length %}
-        Implements {{ node.interfaces|route|join(', ')|raw }}
-    {% endif %}
-</small>
+    <small class="pull-right">
+        {% if node.parent|length %}
+            Extends {{ node.parent|route|join(', ')|raw }}
+        {% endif %}
+        {% if node.interfaces|length %}
+            Implements {{ node.interfaces|route|join(', ')|raw }}
+        {% endif %}
+    </small>
 {% endif %}
-<p class="short_description">{{ node.summary }}</p>
-<div class="details">
-    <div class="long_description">
+
+{% if node.summary %}
+    <p class="element__summary">{{ node.summary }}</p>
+{% endif %}
+
+{% if node.final or node.abstract or (node.tags.deprecated is defined) or node.description %}
+    <div class="element__description">
         {% if node.final or node.abstract or (node.tags.deprecated is defined) %}
-        <div class="labels">
-            {% if node.final %}<span class="label">final</span>{% endif %}
-            {% if node.abstract %}<span class="label">abstract</span>{% endif %}
-            {% if node.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
-        </div>
+            <div class="pull-right">
+                {% if node.final %}<span class="label">final</span>{% endif %}
+                {% if node.abstract %}<span class="label">abstract</span>{% endif %}
+                {% if node.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
+            </div>
         {% endif %}
         {% if node.description %}{{ node.description|markdown|raw }}{% endif %}
     </div>
-    {% if node.tags|length %}
+{% endif %}
+
+{% if node.tags|length %}
     <table class="table table-condensed">
         {% for tagList in node.tags if tagList|length %}
             {% if tagList.0.name not in ['method', 'property', 'codeCoverageIgnore'] %}
@@ -31,7 +38,7 @@
                     {# Do not display the package tag if its value is "Default" #}
                 {% else %}
                     <tr>
-                        <th>
+                        <th scope="row">
                             {{ tagList.0.name }}
                             {% if tagList.0.type %}
                                 {{ tagList.0.type|route|join('|')|raw }}
@@ -62,26 +69,27 @@
             {% endif %}
         {% endfor %}
     </table>
-    {% endif %}
+{% endif %}
 
-    <h3>Methods</h3>
-    {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
+{% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
+{% if node.methods.merge(specialMethods)|length > 0 %}
+    <h2>Methods</h2>
     {% for method in node.methods.merge(specialMethods)|sort_asc %}
-        {% include 'class/method.html.twig' with {'method': method} %}
+        {% include 'class/method.html.twig' with {'method': method, 'node': node} %}
     {% endfor %}
+{% endif %}
 
-    {% if node.constants.merge(node.inheritedConstants)|length > 0 %}
-        <h3>Constants</h3>
-        {% for constant in node.constants.merge(node.inheritedConstants) %}
-            {% include 'class/constant.html.twig' with {'constant': constant} %}
-        {% endfor %}
-    {% endif %}
+{% if node.constants.merge(node.inheritedConstants)|length > 0 %}
+    <h2>Constants</h2>
+    {% for constant in node.constants.merge(node.inheritedConstants) %}
+        {% include 'class/constant.html.twig' with {'constant': constant, 'node': node} %}
+    {% endfor %}
+{% endif %}
 
-    {% set specialProperties = node.magicProperties ? node.inheritedProperties.merge(node.magicProperties) : node.inheritedProperties %}
-    {% if node.properties.merge(specialProperties)|length > 0 %}
-        <h3>Properties</h3>
-        {% for property in node.properties.merge(specialProperties) %}
-            {% include 'class/property.html.twig' with {'property': property} %}
-        {% endfor %}
-    {% endif %}
-</div>
+{% set specialProperties = node.magicProperties ? node.inheritedProperties.merge(node.magicProperties) : node.inheritedProperties %}
+{% if node.properties.merge(specialProperties)|length > 0 %}
+    <h2>Properties</h2>
+    {% for property in node.properties.merge(specialProperties) %}
+        {% include 'class/property.html.twig' with {'property': property, 'node': node} %}
+    {% endfor %}
+{% endif %}

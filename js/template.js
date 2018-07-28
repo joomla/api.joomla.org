@@ -29,7 +29,7 @@ if (typeof jQuery === 'undefined') {
             // we do not use CSS for this because when JS is disabled this behaviour does not
             // apply and we do not want the hover
             // @TODO - Add .element.function and .element.constant back into this when they have proper pages
-            jQuery('.element.method, .element.class.clickable, .element.interface.clickable, .element.trait.clickable, .element.property.clickable, .element.function.clickable, .element.constant.clickable')
+            jQuery('.node--method.node--clickable, .element.class.clickable, .element.interface.clickable, .element.trait.clickable, .node--property.node--clickable, .node--function.node--clickable, .node--constant.node--clickable')
                 .css('cursor', 'pointer')
                 .hover(function () {
                     jQuery(this).css('backgroundColor', '#F8FDF6')
@@ -55,13 +55,13 @@ if (typeof jQuery === 'undefined') {
 
             // set the events for the visibility buttons and enable by default.
             jQuery('.visibility').on('click', 'button.public', function () {
-                jQuery('.element.public, .side-nav li.public').toggle(jQuery(this).hasClass('active'));
+                jQuery('.node--visibility-public, .side-nav li.public').toggle(jQuery(this).hasClass('active'));
             }).on('click', 'button.protected', function () {
-                jQuery('.element.protected, .side-nav li.protected').toggle(jQuery(this).hasClass('active'));
+                jQuery('.node--visibility-protected, .side-nav li.protected').toggle(jQuery(this).hasClass('active'));
             }).on('click', 'button.private', function () {
-                jQuery('.element.private, .side-nav li.private').toggle(jQuery(this).hasClass('active'));
+                jQuery('.node--visibility-private, .side-nav li.private').toggle(jQuery(this).hasClass('active'));
             }).on('click', 'button.inherited', function () {
-                jQuery('.element.inherited, .side-nav li.inherited').toggle(jQuery(this).hasClass('active'));
+                jQuery('.node--inherited, .side-nav li.inherited').toggle(jQuery(this).hasClass('active'));
             });
 
             jQuery('.visibility button.public').click();

@@ -1,17 +1,17 @@
 {% import 'base/macros.html.twig' as macros %}
 
-<div class="row collapse">
-    <div class="detail-description">
-        {% if method.description %}
-            <div class="long_description">{{ method.description|markdown|raw }}</div>
-        {% endif %}
+<div class="collapse">
+    {% if method.description %}
+        <div class="node__description">{{ method.description|markdown|raw }}</div>
+    {% endif %}
 
-        {% if method.tags|length > 0 %}
-            <table class="table table-condensed">
+    {% if method.tags|length > 0 %}
+        <table class="table table-condensed">
+            <tbody>
                 {% for tagList in method.tags if tagList|length %}
                     {% if tagList.0.name not in ['param', 'return', 'api', 'codeCoverageIgnore'] %}
                         <tr>
-                            <th>
+                            <th scope="row">
                                 {{ tagList.0.name }}
                             </th>
                             <td>
@@ -37,24 +37,24 @@
                         </tr>
                     {% endif %}
                 {% endfor %}
-            </table>
-        {% endif %}
+            </tbody>
+        </table>
+    {% endif %}
 
-        {% if method.arguments|length > 0 %}
-            <h3>Arguments</h3>
-            {% for argument in method.arguments %}
-                <div class="subelement argument">
-                    <h4>{{ argument.name }}</h4>
-                    {% set aTypes = argument.types|route|join('|')|raw %}
-                    {{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}
-                </div>
-            {% endfor %}
-        {% endif %}
+    {% if method.arguments|length > 0 %}
+        <h4>Arguments</h4>
+        {% for argument in method.arguments %}
+            <div class="subelement argument">
+                <h5>{{ argument.name }}</h5>
+                {% set aTypes = argument.types|route|join('|')|raw %}
+                {{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
-        {% if method.response.types and method.response.types|join() != 'void' %}
-            <h3>Response</h3>
-            {% set rTypes = method.response.types|route|join('|')|raw %}
-            {{ ('<code>' ~ rTypes ~ '</code>' ~ method.response.description)|markdown|raw }}
-        {% endif %}
-    </div>
+    {% if method.response.types and method.response.types|join() != 'void' %}
+        <h4>Response</h4>
+        {% set rTypes = method.response.types|route|join('|')|raw %}
+        {{ ('<code>' ~ rTypes ~ '</code>' ~ method.response.description)|markdown|raw }}
+    {% endif %}
 </div>

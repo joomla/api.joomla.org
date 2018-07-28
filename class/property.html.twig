@@ -1,54 +1,60 @@
 {% import 'base/macros.html.twig' as macros %}
 
-<a id="property_{{ property.name }}"> </a>
-<div class="element clickable property {{ property.visibility }} property_{{ property.name }}{{ property.parent.name != node.name ? ' inherited' : '' }}" data-toggle="collapse" data-target=".property_{{ property.name }} .collapse">
-    <h2>{{ property.name }}</h2>
+<div class="element__node node--clickable node--property node--visibility-{{ property.visibility }}{{ property.parent.name != node.name ? ' node--inherited' : '' }}" id="property_{{ property.name }}" data-toggle="collapse" data-target="#property_{{ property.name }} .collapse">
+    <h3 class="node__header">{{ property.name }}</h3>
+
     {% set desc = (property.summary ?: property.var.0.description ?: '') %}
     {% if desc %}{{ desc|markdown|raw }}{% endif %}
+
     {% if (property.parent.name != node.name) or property.static or (property.tags.deprecated is defined) %}
-    <div class="labels">
-        {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
-        {% if property.static %}<span class="label">static</span>{% endif %}
-        {% if property.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
-    </div>
-    {% endif %}
-    <div class="row collapse">
-        <div class="detail-description">
-            <div class="long_description">{{ property.description|markdown|raw }}</div>
-
-            <table class="table table-condensed">
-                {% for tagList in method.tags if tagList|length %}
-                    {% if tagList.0.name not in ['var'] %}
-                        <tr>
-                            <th>
-                                {{ tagList.0.name }}
-                            </th>
-                            <td>
-                                {% for tag in tagList %}
-                                    {% if tag.name == 'since' %}
-                                        {{ tag.version|markdown|raw }}
-                                    {% elseif tag.name == 'deprecated' %}
-                                        {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
-                                    {% elseif tag.name == 'see' %}
-                                        {% if tag.reference|slice(0, 4) == 'http' %}
-                                            {{ tag.reference|markdown|raw }}
-                                        {% else %}
-                                            {{ tag.reference|route|raw }}
-                                        {% endif %}
-                                    {% else %}
-                                        {{ tag.description|markdown|raw }}
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-
-            {% if property.types and property.types|join() != 'void' %}
-                <h3>Type(s)</h3>
-                <code>{{ property.types|route|join('|')|raw }}</code>
-            {% endif %}
+        <div class="pull-right">
+            {% if property.parent.name != node.name %}<span class="label">inherited</span>{% endif %}
+            {% if property.static %}<span class="label">static</span>{% endif %}
+            {% if property.tags.deprecated is defined %}<span class="label label-important">deprecated</span>{% endif %}
         </div>
+    {% endif %}
+
+    <div class="collapse">
+        {% if property.description %}
+            <div class="node__description">{{ property.description|markdown|raw }}</div>
+        {% endif %}
+
+        {% if property.tags|length > 0 %}
+            <table class="table table-condensed">
+                <tbody>
+                    {% for tagList in property.tags if tagList|length %}
+                        {% if tagList.0.name not in ['var'] %}
+                            <tr>
+                                <th scope="row">
+                                    {{ tagList.0.name }}
+                                </th>
+                                <td>
+                                    {% for tag in tagList %}
+                                        {% if tag.name == 'since' %}
+                                            {{ tag.version|markdown|raw }}
+                                        {% elseif tag.name == 'deprecated' %}
+                                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                        {% elseif tag.name == 'see' %}
+                                            {% if tag.reference|slice(0, 4) == 'http' %}
+                                                {{ tag.reference|markdown|raw }}
+                                            {% else %}
+                                                {{ tag.reference|route|raw }}
+                                            {% endif %}
+                                        {% else %}
+                                            {{ tag.description|markdown|raw }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        {% if property.types and property.types|join() != 'void' %}
+            <h4>Type(s)</h4>
+            <code>{{ property.types|route|join('|')|raw }}</code>
+        {% endif %}
     </div>
 </div>

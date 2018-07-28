@@ -35,7 +35,7 @@
         {{ self.buildBreadcrumb(element.parent) }}
     {% endif %}
 
-    <li><span class="divider">\</span><a href="{{ path(element) }}">{{ element.name }}</a></li>
+    <li><span class="divider">\</span> <a href="{{ path(element) }}">{{ element.name }}</a></li>
 {% endmacro %}
 
 {% macro elementSummary(element, type) %}

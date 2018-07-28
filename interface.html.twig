@@ -14,13 +14,12 @@
         </aside>
 
         <main class="span7">
-            <div class="element interface">
+            <div class="element element--interface">
                 {% include 'class/base.element.html.twig' with {'node': node, 'type': 'interface'} %}
             </div>
-            <a id="{{ node.fullyQualifiedStructuralElementName }}"></a>
             <ul class="breadcrumb">
                 {{ macros.buildBreadcrumb(node.namespace) }}
-                <li class="active"><span class="divider">\</span><a href="{{ path(node) }}">{{ node.name }}</a></li>
+                <li class="active"><span class="divider">\</span> {{ node.name }}</li>
             </ul>
         </main>
     </div>
