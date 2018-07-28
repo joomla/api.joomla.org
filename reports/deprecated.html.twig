@@ -28,51 +28,49 @@
 
         <main class="span7">
             <ul class="breadcrumb">
-                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a><span class="divider">\</span></li>
-                <li>Deprecated elements</li>
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
+                <li class="active">Deprecated Elements</li>
             </ul>
 
-            {% if errorCount <= 0 %}
-                <div class="alert alert-info">No errors have been found in this project.</div>
-            {% endif %}
+            <h1>Deprecated Elements</h1>
 
-            <div id="marker-accordion">
+            {% if errorCount <= 0 %}
+                <div class="alert alert-info">There are no deprecated elements.</div>
+            {% else %}
+            <div class="deprecations">
                 {% for element in project.indexes.elements if element.deprecated %}
                     {% if element.file.path != previousPath %}
                         {% if previousPath %}
-                                </table>
-                            </div>
+                            </table>
                         </div>
                         {% endif %}
-                        <div class="deprecated-file">
-                            <a name="{{ element.file.path }}" id="{{ element.file.path }}"></a>
-                            <h3>
+                        <div class="deprecations__file">
+                            <h2 class="deprecations__file--header" id="{{ element.file.path }}">
                                 {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
-                            </h3>
-                            <div>
-                                <table class="table table-bordered table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Element</th>
-                                            <th>Line</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                        {% endif %}
-                                    <tbody>
+                            </h2>
+                            <table class="table table-bordered table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Element</th>
+                                        <th scope="col">Line</th>
+                                        <th scope="col">Description</th>
+                                    </tr>
+                                </thead>
+                    {% endif %}
+                                <tbody>
                                     {% for tag in element.tags.deprecated %}
                                         <tr>
-                                            <td>{{ element.fullyQualifiedStructuralElementName }}</td>
+                                            <th scope="row">{{ element.fullyQualifiedStructuralElementName }}</th>
                                             <td>{{ element.line }}</td>
                                             <td>{{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}</td>
                                         </tr>
                                     {% endfor %}
-                                    </tbody>
+                                </tbody>
                         {% set previousPath = element.file.path %}
                 {% endfor %}
-                                </table>
-                            </div>
+                            </table>
                         </div>
+            {% endif %}
         </main>
     </div>
 {% endblock %}
