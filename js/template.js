@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 
             // make the entire element linkable
             jQuery('.element--clickable.element--class, .element--clickable.element--interface, .element--clickable.element--trait').click(function () {
-                document.location = jQuery('a.more', this).attr('href');
+                document.location = jQuery('.element__details', this).attr('href');
             });
 
             // change the cursor to a pointer to make it more explicit that this it clickable
