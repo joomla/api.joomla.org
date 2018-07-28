@@ -39,7 +39,7 @@
 {% endmacro %}
 
 {% macro elementSummary(element, type) %}
-    <div class="element element--clickable element--{{ type }} element--visibility-{{ type in ['function', 'constant'] ? element.visibility : 'public' }} method_{{ element.name }}{% endif %}" id="{{ type }}_{{ element.name }}"{% if type in ['function', 'constant'] %} data-toggle="collapse" data-target="#{{ type }}_{{ element.name }} .collapse"{% endif %}>
+    <div class="element element--clickable element--{{ type }} element--visibility-{{ type in ['function', 'constant'] ? element.visibility : 'public' }}" id="{{ type }}_{{ element.name }}"{% if type in ['function', 'constant'] %} data-toggle="collapse" data-target="#{{ type }}_{{ element.name }} .collapse"{% endif %}>
         <div>
             <h3 class="element__header">{{ element.name }}</h3>
         </div>
