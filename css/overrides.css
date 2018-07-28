@@ -59,7 +59,7 @@
     text-decoration: none;
 }
 
-.element__node code {
+.method__arguments code {
     margin-right: .75em;
 }
 
