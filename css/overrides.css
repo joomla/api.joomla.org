@@ -41,11 +41,42 @@
 }
 
 .node__header {
-    font-family: inherit;
     font-size: 1.2em;
-    font-weight: normal;
-    border-bottom: 1px dashed #55A72F;
+    border-bottom: 1px dashed #e0e0e0;
     padding-left: .25em;
+}
+
+.node__header .node--visibility-public {
+    border-bottom-color: #55A72F;
+}
+
+.node__header .node--visibility-protected {
+    border-bottom-color: orange;
+}
+
+.node__header .node--visibility-private {
+    border-bottom-color: red;
+}
+
+.node__subheader {
+    font-size: 1.2em;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.node__subheader .node--visibility-public {
+    border-bottom-color: #55A72F;
+}
+
+.node__subheader .node--visibility-protected {
+    border-bottom-color: orange;
+}
+
+.node__subheader .node--visibility-private {
+    border-bottom-color: red;
+}
+
+.method__arguments {
+    margin-left: .75em;
 }
 
 .package-indent h3, .namespace-contents h3, .package-contents h3 {
@@ -111,22 +142,6 @@ div.element a.more {
     border-bottom-right-radius: 5px;
 }
 
-div.element .table th {
-    text-transform: capitalize;
-}
-
-div.detail-description table th {
-    vertical-align: top;
-}
-
-body.invert {
-    background: white;
-}
-
-body.invert div.element {
-    background: #f9f9f9;
-}
-
 ul.side-nav {
     clear: both;
 }
@@ -169,26 +184,8 @@ span.empty-namespace {
     overflow: hidden
 }
 
-div.element div.subelement {
-    margin-left: 10px;
-    padding-bottom: 5px;
-    clear: both;
-}
-
 pre code {
     border: none;
-}
-
-div.element div.subelement > code, div.element div.detail-description > p > code {
-    float: left;
-    margin-right: 10px;
-    padding: 0 5px;
-    line-height: 16px;
-}
-
-div.element div.subelement h4 {
-    color: #666;
-    margin-bottom: 5px;
 }
 
 div.element div.subelement.response {

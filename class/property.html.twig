@@ -53,7 +53,7 @@
         {% endif %}
 
         {% if property.types and property.types|join() != 'void' %}
-            <h4>Type(s)</h4>
+            <h4 class="node__subheader">Type(s)</h4>
             <code>{{ property.types|route|join('|')|raw }}</code>
         {% endif %}
     </div>

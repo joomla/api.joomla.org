@@ -42,18 +42,18 @@
     {% endif %}
 
     {% if method.arguments|length > 0 %}
-        <h4>Arguments</h4>
-        {% for argument in method.arguments %}
-            <div class="subelement argument">
-                <h5>{{ argument.name }}</h5>
+        <h4 class="node__subheader">Arguments</h4>
+        <dl class="method__arguments">
+            {% for argument in method.arguments %}
+                <dt class="argument__name">{{ argument.name }}</dt>
                 {% set aTypes = argument.types|route|join('|')|raw %}
-                {{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}
-            </div>
-        {% endfor %}
+                <dd>{{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}</dd>
+            {% endfor %}
+        </dl>
     {% endif %}
 
     {% if method.response.types and method.response.types|join() != 'void' %}
-        <h4>Response</h4>
+        <h4 class="node__subheader">Response</h4>
         {% set rTypes = method.response.types|route|join('|')|raw %}
         {{ ('<code>' ~ rTypes ~ '</code>' ~ method.response.description)|markdown|raw }}
     {% endif %}
