@@ -28,7 +28,7 @@ if (typeof jQuery === 'undefined') {
             // do a background color change on hover to emphasize the clickability eveb more
             // we do not use CSS for this because when JS is disabled this behaviour does not
             // apply and we do not want the hover
-            jQuery('.node--clickable.node--method, .element--clickable.element--class, .element--clickable.element--interface, .element--clickable.element--trait, .node--clickable.node--property, .node--clickable.node--function, .node--clickable.node--constant')
+            jQuery('.node--clickable.node--method, .element--clickable.element--class, .element--clickable.element--interface, .element--clickable.element--trait, .element--clickable.element--function, .element--clickable.element--constant, .node--clickable.node--property, .node--clickable.node--function, .node--clickable.node--constant')
                 .css('cursor', 'pointer')
                 .hover(function () {
                     jQuery(this).css('backgroundColor', '#F8FDF6')
