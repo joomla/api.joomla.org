@@ -4,15 +4,15 @@
     {% import _self as self %}
     {% import 'base/macros.html.twig' as macros %}
 
-    <ul class="breadcrumb">
-        <li><a href="{{ path('index.html') }}"><i class="icon-grid-view-2"></i></a></li>
-        {{ macros.buildBreadcrumb(node) }}
-    </ul>
-
     {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 or node.functions|length > 0 or node.constants|length > 0 %}
+        <ul class="breadcrumb">
+            <li><a href="{{ path('index.html') }}"><i class="icon-grid-view-2"></i></a></li>
+            {{ macros.buildBreadcrumb(node) }}
+        </ul>
+
         {% if node.functions|length > 0 %}
-            <div class="package-indent">
-                <h3>Functions</h3>
+            <div class="package__functions">
+                <h2 class="package__header">Functions</h2>
                 {% for function in node.functions|sort_asc %}
                     {{ macros.elementSummary(function, 'function') }}
                 {% endfor %}
@@ -20,25 +20,35 @@
         {% endif %}
 
         {% if node.constants|length > 0 %}
-            <div class="package-indent">
-                <h3>Constants</h3>
+            <div class="package__constants">
+                <h2 class="package__header">Constants</h2>
                 {% for constant in node.constants|sort_asc %}
                     {{ macros.elementSummary(constant, 'constant') }}
                 {% endfor %}
             </div>
         {% endif %}
 
-        {% if node.classes|length > 0 or node.interfaces|length > 0 or node.traits|length > 0 %}
-            <div class="package-indent">
-                <h3>Classes, interfaces and traits</h3>
+        {% if node.traits|length > 0 %}
+            <div class="package__traits">
+                <h2 class="package__header">Traits</h2>
                 {% for trait in node.traits|sort_asc %}
                     {{ macros.elementSummary(trait, 'trait') }}
                 {% endfor %}
+            </div>
+        {% endif %}
 
+        {% if node.interfaces|length > 0 %}
+            <div class="package__traits">
+                <h2 class="package__header">Interfaces</h2>
                 {% for interface in node.interfaces|sort_asc %}
                     {{ macros.elementSummary(interface, 'interface') }}
                 {% endfor %}
+            </div>
+        {% endif %}
 
+        {% if node.classes|length > 0 %}
+            <div class="package__classes">
+                <h2 class="package__header">Interfaces</h2>
                 {% for class in node.classes|sort_asc %}
                     {{ macros.elementSummary(class, 'class') }}
                 {% endfor %}
@@ -83,7 +93,7 @@
             </ul>
         </aside>
 
-        <main class="span7 package-contents">
+        <main class="span7 package">
             {{ self.renderPackageDetails(node) }}
         </main>
     </div>

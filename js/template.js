@@ -17,10 +17,10 @@ if (typeof jQuery === 'undefined') {
          */
         initializeContents: function () {
             // hide all more buttons because they are not needed with JS
-            jQuery('.element a.more').hide();
+            jQuery('.element__details').hide();
 
             // make the entire element linkable
-            jQuery('.clickable.class,.clickable.interface,.clickable.trait').click(function () {
+            jQuery('.element--clickable.element--class, .element--clickable.element--interface, .element--clickable.element--trait').click(function () {
                 document.location = jQuery('a.more', this).attr('href');
             });
 
@@ -28,8 +28,7 @@ if (typeof jQuery === 'undefined') {
             // do a background color change on hover to emphasize the clickability eveb more
             // we do not use CSS for this because when JS is disabled this behaviour does not
             // apply and we do not want the hover
-            // @TODO - Add .element.function and .element.constant back into this when they have proper pages
-            jQuery('.node--method.node--clickable, .element.class.clickable, .element.interface.clickable, .element.trait.clickable, .node--property.node--clickable, .node--function.node--clickable, .node--constant.node--clickable')
+            jQuery('.node--clickable.node--method, .element--clickable.element--class, .element--clickable.element--interface, .element--clickable.element--trait, .node--clickable.node--property, .node--clickable.node--function, .node--clickable.node--constant')
                 .css('cursor', 'pointer')
                 .hover(function () {
                     jQuery(this).css('backgroundColor', '#F8FDF6')

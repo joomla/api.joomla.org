@@ -35,30 +35,24 @@
         {{ self.buildBreadcrumb(element.parent) }}
     {% endif %}
 
-    <li><span class="divider">\</span> <a href="{{ path(element) }}">{{ element.name }}</a></li>
+    <li class="active"><span class="divider">\</span> {{ element.name }}</li>
 {% endmacro %}
 
 {% macro elementSummary(element, type) %}
-    {% if type == 'function' or type == 'constant' %}
-        {% set class = '' %}
-    {% else %}
-        {% set class = 'ajax ' %}
-    {% endif %}
-    <div id="{{ element.name }}" class="element clickable {{ class }}{{ type }}{% if type in ['function', 'constant'] %} {{ element.visibility }} method_{{ element.name }}{% endif %}"{% if type in ['function', 'constant'] %} data-toggle="collapse" data-target=".method_{{ element.name }} .collapse"{% endif %}>
-        <div class="item_name">
-            {{ element.name }}
-            {% if path(element) and type not in ['function', 'constant'] %}
-                <a href="{{ path(element) }}" class="more">¶</a>
-            {% endif %}
+    <div class="element element--clickable element--{{ type }} element--visibility-{{ type in ['function', 'constant'] ? element.visibility : 'public' }} method_{{ element.name }}{% endif %}" id="{{ type }}_{{ element.name }}"{% if type in ['function', 'constant'] %} data-toggle="collapse" data-target="#{{ type }}_{{ element.name }} .collapse"{% endif %}>
+        <div>
+            <h3 class="element__header">{{ element.name }}</h3>
         </div>
-        <p class="short_description">{{ element.summary }}</p>
-        <div class="details collapse">
-            {% if type == 'function' or type == 'constant' %}
+        {% if element.summary %}
+            <p class="element__summary">{{ element.summary }}</p>
+        {% endif %}
+        <div class="collapse">
+            {% if type in ['function', 'constant'] %}
                 {% include 'class/details.method.html.twig' with {'method': element} %}
-            {% else %}
+            {% elseif element.description %}
                 {{ element.description }}
             {% endif %}
         </div>
-        {% if path(element) and type != 'function' and type != 'constant' %}<a href="{{ path(element) }}" class="more">« More »</a>{% endif %}
+        {% if path(element) and type not in ['function', 'constant'] %}<a href="{{ path(element) }}" class="element__details">« More »</a>{% endif %}
     </div>
 {% endmacro %}

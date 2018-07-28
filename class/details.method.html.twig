@@ -10,31 +10,35 @@
             <tbody>
                 {% for tagList in method.tags if tagList|length %}
                     {% if tagList.0.name not in ['param', 'return', 'api', 'codeCoverageIgnore'] %}
-                        <tr>
-                            <th scope="row">
-                                {{ tagList.0.name }}
-                            </th>
-                            <td>
-                                {% for tag in tagList %}
-                                    {% if tag.name == 'since' %}
-                                        {{ tag.version|markdown|raw }}
-                                    {% elseif tag.name == 'deprecated' %}
-                                        {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
-                                    {% elseif tag.name == 'see' %}
-                                        {% if tag.reference|slice(0, 4) == 'http' %}
-                                            {{ tag.reference|markdown|raw }}
+                        {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}
+                            {# Do not display the package tag if its value is "Default" #}
+                        {% else %}
+                            <tr>
+                                <th scope="row">
+                                    {{ tagList.0.name }}
+                                </th>
+                                <td>
+                                    {% for tag in tagList %}
+                                        {% if tag.name == 'since' %}
+                                            {{ tag.version|markdown|raw }}
+                                        {% elseif tag.name == 'deprecated' %}
+                                            {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                        {% elseif tag.name == 'see' %}
+                                            {% if tag.reference|slice(0, 4) == 'http' %}
+                                                {{ tag.reference|markdown|raw }}
+                                            {% else %}
+                                                {{ tag.reference|route|raw }}
+                                            {% endif %}
+                                        {% elseif tag.name == 'throws' %}
+                                            {% set tTypes = tag.types|route|join('|')|raw %}
+                                            {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
                                         {% else %}
-                                            {{ tag.reference|route|raw }}
+                                            {{ tag.description|markdown|raw }}
                                         {% endif %}
-                                    {% elseif tag.name == 'throws' %}
-                                        {% set tTypes = tag.types|route|join('|')|raw %}
-                                        {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
-                                    {% else %}
-                                        {{ tag.description|markdown|raw }}
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                        </tr>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </tbody>

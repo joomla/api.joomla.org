@@ -1,7 +1,6 @@
-.namespace-indent, .package-indent {
-    padding-left: 10px;
-    border-left: 1px dashed #f0f0f0;
-}
+/*
+ * Reports
+ */
 
 .deprecations__file,
 .markers__file,
@@ -16,12 +15,48 @@
     margin-bottom: 1em;
 }
 
+/*
+ * Class, package, and namespace listings
+ */
+
+.namespace__functions,
+.namespace__constants,
+.namespace__traits,
+.namespace__interfaces,
+.namespace__classes,
+.package__functions,
+.package__constants,
+.package__traits,
+.package__interfaces,
+.package__classes {
+    padding-left: 1.25em;
+    border-left: 1px dashed #f0f0f0;
+}
+
 .element,
 .element__node {
     border-left: .75em solid #e0e0e0;
     border-radius: 5px;
     padding: .5em;
     margin-bottom: 1em;
+}
+
+.element__details {
+    font-weight: bold;
+    text-align: center;
+    color: gray;
+    border-top: 1px dashed silver;
+    display: block;
+    margin-top: 5px;
+    padding: 5px 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.element__details:hover {
+    background: #f0f0f0;
+    color: #444;
+    text-decoration: none;
 }
 
 .element__node code {
@@ -40,6 +75,7 @@
     border-left-color: red;
 }
 
+.element__header,
 .node__header {
     font-size: 1.2em;
     border-bottom: 1px dashed #e0e0e0;
@@ -79,67 +115,20 @@
     margin-left: .75em;
 }
 
-.package-indent h3, .namespace-contents h3, .package-contents h3 {
-    font-size: 1.75em;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid silver;
-}
+/*
+ * Sidebar
+ */
 
-.package-indent h3 i, .namespace-contents h3 i, .package-contents h3 i {
-    margin-top: 2px;
-    margin-right: 5px;
-}
-
-.package-indent h3:first-of-type, .namespace-contents h3:first-of-type, .package-contents h3:first-of-type {
-    margin-top: 30px;
-}
-
-#search-query {
-    height: auto;
-}
-
-.dropdown-menu a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-div.element .item_name {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.5em;
-    margin-bottom: .75em;
-    line-height: 1.5em;
-}
-
-div.element .item_name a {
-    color: transparent;
-    margin-left: 10px;
-}
-
-div.element .item_name:hover a {
-    color: silver;
-}
-
-div.element .item_name a:hover {
-    color: navy;
-}
-
-div.element a.more:hover {
-    background: #f0f0f0;
-    color: #444;
-    text-decoration: none;
-}
-
-div.element a.more {
+.visibility .btn,
+.type-filter .btn {
+    text-transform: uppercase;
+    font-size: 9px;
     font-weight: bold;
-    text-align: center;
-    color: gray;
-    border-top: 1px dashed silver;
-    display: block;
-    margin-top: 5px;
-    padding: 5px 0;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+}
+
+/* JS only functionality; disable by default */
+.btn-group.visibility, .btn-group.type-filter {
+    display: none;
 }
 
 ul.side-nav {
@@ -169,35 +158,21 @@ ul.side-nav li pre {
     padding-left: 5px;
 }
 
-/* JS only functionality; disable by default */
-.btn-group.visibility, .btn-group.type-filter {
-    display: none;
+/*
+ * Misc styles
+ */
+
+#search-query {
+    height: auto;
 }
 
-span.empty-namespace {
-    color: silver;
-}
-
-#mapHolder {
-    border: 4px solid #555;
-    padding: 0 !important;
-    overflow: hidden
+.dropdown-menu a {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 pre code {
     border: none;
-}
-
-div.element div.subelement.response {
-    padding-bottom: 15px;
-    margin-right: 50px;
-}
-
-.visibility .btn,
-.type-filter .btn {
-    text-transform: uppercase;
-    font-size: 9px;
-    font-weight: bold;
 }
 
 @media (min-width: 768px) {
