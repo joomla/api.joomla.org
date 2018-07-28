@@ -46,15 +46,15 @@
     padding-left: .25em;
 }
 
-.node__header .node--visibility-public {
+.node--visibility-public .node__header {
     border-bottom-color: #55A72F;
 }
 
-.node__header .node--visibility-protected {
+.node--visibility-protected .node__header {
     border-bottom-color: orange;
 }
 
-.node__header .node--visibility-private {
+.node--visibility-private .node__header {
     border-bottom-color: red;
 }
 
@@ -63,15 +63,15 @@
     border-bottom: 1px dashed #e0e0e0;
 }
 
-.node__subheader .node--visibility-public {
+.node--visibility-public .node__subheader {
     border-bottom-color: #55A72F;
 }
 
-.node__subheader .node--visibility-protected {
+.node--visibility-protected .node__subheader {
     border-bottom-color: orange;
 }
 
-.node__subheader .node--visibility-private {
+.node--visibility-private .node__subheader {
     border-bottom-color: red;
 }
 
