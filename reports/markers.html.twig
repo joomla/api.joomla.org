@@ -12,7 +12,7 @@
                 {% set markerCount = 0 %}
                 {% for file in project.files|sort_asc %}
                     {% if file.markers|length > 0 %}
-                    <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
+                        <li><a href="#{{ file.path }}"><i class="icon-file"></i> {{ file.path }}</a></li>
                     {% endif %}
                     {% set markerCount = markerCount + file.markers|length %}
                 {% endfor %}
@@ -21,40 +21,44 @@
 
         <main class="span7">
             <ul class="breadcrumb">
-                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a><span class="divider">\</span></li>
-                <li>Markers</li>
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-flag"></i></a> <span class="divider">/</span></li>
+                <li class="active">Markers</li>
             </ul>
+
+            <h1>Markers</h1>
 
             {% if markerCount <= 0 %}
                 <div class="alert alert-info">No markers have been found in this project.</div>
-            {% endif %}
-
-            <div>
-                {% for file in project.files|sort_asc if file.markers|length > 0 %}
-                    <div class="package-contents">
-                        <a name="{{ file.path }}" id="{{ file.path }}"></a>
-                        <h3>
-                            {{ file.path }} <span class="pull-right badge badge-info">{{ file.markers|length }}</span>
-                        </h3>
-                        <div>
+            {% else %}
+                <div class="markers">
+                    {% for file in project.files|sort_asc if file.markers|length > 0 %}
+                        <div class="markers__file">
+                            <a name="{{ file.path }}" id="{{ file.path }}"></a>
+                            <h2 class="markers__file--header" id="{{ file.path }}">
+                                {{ file.path }} <span class="pull-right badge badge-info">{{ file.markers|length }}</span>
+                            </h2>
                             <table class="table table-bordered table-condensed">
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Line</th>
-                                    <th>Description</th>
-                                </tr>
-                                {% for marker in file.markers %}
+                                <thead>
                                     <tr>
-                                        <td>{{ marker.type }}</td>
-                                        <td>{{ marker.line }}</td>
-                                        <td>{{ marker.message }}</td>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Line</th>
+                                        <th scope="col">Description</th>
                                     </tr>
-                                {% endfor %}
+                                </thead>
+                                <tbody>
+                                    {% for marker in file.markers %}
+                                        <tr>
+                                            <td>{{ marker.type }}</td>
+                                            <td>{{ marker.line }}</td>
+                                            <td>{{ marker.message }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
                             </table>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </main>
     </div>
 {% endblock %}

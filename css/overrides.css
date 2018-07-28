@@ -3,11 +3,13 @@
     border-left: 1px dashed #f0f0f0;
 }
 
-.deprecations__file {
+.deprecations__file,
+.markers__file {
     margin-bottom: 1.25em;
 }
 
-.deprecations__file--header {
+.deprecations__file--header,
+.markers__file--header {
     border-bottom: 1px solid silver;
     margin-bottom: 1em;
 }
