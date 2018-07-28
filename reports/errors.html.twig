@@ -39,46 +39,48 @@
 
         <main class="span7">
             <ul class="breadcrumb">
-                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
-                <li>Compilation Errors</li>
+                <li><a href="{% if path('/') == '' %}?{% else %}{{ path('/') }}{% endif %}"><i class="icon-remove-sign"></i></a> <span class="divider">/</span></li>
+                <li class="active">Compilation Errors</li>
             </ul>
+
+            <h1>Compilation Errors</h1>
 
             {% if errorCount <= 0 %}
                 <div class="alert alert-info">No errors have been found in this project.</div>
-            {% endif %}
-
-            {% for file in project.files|sort_asc %}
-                {% if file.allerrors|length > 0 and fileCounts[file.path] is defined %}
-                    <div class="package-contents">
-                        <a name="{{ file.path }}" id="{{ file.path }}"></a>
-                        <h3>
-                            {{ file.path }} <span class="pull-right badge badge-info">{{ fileCounts[file.path] }}</span>
-                        </h3>
-                        <div>
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Line</th>
-                                    <th>Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for error in file.allerrors %}
-                                    {% if error.code != 'PPC:ERR-50000' %}
-                                        <tr class="{{ error.severity }}">
-                                            <td>{{ error.severity }}</td>
-                                            <td>{{ error.line }}</td>
-                                            <td>{{ error.code|trans(error.context) }}</td>
+            {% else %}
+                <div class="errors">
+                    {% for file in project.files|sort_asc %}
+                        {% if file.allerrors|length > 0 and fileCounts[file.path] is defined %}
+                            <div class="errors__file">
+                                <h2 class="errors__file--header" id="{{ file.path }}">
+                                    {{ file.path }} <span class="pull-right badge badge-info">{{ fileCounts[file.path] }}</span>
+                                </h2>
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Line</th>
+                                            <th scope="col">Description</th>
                                         </tr>
-                                    {% endif %}
-                                {% endfor %}
-                            </tbody>
-                            </table>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                        {% for error in file.allerrors %}
+                                            {% if error.code != 'PPC:ERR-50000' %}
+                                                <tr class="{{ error.severity }}">
+                                                    <td>{{ error.severity }}</td>
+                                                    <td>{{ error.line }}</td>
+                                                    <td>{{ error.code|trans(error.context) }}</td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </main>
     </div>
 {% endblock %}

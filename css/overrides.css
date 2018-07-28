@@ -4,12 +4,14 @@
 }
 
 .deprecations__file,
-.markers__file {
+.markers__file,
+.errors__file {
     margin-bottom: 1.25em;
 }
 
 .deprecations__file--header,
-.markers__file--header {
+.markers__file--header,
+.errors__file--header {
     border-bottom: 1px solid silver;
     margin-bottom: 1em;
 }
