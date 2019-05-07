@@ -19,9 +19,13 @@
             <div class="node__description">{{ constant.description|markdown|raw }}</div>
         {% endif %}
 
-        {% if constant.tags|length > 0 %}
-            <table class="table table-condensed">
-                <tbody>
+        <table class="table table-condensed">
+            <tbody>
+                <tr>
+                    <th scope="row">Value</th>
+                    <td>{{ constant.value }}</td>
+                </tr>
+                {% if constant.tags|length > 0 %}
                     {% for tagList in constant.tags if tagList|length %}
                         {% if tagList.0.name not in ['var'] %}
                             {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}
@@ -52,9 +56,9 @@
                             {% endif %}
                         {% endif %}
                     {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+                {% endif %}
+            </tbody>
+        </table>
 
         {% if constant.types and constant.types|join() != 'void' %}
             <h4 class="node__subheader">Type(s)</h4>
