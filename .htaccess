@@ -219,6 +219,7 @@ Redirect 301 /cms-3/classes/JDocumentFeed.html /cms-3/classes/Joomla.CMS.Documen
 Redirect 301 /cms-3/classes/JDocumentHtml.html /cms-3/classes/Joomla.CMS.Document.HtmlDocument.html
 Redirect 301 /cms-3/classes/JDocumentImage.html /cms-3/classes/Joomla.CMS.Document.ImageDocument.html
 Redirect 301 /cms-3/classes/JDocumentJson.html /cms-3/classes/Joomla.CMS.Document.JsonDocument.html
+Redirect 301 /cms-3/classes/JDocumentJSON.html /cms-3/classes/Joomla.CMS.Document.JsonDocument.html
 Redirect 301 /cms-3/classes/JDocumentOpensearch.html /cms-3/classes/Joomla.CMS.Document.OpensearchDocument.html
 Redirect 301 /cms-3/classes/JDocumentRaw.html /cms-3/classes/Joomla.CMS.Document.RawDocument.html
 Redirect 301 /cms-3/classes/JDocumentRenderer.html /cms-3/classes/Joomla.CMS.Document.DocumentRenderer.html
@@ -421,6 +422,24 @@ Redirect 301 /cms-3/classes/JImageFilter.html /cms-3/classes/Joomla.CMS.Image.Im
 Redirect 301 /cms-3/classes/JObject.html /cms-3/classes/Joomla.CMS.Object.CMSObject.html
 Redirect 301 /cms-3/classes/JExtensionHelper.html /cms-3/classes/Joomla.CMS.Extension.ExtensionHelper.html
 Redirect 301 /cms-3/classes/JHtml.html /cms-3/classes/Joomla.CMS.HTML.HTMLHelper.html
+Redirect 301 /cms-3/classes/JFile.html /cms-3/classes/Joomla.CMS.Filesystem.File.html
+Redirect 301 /cms-3/classes/JFilesystemHelper.html /cms-3/classes/Joomla.CMS.Filesystem.FilesystemHelper.html
+Redirect 301 /cms-3/classes/JFilePatcher.html /cms-3/classes/Joomla.CMS.Filesystem.Patcher.html
+Redirect 301 /cms-3/classes/JFileWrapperFile.html /cms-3/classes/Joomla.CMS.Filesystem.Wrapper.FileWrapper.html
+Redirect 301 /cms-3/classes/JFileWrapperFolder.html /cms-3/classes/Joomla.CMS.Filesystem.Wrapper.FolderWrapper.html
+Redirect 301 /cms-3/classes/JFileWrapperPath.html /cms-3/classes/Joomla.CMS.Filesystem.Wrapper.PathWrapper.html
+Redirect 301 /cms-3/classes/JFolder.html /cms-3/classes/Joomla.CMS.Filesystem.Folder.html
+Redirect 301 /cms-3/classes/JPath.html /cms-3/classes/Joomla.CMS.Filesystem.Path.html
+Redirect 301 /cms-3/classes/JStream.html /cms-3/classes/Joomla.CMS.Filesystem.Stream.html
+Redirect 301 /cms-3/classes/JStreamString.html /cms-3/classes/Joomla.CMS.Filesystem.Streams.StreamString.html
+Redirect 301 /cms-3/classes/JStringController.html /cms-3/classes/Joomla.CMS.Filesystem.Support.StringController.html
+
+Redirect 301 /cms-3/packages/Joomla.Platform.User.html /cms-3/namespaces/Joomla.CMS.User.html
+
+# These 404s were found in Google Search Console, they weren't valid URLs in the first place but redirect to the right locations anyway
+Redirect 301 /cms-3/classes/jcachecontroller.html /cms-3/classes/Joomla.CMS.Cache.CacheController.html
+Redirect 301 /cms-3/classes/jdocument.html /cms-3/classes/Joomla.CMS.Document.Document.html
+Redirect 301 /cms-3/namespaces/Joomla.Registry /cms-3/namespaces/Joomla.Registry.html
 
 ###########################################
 
