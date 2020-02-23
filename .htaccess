@@ -434,6 +434,12 @@ Redirect 301 /cms-3/classes/JStream.html /cms-3/classes/Joomla.CMS.Filesystem.St
 Redirect 301 /cms-3/classes/JStreamString.html /cms-3/classes/Joomla.CMS.Filesystem.Streams.StreamString.html
 Redirect 301 /cms-3/classes/JStringController.html /cms-3/classes/Joomla.CMS.Filesystem.Support.StringController.html
 
+Redirect 301 /cms-3/packages/Joomla.Libraries.Captcha.html /cms-3/namespaces/Joomla.CMS.Captcha.html
+Redirect 301 /cms-3/packages/Joomla.Platform.Filesystem.html /cms-3/namespaces/Joomla.CMS.Filesystem.html
+Redirect 301 /cms-3/packages/Joomla.Platform.FileSystem.html /cms-3/namespaces/Joomla.CMS.Filesystem.html
+Redirect 301 /cms-3/packages/Joomla.Platform.Http.html /cms-3/namespaces/Joomla.CMS.Http.html
+Redirect 301 /cms-3/packages/Joomla.Platform.Mail.html /cms-3/namespaces/Joomla.CMS.Mail.html
+Redirect 301 /cms-3/packages/Joomla.Platform.Table.html /cms-3/namespaces/Joomla.CMS.Table.html
 Redirect 301 /cms-3/packages/Joomla.Platform.User.html /cms-3/namespaces/Joomla.CMS.User.html
 
 # These 404s were found in Google Search Console, they weren't valid URLs in the first place but redirect to the right locations anyway
