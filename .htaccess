@@ -71,6 +71,8 @@ ErrorDocument 403 /403.html
 RewriteCond %{REQUEST_URI} ^/(1.5|11.4|12.1)/
 RewriteRule (.*) /archived.html [R=301,L]
 
+RewriteRule ^framework-1\.(0|1)/(.*)$ /framework-1/$2 [R=301,NC,L]
+
 ###########################################
 
 
