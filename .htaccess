@@ -4,6 +4,24 @@
 ##
 
 ###########################################
+# ======= Enable the Rewrite Engine =======
+
+RewriteEngine On
+
+###########################################
+
+
+###########################################
+# ========= No directory listings =========
+
+IndexIgnore *
+Options +FollowSymLinks
+Options -Indexes
+
+###########################################
+
+
+###########################################
 # ======= Set basic Security header =======
 
 <IfModule mod_headers.c>
@@ -36,10 +54,22 @@
 </IfModule>
 
 ###########################################
+
+
+###########################################
 # ========== Custom Error Pages ===========
 
 ErrorDocument 404 /404.html
 ErrorDocument 403 /403.html
+
+###########################################
+
+
+###########################################
+# ====== Redirect Archived Sections =======
+
+RewriteCond %{REQUEST_URI} ^/(1.5|11.4|12.1)/
+RewriteRule (.*) /archived.html [R=301,L]
 
 ###########################################
 
@@ -394,24 +424,6 @@ Redirect 301 /cms-3/classes/JHtml.html /cms-3/classes/Joomla.CMS.HTML.HTMLHelper
 
 
 ###########################################
-# ======= Enable the Rewrite Engine =======
-
-RewriteEngine On
-
-###########################################
-
-
-###########################################
-# ========= No directory listings =========
-
-IndexIgnore *
-Options +FollowSymLinks
-Options -Indexes
-
-###########################################
-
-
-###########################################
 # ==== Optimal default expiration time ====
 
 <IfModule mod_expires.c>
@@ -465,6 +477,7 @@ Options -Indexes
 	ExpiresByType video/x-la-asf "now plus 1 month"
 	ExpiresByType video/x-ms-asf "now plus 1 month"
 </IfModule>
+
 ###########################################
 
 
@@ -502,6 +515,7 @@ Options -Indexes
 	mod_gzip_item_include handler ^application/x-httpd-php
 	mod_gzip_item_exclude mime ^image/.*
 </IfModule>
+
 ###########################################
 
 

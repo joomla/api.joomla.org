@@ -7,3 +7,4 @@ Disallow: /1.5/
 Disallow: /11.4/
 Disallow: /12.1/
 Disallow: /cgi-bin/
+Disallow: /archived.html
