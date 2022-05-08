@@ -5,30 +5,26 @@
 {% block content %}
         <div class="row-fluid">
             <div class="span7">
-                {% if project.indexes.namespaces|length > 0 or not project.indexes.packages %}
+                {% if project.namespace|length > 0 or not project.indexes.packages %}
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Namespaces</li>
                             {% block listRootNamespaces %}
-                            <li><a href="{{ path(project.indexes.namespaces|first) }}">Global ({{ (project.indexes.namespaces|first).name }})</a></li>
-                            {% for namespace in (project.indexes.namespaces|first).children %}
-                                <li><a href="{{ path(namespace) }}">{{ namespace.name }}</a></li>
+                            {% for namespace in project.namespace.children %}
+                                <li><a href="{{ path(namespace|route('url')) }}">{{ namespace.name }}</a></li>
                             {% endfor %}
                             {% endblock %}
                         </ul>
                     </div>
                 {% endif %}
 
-                {% if project.indexes.packages|length %}
+                {% if project.package|length %}
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Packages</li>
                             {% block listRootPackages %}
-                            <li><a href="{{ path(project.indexes.packages|first) }}">Global ({{ (project.indexes.packages|first).name }})</a></li>
-                            {% for package in (project.indexes.packages|first).children %}
-                            {% if package.name != 'Default' %}
-                            <li><a href="{{ path(package) }}">{{ package.name }}</a></li>
-                            {% endif %}
+                            {% for package in project.package.children %}
+                            <li><a href="{{ path(package|route('url')) }}">{{ package.name }}</a></li>
                             {% endfor %}
                             {% endblock %}
                         </ul>

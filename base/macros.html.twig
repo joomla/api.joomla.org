@@ -53,6 +53,6 @@
                 {{ element.description }}
             {% endif %}
         </div>
-        {% if path(element) and type not in ['function', 'constant'] %}<a href="{{ path(element) }}" class="element__details">« More »</a>{% endif %}
+        {% if path(element) and type not in ['function', 'constant'] %}<a href="{{ path(element|route('url')) }}" class="element__details">« More »</a>{% endif %}
     </div>
 {% endmacro %}

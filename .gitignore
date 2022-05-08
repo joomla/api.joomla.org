@@ -4,3 +4,9 @@
 .settings
 .DS_Store
 .idea
+
+/.phpdoc/
+/api-docs/
+/build/
+/repos/
+/vendor/

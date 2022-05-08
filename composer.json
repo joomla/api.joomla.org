@@ -1,0 +1,17 @@
+{
+    "name": "joomla/api.joomla.org",
+    "description": "Code for api.joomla.org",
+    "homepage": "http://github.com/joomla/api.joomla.org",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "consolidation/robo": "~3.0.4"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.0"
+        }
+    }
+}

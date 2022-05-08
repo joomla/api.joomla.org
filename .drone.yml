@@ -1,0 +1,70 @@
+---
+kind: pipeline
+name: default
+
+clone:
+
+steps:
+  - name: prepare_package
+    image: joomlaprojects/docker-images:packager
+    commands:
+      - tar -cjf api-static.bz2 archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess
+
+  - name: upload_package
+    image: appleboy/drone-scp
+    depends_on: [ prepare_package ]
+    settings:
+      host:
+        from_secret: api_host
+      user:
+        from_secret: api_user
+      key:
+        from_secret: api_key
+      port: 22
+      target: /home/api/
+      source: api-static.bz2
+
+  - name: extract_package
+    image: appleboy/drone-ssh
+    depends_on: [ upload_package ]
+    settings:
+      host:
+        from_secret: update_host
+      user:
+        from_secret: update_user
+      key:
+        from_secret: update_key
+      port: 22
+      script:
+        - tar jxf /home/api/api-static.bz2 -C /home/api/public_html
+        - rm -rf /home/api/api-static.bz2
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+name: build_v2_documentation
+
+clone:
+
+steps:
+  - name: prepare
+    image: joomlaprojects/docker-images:php7.4
+    commands:
+      - composer install
+      - vendor/bin/robo repos:checkout --fw=2
+
+  - name: generate_documentation
+    image: phpdoc/phpdoc
+    commands:
+      - phpdoc run -d ./repos/*/src -t ./build/api-docs/v2/ --template ./ --title "Joomla! Framework 2.x API" -i ./repos/string/src/phputf8 --setting=graphs.enabled=true
+
+---
+kind: signature
+hmac: 89007fb9d696ce7ddba323bd86e2957070075e74ab5f288d5a41bf5490060967
+
+...
