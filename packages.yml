@@ -1,0 +1,79 @@
+packages:
+    application: ~
+    archive: ~
+    authentication: ~
+    cache:
+        deprecated: true
+    compat:
+        deprecated: true
+    console: ~
+    controller: ~
+    crypt: ~
+    data: ~
+    database: ~
+    date:
+        deprecated: true
+    datetime:
+        abandoned: true
+        display: DateTime
+    di:
+        display: DI
+    event: ~
+    facebook:
+        repo: facebook-api
+        deprecated: true
+    filesystem: ~
+    filter: ~
+    form:
+        abandoned: true
+    github:
+        display: GitHub
+        repo: github-api
+    google:
+        repo: google-api
+        deprecated: true
+    http:
+        display: HTTP
+    image:
+        deprecated: true
+    input: ~
+    keychain: ~
+    language: ~
+    ldap:
+        display: LDAP
+        deprecated: true
+    linkedin:
+        display: LinkedIn
+        repo: linkedin-api
+        deprecated: true
+    log:
+        deprecated: true
+    mediawiki:
+        display: MediaWiki
+        repo: mediawiki-api
+        stable: false
+    model: ~
+    oauth1:
+        display: OAuth1
+    oauth2:
+        display: OAuth2
+    openstreetmap:
+        display: OpenStreetMap
+        repo: openstreetmap-api
+        deprecated: true
+    preload: ~
+    profiler: ~
+    registry: ~
+    renderer:
+        stable: false
+    router: ~
+    session: ~
+    string: ~
+    test: ~
+    twitter:
+        repo: twitter-api
+        deprecated: true
+    uri:
+        display: URI
+    utilities: ~
+    view: ~

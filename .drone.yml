@@ -1,0 +1,125 @@
+---
+kind: pipeline
+name: deploy_static_assets
+
+clone:
+
+steps:
+  - name: prepare_package
+    image: joomlaprojects/docker-images:packager
+    commands:
+      - mkdir build
+      - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
+
+  - name: deploy_documentation
+    image: debian:stable-slim
+    environment:
+      ssh_password:
+        from_secret: ssh_password
+      ssh_user:
+        from_secret: ssh_user
+      ssh_host:
+        from_secret: ssh_host
+    commands:
+      - apt update && apt install -y rclone openssh-client
+      - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
+      - rclone sync ./build/ api:/home/api/public_html -v --exclude "cms-2.5" --exclude "cms-3" --exclude "cms-4" --exclude "framework-1" --exclude "framework-2"
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+name: build_documentation
+
+clone:
+
+steps:
+  - name: parameter_check1
+    image: debian:stable-slim
+    commands:
+      - |
+        if [ "$JTYPE" = "framework" ]; then
+        exit 0
+        fi
+      - echo "JTYPE parameter is missing. Allowed values [framework, cms]"
+      - exit 1
+
+  - name: parameter_check2
+    image: debian:stable-slim
+    commands:
+      - |
+        if [ $JVERSION > 0 ]; then
+        exit 0
+        fi
+      - echo 'JVERSION parameter is missing.'
+      - exit 1
+
+  - name: prepare
+    image: joomlaprojects/docker-images:php7.4
+    commands:
+      - composer install
+      - git config --global advice.detachedHead false
+      - |
+        if [ "$JTYPE" = "framework" ]; then
+        vendor/bin/robo repos:checkout --fw=$JVERSION
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
+        git clone https://github.com/joomla/joomla-cms.git ./repos/joomla-cms
+        cd repos/joomla-cms
+        git checkout tags/$JVERSION
+        fi
+
+  - name: generate_documentation
+    image: phpdoc/phpdoc
+    commands:
+      - |
+        if [ "$JTYPE" = "framework" ]; then 
+        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --template "./" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --setting=graphs.enabled=true
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
+        export MINORVERSION=${JVERSION%.*}
+        export MAJORVERSION=${MINORVERSION%.*}
+        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --setting=graphs.enabled=true
+        fi
+
+  - name: deploy_documentation
+    image: debian:stable-slim
+    environment:
+      ssh_password:
+        from_secret: ssh_password
+      ssh_user:
+        from_secret: ssh_user
+      ssh_host:
+        from_secret: ssh_host
+    commands:
+      - apt update && apt install -y rclone openssh-client
+      - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
+      - |
+        if [ "$JTYPE" = "framework" ]; then
+        rclone sync ./build/framework-$JVERSION/ api:/home/api/public_html/framework-$JVERSION/ -v
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
+        export MINORVERSION=${JVERSION%.*}
+        export MAJORVERSION=${MINORVERSION%.*}
+        rclone sync ./build/cms-$MAJORVERSION/ api:/home/api/public_html/cms-$MAJORVERSION/ -v
+        fi
+      -
+
+trigger:
+  branch:
+    - master
+  event:
+    - custom
+
+---
+kind: signature
+hmac: 5b71082bf6335a04e8852a4231b1991fad92ddc6e5492e8b1e83b28bc4192f9f
+
+...

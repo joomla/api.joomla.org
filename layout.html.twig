@@ -204,7 +204,7 @@
                                 {% if (project.namespace.children|length > 0) %}
                                     <li><a>Namespaces</a></li>
                                     {% for namespace in project.namespace.children %}
-                                    <li><a href="{{ path(namespace) }}">{{ namespace.name }}</a></li>
+                                    <li><a href="{{ path(namespace|route('url')) }}">{{ namespace.name }}</a></li>
                                     {% endfor %}
                                 {% endif %}
                                 {% if (project.index.packages|length) %}

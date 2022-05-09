@@ -66,7 +66,7 @@
 
     {% for package in node.children|sort_asc %}
     <li>
-        <a href="{{ path(package) }}" title="{{ package.name }}">
+        <a href="{{ path(package|route('url')) }}" title="{{ package.name }}">
             <i class="icon-grid-view-2"></i> {{ package.name }}
         </a>
         <ul class="nav nav-list nav-packages">
