@@ -113,11 +113,13 @@ steps:
       -
 
 trigger:
+  branch:
+    - master
   event:
     - custom
 
 ---
 kind: signature
-hmac: 5691e654b6a8876f6ae2e42a636e49a092844e03fec6d35489dee33cc1a8fb9b
+hmac: 5b71082bf6335a04e8852a4231b1991fad92ddc6e5492e8b1e83b28bc4192f9f
 
 ...
