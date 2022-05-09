@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-name: default
+name: deploy_static_assets
 
 clone:
 
@@ -8,36 +8,22 @@ steps:
   - name: prepare_package
     image: joomlaprojects/docker-images:packager
     commands:
-      - tar -cjf api-static.bz2 archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess
+      - mkdir build
+      - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
 
-  - name: upload_package
-    image: appleboy/drone-scp
-    depends_on: [ prepare_package ]
-    settings:
-      host:
-        from_secret: api_host
-      user:
-        from_secret: api_user
-      key:
-        from_secret: api_key
-      port: 22
-      target: /home/api/
-      source: api-static.bz2
-
-  - name: extract_package
-    image: appleboy/drone-ssh
-    depends_on: [ upload_package ]
-    settings:
-      host:
-        from_secret: update_host
-      user:
-        from_secret: update_user
-      key:
-        from_secret: update_key
-      port: 22
-      script:
-        - tar jxf /home/api/api-static.bz2 -C /home/api/public_html
-        - rm -rf /home/api/api-static.bz2
+  - name: deploy_documentation
+    image: debian:stable-slim
+    environment:
+      ssh_password:
+        from_secret: ssh_password
+      ssh_user:
+        from_secret: ssh_user
+      ssh_host:
+        from_secret: ssh_host
+    commands:
+      - apt update && apt install -y rclone openssh-client
+      - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
+      - rclone sync ./build/ api:/home/api/public_html -v --exclude "cms-2.5" --exclude "cms-3" --exclude "cms-4" --exclude "framework-1" --exclude "framework-2"
 
 trigger:
   branch:
@@ -47,24 +33,91 @@ trigger:
 
 ---
 kind: pipeline
-name: build_v2_documentation
+name: build_documentation
 
 clone:
 
 steps:
+  - name: parameter_check1
+    image: debian:stable-slim
+    commands:
+      - |
+        if [ "$JTYPE" = "framework" ]; then
+        exit 0
+        fi
+      - echo "JTYPE parameter is missing. Allowed values [framework, cms]"
+      - exit 1
+
+  - name: parameter_check2
+    image: debian:stable-slim
+    commands:
+      - |
+        if [ $JVERSION > 0 ]; then
+        exit 0
+        fi
+      - echo 'JVERSION parameter is missing.'
+      - exit 1
+
   - name: prepare
     image: joomlaprojects/docker-images:php7.4
     commands:
       - composer install
-      - vendor/bin/robo repos:checkout --fw=2
+      - git config --global advice.detachedHead false
+      - |
+        if [ "$JTYPE" = "framework" ]; then
+        vendor/bin/robo repos:checkout --fw=$JVERSION
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
+        git clone https://github.com/joomla/joomla-cms.git ./repos/joomla-cms
+        cd repos/joomla-cms
+        git checkout tags/$JVERSION
+        fi
 
   - name: generate_documentation
     image: phpdoc/phpdoc
     commands:
-      - phpdoc run -d ./repos/*/src -t ./build/api-docs/v2/ --template ./ --title "Joomla! Framework 2.x API" -i ./repos/string/src/phputf8 --setting=graphs.enabled=true
+      - |
+        if [ "$JTYPE" = "framework" ]; then 
+        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --template "./" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --setting=graphs.enabled=true
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
+        export MINORVERSION=${JVERSION%.*}
+        export MAJORVERSION=${MINORVERSION%.*}
+        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --setting=graphs.enabled=true
+        fi
+
+  - name: deploy_documentation
+    image: debian:stable-slim
+    environment:
+      ssh_password:
+        from_secret: ssh_password
+      ssh_user:
+        from_secret: ssh_user
+      ssh_host:
+        from_secret: ssh_host
+    commands:
+      - apt update && apt install -y rclone openssh-client
+      - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
+      - |
+        if [ "$JTYPE" = "framework" ]; then
+        rclone sync ./build/framework-$JVERSION/ api:/home/api/public_html/framework-$JVERSION/ -v
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
+        export MINORVERSION=${JVERSION%.*}
+        export MAJORVERSION=${MINORVERSION%.*}
+        rclone sync ./build/cms-$MAJORVERSION/ api:/home/api/public_html/cms-$MAJORVERSION/ -v
+        fi
+      -
+
+trigger:
+  event:
+    - custom
 
 ---
 kind: signature
-hmac: 89007fb9d696ce7ddba323bd86e2957070075e74ab5f288d5a41bf5490060967
+hmac: 5691e654b6a8876f6ae2e42a636e49a092844e03fec6d35489dee33cc1a8fb9b
 
 ...
