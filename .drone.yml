@@ -23,7 +23,7 @@ steps:
     commands:
       - apt update && apt install -y rclone openssh-client
       - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
-      - rclone sync ./build/ api:/home/api/public_html -v --exclude "cms-2.5" --exclude "cms-3" --exclude "cms-4" --exclude "framework-1" --exclude "framework-2"
+      - rclone copy ./build/ api:/home/api/public_html -v
 
 trigger:
   branch:
@@ -43,6 +43,10 @@ steps:
     commands:
       - |
         if [ "$JTYPE" = "framework" ]; then
+        exit 0
+        fi
+      - |
+        if [ "$JTYPE" = "cms" ]; then
         exit 0
         fi
       - echo "JTYPE parameter is missing. Allowed values [framework, cms]"
@@ -120,6 +124,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 5b71082bf6335a04e8852a4231b1991fad92ddc6e5492e8b1e83b28bc4192f9f
+hmac: 11f8a5c1e97ebecf0c8c666e75df86e84b72e6d9886a4f5139df8cbc6aa52f2d
 
 ...
