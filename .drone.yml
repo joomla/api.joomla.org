@@ -7,12 +7,6 @@ clone:
 steps:
   - name: prepare_package
     image: joomlaprojects/docker-images:packager
-    commands:
-      - mkdir build
-      - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
-
-  - name: deploy_documentation
-    image: debian:stable-slim
     environment:
       ssh_password:
         from_secret: ssh_password
@@ -21,9 +15,11 @@ steps:
       ssh_host:
         from_secret: ssh_host
     commands:
-      - apt update && apt install -y rclone openssh-client
+      - mkdir build
+      - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
       - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
       - rclone copy ./build/ api:/home/api/public_html -v
+      - /bin/notify
 
 trigger:
   branch:
@@ -93,7 +89,7 @@ steps:
         fi
 
   - name: deploy_documentation
-    image: debian:stable-slim
+    image: joomlaprojects/docker-images:packager
     environment:
       ssh_password:
         from_secret: ssh_password
@@ -102,7 +98,6 @@ steps:
       ssh_host:
         from_secret: ssh_host
     commands:
-      - apt update && apt install -y rclone openssh-client
       - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
       - |
         if [ "$JTYPE" = "framework" ]; then
@@ -124,6 +119,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 11f8a5c1e97ebecf0c8c666e75df86e84b72e6d9886a4f5139df8cbc6aa52f2d
+hmac: f9e4e82552d87a7f0ab4d68fc078ccba4c3ffc2f0d4a7f4155224652dc9fceda
 
 ...
