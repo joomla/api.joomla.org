@@ -14,6 +14,8 @@ steps:
         from_secret: ssh_user
       ssh_host:
         from_secret: ssh_host
+      RINGCENTRAL_WEBHOOK:
+        from_secret: notification_url
     commands:
       - mkdir build
       - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
@@ -97,6 +99,8 @@ steps:
         from_secret: ssh_user
       ssh_host:
         from_secret: ssh_host
+      RINGCENTRAL_WEBHOOK:
+        from_secret: notification_url
     commands:
       - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
       - |
@@ -109,7 +113,7 @@ steps:
         export MAJORVERSION=${MINORVERSION%.*}
         rclone sync ./build/cms-$MAJORVERSION/ api:/home/api/public_html/cms-$MAJORVERSION/ -v
         fi
-      -
+      - /bin/notify
 
 trigger:
   branch:
@@ -119,6 +123,6 @@ trigger:
 
 ---
 kind: signature
-hmac: f9e4e82552d87a7f0ab4d68fc078ccba4c3ffc2f0d4a7f4155224652dc9fceda
+hmac: 11addd7a7a8cb33fba025c193305a3a72e6742f222b7198fc4387f7d22d9aaef
 
 ...
