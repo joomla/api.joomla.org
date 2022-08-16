@@ -78,16 +78,19 @@ steps:
 
   - name: generate_documentation
     image: phpdoc/phpdoc
+    volumes:
+      - name: phpdocumentor-cache
+        path: /tmp/phpdocumentor-cache
     commands:
       - |
         if [ "$JTYPE" = "framework" ]; then 
-        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --template "./" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --setting=graphs.enabled=true
+        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --cache-path "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --setting=graphs.enabled=true
         fi
       - |
         if [ "$JTYPE" = "cms" ]; then
         export MINORVERSION=${JVERSION%.*}
         export MAJORVERSION=${MINORVERSION%.*}
-        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --setting=graphs.enabled=true
+        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-path "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --setting=graphs.enabled=true
         fi
 
   - name: deploy_documentation
@@ -115,6 +118,12 @@ steps:
         fi
       - /bin/notify
 
+
+volumes:
+  - name: phpdocumentor-cache
+    host:
+      path: /tmp/phpdocumentor-cache
+
 trigger:
   branch:
     - master
@@ -123,6 +132,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 11addd7a7a8cb33fba025c193305a3a72e6742f222b7198fc4387f7d22d9aaef
+hmac: 0e675193cb0413d26a22facdc908336460fce3c164cb27593e34a35bdfa48f04
 
 ...
