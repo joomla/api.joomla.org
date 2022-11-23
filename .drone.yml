@@ -89,7 +89,7 @@ steps:
       - |
         if [ "$JTYPE" = "cms" ]; then
         export MINORVERSION=${JVERSION%.*}
-        export MAJORVERSION=${MINORVERSION%.*}
+        export MAJORVERSION=${JVERSION:0:1}
         phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=false --setting=guides.enabled=true
         fi
 
@@ -132,6 +132,6 @@ trigger:
 
 ---
 kind: signature
-hmac: a858431e521b9714df1a8a2ae81762abe078d671ada7df2c5859ed3d85c69017
+hmac: 26273869977772c2008f38b43860f3c5fa5a0a9705e23c9d24fc799d400c4697
 
 ...
