@@ -113,7 +113,7 @@ steps:
       - |
         if [ "$JTYPE" = "cms" ]; then
         export MINORVERSION=${JVERSION%.*}
-        export MAJORVERSION=${MINORVERSION%.*}
+        export MAJORVERSION=${JVERSION:0:1}
         rclone sync ./build/cms-$MAJORVERSION/ api:/home/api/public_html/cms-$MAJORVERSION/ -v
         fi
       - /bin/notify
