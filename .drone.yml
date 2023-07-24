@@ -90,7 +90,7 @@ steps:
         if [ "$JTYPE" = "cms" ]; then
         export MINORVERSION=${JVERSION%.*}
         export MAJORVERSION=${JVERSION:0:1}
-        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=false --setting=guides.enabled=true
+        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=true --setting=guides.enabled=true
         fi
 
   - name: deploy_documentation
@@ -132,6 +132,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 26273869977772c2008f38b43860f3c5fa5a0a9705e23c9d24fc799d400c4697
+hmac: 5c08c08a45e4eb39ec6e5feafd4c86d19b0843acea3ec4752e7ede4220368ffb
 
 ...
