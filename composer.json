@@ -4,14 +4,14 @@
     "homepage": "http://github.com/joomla/api.joomla.org",
     "license": "GPL-2.0-or-later",
     "require": {
-        "php": "^7.4"
+        "php": "^8.1"
     },
     "require-dev": {
-        "consolidation/robo": "~3.0.4"
+        "consolidation/robo": "~4.0.6"
     },
     "config": {
         "platform": {
-            "php": "7.4.0"
+            "php": "8.1.0"
         }
     }
 }
