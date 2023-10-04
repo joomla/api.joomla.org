@@ -65,7 +65,18 @@ class RoboFile extends Tasks
 
 				chdir(__DIR__ . '/repos/' . $name);
 				$tag = system('git tag -l --sort=creatordate "' . $opts['fw'] . '.*"');
-				system("git checkout tags/$tag");
+
+                if ($tag) {
+                    system("git checkout tags/$tag");
+                } else {
+                    $branch = $opts['fw'] . '.x-dev';
+
+                    if ($opts['fw'] == 2) {
+                        $branch = '2.0-dev';
+                    }
+
+                    system("git checkout origin/$branch");
+                }
 
 				chdir(__DIR__ . '/');
 			}
