@@ -60,9 +60,9 @@
             </tbody>
         </table>
 
-        {% if constant.types and constant.types|join() != 'void' %}
+        {% if constant.type and constant.type|join() != 'void' %}
             <h4 class="node__subheader">Type(s)</h4>
-            <code>{{ constant.types|route|join('|')|raw }}</code>
+            <code>{{ constant.type|route|join('|')|raw }}</code>
         {% endif %}
     </div>
 </div>

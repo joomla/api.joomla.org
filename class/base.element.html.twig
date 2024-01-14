@@ -57,7 +57,7 @@
                                         {{ tag.reference|route|raw }}
                                     {% endif %}
                                 {% elseif tag.name == 'throws' %}
-                                    {% set tTypes = tag.types|route|join('|')|raw %}
+                                    {% set tTypes = tag.type|route|join('|')|raw %}
                                     {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
                                 {% else %}
                                     {{ tag.description|markdown|raw }}

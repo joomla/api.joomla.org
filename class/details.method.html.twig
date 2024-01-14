@@ -30,7 +30,7 @@
                                                 {{ tag.reference|route|raw }}
                                             {% endif %}
                                         {% elseif tag.name == 'throws' %}
-                                            {% set tTypes = tag.types|route|join('|')|raw %}
+                                            {% set tTypes = tag.type|route|join('|')|raw %}
                                             {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
                                         {% else %}
                                             {{ tag.description|markdown|raw }}
@@ -50,15 +50,15 @@
         <dl class="method__arguments">
             {% for argument in method.arguments %}
                 <dt class="argument__name">{{ argument.name }}</dt>
-                {% set aTypes = argument.types|route|join('|')|raw %}
+                {% set aTypes = argument.type|route|join('|')|raw %}
                 <dd>{{ ('<code>' ~ aTypes ~ '</code>' ~ argument.description)|markdown|raw }}</dd>
             {% endfor %}
         </dl>
     {% endif %}
 
-    {% if method.response.types and method.response.types|join() != 'void' %}
+    {% if method.response.type and method.response.type|join() != 'void' %}
         <h4 class="node__subheader">Response</h4>
-        {% set rTypes = method.response.types|route|join('|')|raw %}
+        {% set rTypes = method.response.type|route|join('|')|raw %}
         {{ ('<code>' ~ rTypes ~ '</code>' ~ method.response.description)|markdown|raw }}
     {% endif %}
 </div>
