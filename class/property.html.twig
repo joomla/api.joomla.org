@@ -56,9 +56,9 @@
             </table>
         {% endif %}
 
-        {% if property.types and property.types|join() != 'void' %}
+        {% if property.type and property.type|join() != 'void' %}
             <h4 class="node__subheader">Type(s)</h4>
-            <code>{{ property.types|route|join('|')|raw }}</code>
+            <code>{{ property.type|route|join('|')|raw }}</code>
         {% endif %}
     </div>
 </div>

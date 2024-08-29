@@ -11,7 +11,7 @@
 
 {% block sidebar_entry %}
     <li class="{{ type }} {{ item.visibility }}{{ item.parent.name != node.name ? ' inherited' : '' }}">
-        <a href="#{{ type }}_{{ item.name }}" title="{{ item.name }} :: {{ item.summary }}">
+        <a href="{{ link(node) }}#{{ type }}_{{ item.name }}" title="{{ item.name }} :: {{ item.summary }}">
             <span class="methodName">{{ item.name }}</span>
         </a>
     </li>
@@ -59,7 +59,7 @@
             <ul>
                 {% for constant in node.constants.merge(node.inheritedConstants)|sort_asc %}
                 <li class="constant {{ constant.visibility }}">
-                    <a href="#constant_{{ constant.name }}" title="{{ constant.name }} :: {{ constant.summary }}">
+                    <a href="{{ link(node) }}#constant_{{ constant.name }}" title="{{ constant.name }} :: {{ constant.summary }}">
                         <pre>{{ constant.name }}</pre>
                     </a>
                 </li>
