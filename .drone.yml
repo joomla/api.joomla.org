@@ -61,7 +61,7 @@ steps:
       - exit 1
 
   - name: prepare
-    image: joomlaprojects/docker-images:php7.4
+    image: joomlaprojects/docker-images:php8.1
     commands:
       - composer install
       - git config --global advice.detachedHead false
@@ -132,6 +132,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 5c08c08a45e4eb39ec6e5feafd4c86d19b0843acea3ec4752e7ede4220368ffb
+hmac: a1f255f0dc950a5d9d7e44e2ea740a2405217601766bb1f19a33973901db693e
 
 ...
