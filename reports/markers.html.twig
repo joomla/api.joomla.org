@@ -26,31 +26,33 @@
                 <div class="alert alert-info">No markers have been found in this project.</div>
             {% else %}
                 <div class="markers">
-                    {% for file in project.files|sort_asc if file.markers|length > 0 %}
-                        <div class="markers__file">
-                            <a name="{{ file.path }}" id="{{ file.path }}"></a>
-                            <h2 class="markers__file--header" id="{{ file.path }}">
-                                {{ file.path }} <span class="pull-right badge badge-info">{{ file.markers|length }}</span>
-                            </h2>
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Line</th>
-                                        <th scope="col">Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for marker in file.markers %}
+                    {% for file in project.files|sort_asc %}
+                        {% if file.markers|length > 0 %}
+                            <div class="markers__file">
+                                <a name="{{ file.path }}" id="{{ file.path }}"></a>
+                                <h2 class="markers__file--header" id="{{ file.path }}">
+                                    {{ file.path }} <span class="pull-right badge badge-info">{{ file.markers|length }}</span>
+                                </h2>
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
                                         <tr>
-                                            <td>{{ marker.type }}</td>
-                                            <td>{{ marker.line }}</td>
-                                            <td>{{ marker.message }}</td>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Line</th>
+                                            <th scope="col">Description</th>
                                         </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        {% for marker in file.markers %}
+                                            <tr>
+                                                <td>{{ marker.type }}</td>
+                                                <td>{{ marker.line }}</td>
+                                                <td>{{ marker.message }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             {% endif %}

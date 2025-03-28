@@ -12,16 +12,18 @@
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
                 {% set fileCounts = [] %}
-                {% for element in project.indexes.elements if element.deprecated %}
-                    {% if element.file.path != previousPath %}
-                        <li><a href="#{{ element.file.path }}"><i class="icon-file"></i> {{ element.file.path }}</a></li>
+                {% for element in project.indexes.elements %}
+                    {% if element.deprecated %}
+                        {% if element.file.path != previousPath %}
+                            <li><a href="#{{ element.file.path }}"><i class="icon-file"></i> {{ element.file.path }}</a></li>
+                        {% endif %}
+                        {% set errorCount = errorCount + element.tags.deprecated.count %}
+                        {% if fileCounts[element.file.path] is not defined %}
+                            {% set fileCounts = fileCounts|merge({(element.file.path): 0}) %}
+                        {% endif %}
+                        {% set fileCounts = fileCounts|merge({(element.file.path): fileCounts[element.file.path] + 1}) %}
+                        {% set previousPath = element.file.path %}
                     {% endif %}
-                    {% set errorCount = errorCount + element.tags.deprecated.count %}
-                    {% if fileCounts[element.file.path] is not defined %}
-                        {% set fileCounts = fileCounts|merge({(element.file.path): 0}) %}
-                    {% endif %}
-                    {% set fileCounts = fileCounts|merge({(element.file.path): fileCounts[element.file.path] + 1}) %}
-                    {% set previousPath = element.file.path %}
                 {% endfor %}
             </ul>
         </aside>
@@ -33,25 +35,26 @@
                 <div class="alert alert-info">There are no deprecated elements.</div>
             {% else %}
             <div class="deprecations">
-                {% for element in project.indexes.elements if element.deprecated %}
-                    {% if element.file.path != previousPath %}
-                        {% if previousPath %}
-                            </table>
-                        </div>
+                {% for element in project.indexes.elements %}
+                    {% if element.deprecated %}
+                        {% if element.file.path != previousPath %}
+                            {% if previousPath %}
+                                </table>
+                            </div>
+                            {% endif %}
+                            <div class="deprecations__file">
+                                <h2 class="deprecations__file--header" id="{{ element.file.path }}">
+                                    {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
+                                </h2>
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Element</th>
+                                            <th scope="col">Line</th>
+                                            <th scope="col">Description</th>
+                                        </tr>
+                                    </thead>
                         {% endif %}
-                        <div class="deprecations__file">
-                            <h2 class="deprecations__file--header" id="{{ element.file.path }}">
-                                {{ element.file.path }} <span class="pull-right badge badge-info">{{ fileCounts[element.file.path] }}</span>
-                            </h2>
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Element</th>
-                                        <th scope="col">Line</th>
-                                        <th scope="col">Description</th>
-                                    </tr>
-                                </thead>
-                    {% endif %}
                                 <tbody>
                                     {% for tag in element.tags.deprecated %}
                                         <tr>
@@ -62,6 +65,7 @@
                                     {% endfor %}
                                 </tbody>
                         {% set previousPath = element.file.path %}
+                    {% endif %}
                 {% endfor %}
                             </table>
                         </div>

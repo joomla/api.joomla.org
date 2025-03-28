@@ -32,39 +32,41 @@
 
 {% if node.tags|length %}
     <table class="table table-condensed">
-        {% for tagList in node.tags if tagList|length %}
-            {% if tagList.0.name not in ['method', 'property', 'codeCoverageIgnore'] %}
-                {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}
-                    {# Do not display the package tag if its value is "Default" #}
-                {% else %}
-                    <tr>
-                        <th scope="row">
-                            {{ tagList.0.name }}
-                            {% if tagList.0.type %}
-                                {{ tagList.0.type|route|join('|')|raw }}
-                            {% endif %}
-                        </th>
-                        <td>
-                            {% for tag in tagList %}
-                                {% if tag.name == 'since' %}
-                                    {{ tag.version|markdown|raw }}
-                                {% elseif tag.name == 'deprecated' %}
-                                    {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
-                                {% elseif tag.name == 'see' %}
-                                    {% if tag.reference|slice(0, 4) == 'http' %}
-                                        {{ tag.reference|markdown|raw }}
-                                    {% else %}
-                                        {{ tag.reference|route|raw }}
-                                    {% endif %}
-                                {% elseif tag.name == 'throws' %}
-                                    {% set tTypes = tag.type|route|join('|')|raw %}
-                                    {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
-                                {% else %}
-                                    {{ tag.description|markdown|raw }}
+        {% for tagList in node.tags %}
+            {% if tagList|length %}
+                {% if tagList.0.name not in ['method', 'property', 'codeCoverageIgnore'] %}
+                    {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}
+                        {# Do not display the package tag if its value is "Default" #}
+                    {% else %}
+                        <tr>
+                            <th scope="row">
+                                {{ tagList.0.name }}
+                                {% if tagList.0.type %}
+                                    {{ tagList.0.type|route|join('|')|raw }}
                                 {% endif %}
-                            {% endfor %}
-                        </td>
-                    </tr>
+                            </th>
+                            <td>
+                                {% for tag in tagList %}
+                                    {% if tag.name == 'since' %}
+                                        {{ tag.version|markdown|raw }}
+                                    {% elseif tag.name == 'deprecated' %}
+                                        {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                    {% elseif tag.name == 'see' %}
+                                        {% if tag.reference|slice(0, 4) == 'http' %}
+                                            {{ tag.reference|markdown|raw }}
+                                        {% else %}
+                                            {{ tag.reference|route|raw }}
+                                        {% endif %}
+                                    {% elseif tag.name == 'throws' %}
+                                        {% set tTypes = tag.type|route|join('|')|raw %}
+                                        {{ ('<code>' ~ tTypes ~ '</code>' ~ tag.description)|markdown|raw }}
+                                    {% else %}
+                                        {{ tag.description|markdown|raw }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% endif %}
             {% endif %}
         {% endfor %}

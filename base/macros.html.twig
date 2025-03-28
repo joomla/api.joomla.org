@@ -20,8 +20,10 @@
 
 {% macro renderDeprecatedCounter(elements) %}
     {% set count = 0 %}
-    {% for element in elements if element.deprecated %}
-        {% set count = count + element.tags.deprecated.count %}
+    {% for element in elements %}
+        {% if element.deprecated %}
+            {% set count = count + element.tags.deprecated.count %}
+        {% endif %}
     {% endfor %}
     <span class="label label-info">{{ count }}</span>
 {% endmacro %}
