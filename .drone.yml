@@ -8,18 +8,24 @@ steps:
   - name: prepare_package
     image: joomlaprojects/docker-images:packager
     environment:
-      ssh_password:
-        from_secret: ssh_password
-      ssh_user:
-        from_secret: ssh_user
-      ssh_host:
-        from_secret: ssh_host
-      RINGCENTRAL_WEBHOOK:
-        from_secret: notification_url
+      FTP_KEY:
+        from_secret: ftp_key
+      FTP_USER:
+        from_secret: ftp_user
+      FTP_HOST:
+        from_secret: ftp_host
+      MATTERMOST_NIGHTLY_HOOK:
+        from_secret: mattermost_nightly_hook
     commands:
       - mkdir build
       - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
-      - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
+      - mkdir -p ~/.ssh
+      - eval $(ssh-agent -s)
+      - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+      - echo "$FTP_KEY" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh-add
+      - rclone config create api sftp host $FTP_HOST user $FTP_USER port 22
       - rclone copy ./build/ api:/home/api/public_html -v
       - /bin/notify
 
@@ -137,6 +143,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 7ddfcdba3eee793cdc72fa49568c10a6880fd617269d78bdf7d8723ee61960f0
+hmac: 40d573431b707228879381eee43e5a1d258eeee7889ed36340e3aba43a9454bf
 
 ...
