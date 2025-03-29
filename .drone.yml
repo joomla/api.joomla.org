@@ -27,7 +27,7 @@ steps:
       - ssh-add
       - rclone config create api sftp host $FTP_HOST user $FTP_USER port 22
       - rclone copy ./build/ api:/home/api/public_html -v
-      - /bin/notify
+      - curl -i -X POST -H 'Content-Type:application/json' -d '{"text":"api.joomla.org: Deployment for assets was successfull."}' $MATTERMOST_NIGHTLY_HOOK
 
 trigger:
   branch:
@@ -143,6 +143,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 40d573431b707228879381eee43e5a1d258eeee7889ed36340e3aba43a9454bf
+hmac: 135c9cbd92381f355f3b1f64f6d4bdfec452e76839802882d62c55a882a5ad40
 
 ...
