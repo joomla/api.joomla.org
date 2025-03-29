@@ -96,16 +96,22 @@ steps:
   - name: deploy_documentation
     image: joomlaprojects/docker-images:packager
     environment:
-      ssh_password:
-        from_secret: ssh_password
-      ssh_user:
-        from_secret: ssh_user
-      ssh_host:
-        from_secret: ssh_host
-      RINGCENTRAL_WEBHOOK:
-        from_secret: notification_url
+      FTP_KEY:
+        from_secret: ftp_key
+      FTP_USER:
+        from_secret: ftp_user
+      FTP_HOST:
+        from_secret: ftp_host
+      MATTERMOST_NIGHTLY_HOOK:
+        from_secret: mattermost_nightly_hook
     commands:
-      - rclone config create api sftp host $ssh_host user $ssh_user pass $ssh_password port 22 use_insecure_cipher true disable_hashcheck true
+      - mkdir -p ~/.ssh
+      - eval $(ssh-agent -s)
+      - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+      - echo "$FTP_KEY" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh-add
+      - rclone config create api sftp host $FTP_HOST user $FTP_USER port 22
       - |
         if [ "$JTYPE" = "framework" ]; then
         rclone sync ./build/framework-$JVERSION/ api:/home/api/public_html/framework-$JVERSION/ -v
@@ -116,8 +122,7 @@ steps:
         export MAJORVERSION=${JVERSION:0:1}
         rclone sync ./build/cms-$MAJORVERSION/ api:/home/api/public_html/cms-$MAJORVERSION/ -v
         fi
-      - /bin/notify
-
+      - curl -i -X POST -H 'Content-Type:application/json' -d '{"text":"API Build for [Joomla ${MINORVERSION}](https://api.joomla.org/cms-${MAJORVERSION}) successfully built."}' $MATTERMOST_NIGHTLY_HOOK
 
 volumes:
   - name: phpdocumentor-cache
@@ -132,6 +137,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 5c08c08a45e4eb39ec6e5feafd4c86d19b0843acea3ec4752e7ede4220368ffb
+hmac: 7ddfcdba3eee793cdc72fa49568c10a6880fd617269d78bdf7d8723ee61960f0
 
 ...
