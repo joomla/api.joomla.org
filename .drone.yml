@@ -18,7 +18,7 @@ steps:
         from_secret: mattermost_nightly_hook
     commands:
       - mkdir build
-      - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
+      - cp -r -v archived.html css/ fonts/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
       - mkdir -p ~/.ssh
       - eval $(ssh-agent -s)
       - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
@@ -143,6 +143,6 @@ trigger:
 
 ---
 kind: signature
-hmac: a002e30e04f1c87e97ac1d7ca091e3a71f5d958b15cb162c91a2e6200701f48b
+hmac: 9242651eddd196e5111a0ab5d2197cd2a21f1505649a1c8c8c2d313f0d760686
 
 ...
