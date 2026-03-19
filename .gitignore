@@ -5,7 +5,7 @@
 .DS_Store
 .idea
 
-/.phpdoc/
+/.phpdoc/cache/
 /api-docs/
 /build/
 /repos/
