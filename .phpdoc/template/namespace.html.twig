@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% macro renderPackageDetails(node) %}
+{% macro renderNamespaceDetails(node) %}
     {% import _self as self %}
     {% import 'base/macros.html.twig' as macros %}
 
@@ -11,8 +11,8 @@
         </ul>
 
         {% if node.functions|length > 0 %}
-            <h2 class="package__header">Functions</h2>
-            <div class="package__functions">
+            <h2 class="namespace__header">Functions</h2>
+            <div class="namespace__functions">
                 {% for function in node.functions|sort_asc %}
                     {{ macros.elementSummary(function, 'function') }}
                 {% endfor %}
@@ -20,8 +20,8 @@
         {% endif %}
 
         {% if node.constants|length > 0 %}
-            <h2 class="package__header">Constants</h2>
-            <div class="package__constants">
+            <h2 class="namespace__header">Constants</h2>
+            <div class="namespace__constants">
                 {% for constant in node.constants|sort_asc %}
                     {{ macros.elementSummary(constant, 'constant') }}
                 {% endfor %}
@@ -29,8 +29,8 @@
         {% endif %}
 
         {% if node.traits|length > 0 %}
-            <h2 class="package__header">Traits</h2>
-            <div class="package__traits">
+            <h2 class="namespace__header">Traits</h2>
+            <div class="namespace__traits">
                 {% for trait in node.traits|sort_asc %}
                     {{ macros.elementSummary(trait, 'trait') }}
                 {% endfor %}
@@ -38,8 +38,8 @@
         {% endif %}
 
         {% if node.interfaces|length > 0 %}
-            <h2 class="package__header">Interfaces</h2>
-            <div class="package__traits">
+            <h2 class="namespace__header">Interfaces</h2>
+            <div class="namespace__traits">
                 {% for interface in node.interfaces|sort_asc %}
                     {{ macros.elementSummary(interface, 'interface') }}
                 {% endfor %}
@@ -47,8 +47,8 @@
         {% endif %}
 
         {% if node.classes|length > 0 %}
-            <h2 class="package__header">Classes</h2>
-            <div class="package__classes">
+            <h2 class="namespace__header">Classes</h2>
+            <div class="namespace__classes">
                 {% for class in node.classes|sort_asc %}
                     {{ macros.elementSummary(class, 'class') }}
                 {% endfor %}
@@ -56,21 +56,21 @@
         {% endif %}
     {% endif %}
 
-    {% for package in node.children|sort_asc %}
-        {{ self.renderPackageDetails(package) }}
+    {% for namespace in node.children|sort_asc %}
+        {{ self.renderNamespaceDetails(namespace) }}
     {% endfor %}
 {% endmacro %}
 
-{% macro renderPackageSidebar(node) %}
+{% macro renderNamespaceSidebar(node) %}
     {% import _self as self %}
 
-    {% for package in node.children|sort_asc %}
+    {% for namespace in node.children|sort_asc %}
     <li>
-        <a href="{{ path(package|route('url')) }}" title="{{ package.name }}">
-            <i class="icon-grid-view-2"></i> {{ package.name }}
+        <a href="{{ path(namespace|route('url')) }}" title="{{ namespace.name }}">
+            <i class="icon-grid-view-2"></i> {{ namespace.name }}
         </a>
-        <ul class="nav nav-list nav-packages">
-            {{ self.renderPackageSidebar(package) }}
+        <ul class="nav nav-list nav-namespaces">
+            {{ self.renderNamespaceSidebar(namespace) }}
         </ul>
     </li>
     {% endfor %}
@@ -83,18 +83,18 @@
 {% block content %}
     {% import _self as self %}
 
-    <div class="row-fluid">
-        <aside class="span5">
+    <div class="row">
+        <aside class="col-md-5">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">
-                    <i class="icon-map-marker"></i> Packages
+                    <i class="icon-map-marker"></i> Namespaces
                 </li>
-                {{ self.renderPackageSidebar(node) }}
+                {{ self.renderNamespaceSidebar(node) }}
             </ul>
         </aside>
 
-        <main class="span7 package">
-            {{ self.renderPackageDetails(node) }}
+        <main class="col-md-7 namespace">
+            {{ self.renderNamespaceDetails(node) }}
         </main>
     </div>
 {% endblock %}

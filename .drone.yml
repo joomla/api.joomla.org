@@ -90,13 +90,13 @@ steps:
     commands:
       - |
         if [ "$JTYPE" = "framework" ]; then 
-        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --defaultpackagename "Joomla Framework" --setting=graphs.enabled=true --setting=guides.enabled=true
+        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./.phpdoc/template" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --defaultpackagename "Joomla Framework" --setting=graphs.enabled=true --setting=guides.enabled=true
         fi
       - |
         if [ "$JTYPE" = "cms" ]; then
         export MINORVERSION=${JVERSION%.*}
         export MAJORVERSION=${JVERSION:0:1}
-        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=true --setting=guides.enabled=true
+        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./.phpdoc/template" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=true --setting=guides.enabled=true
         fi
 
   - name: deploy_documentation
@@ -143,6 +143,6 @@ trigger:
 
 ---
 kind: signature
-hmac: a002e30e04f1c87e97ac1d7ca091e3a71f5d958b15cb162c91a2e6200701f48b
+hmac: 67087323497814e16bc3178c5c4bd9a792c848753058015b6dc094aecd127f84
 
 ...

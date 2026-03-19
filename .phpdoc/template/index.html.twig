@@ -1,0 +1,72 @@
+{% extends 'layout.html.twig' %}
+
+{% import 'base/macros.html.twig' as macros %}
+
+{% block content %}
+        <div class="row">
+            <div class="col-md-7">
+                {% if project.namespace|length > 0 or not project.indexes.packages %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Namespaces</h5>
+
+                            <ul class="list-group list-group-flush">
+                                {% block listRootNamespaces %}
+                                {% for namespace in project.namespace.children %}
+                                    <li class="list-group-item"><a href="{{ path(namespace|route('url')) }}">{{ namespace.name }}</a></li>
+                                {% endfor %}
+                                {% endblock %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if project.package|length %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Packages</h5>
+
+                            <ul class="list-group list-group-flush">
+                                {% block listRootPackages %}
+                                {% for package in project.package.children %}
+                                <li class="list-group-item"><a href="{{ link(package) }}">{{ package.name }}</a></li>
+                                {% endfor %}
+                                {% endblock %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Charts</h5>
+
+                        <ul class="list-group list-group-flush">
+                            {% block listCharts %}
+                            <li class="list-group-item">
+                                <a href="{{ path('graph_class.html') }}">
+                                    <i class="icon-list-alt"></i> Class inheritance diagram
+                                </a>
+                            </li>
+                            {% endblock %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reports</h5>
+
+                        <ul class="list-group list-group-flush">
+                            {% block listReports %}
+                            <li class="list-group-item"><a href="{{ path('deprecated.html') }}"><i class="icon-list-alt"></i> Deprecated {{ macros.renderDeprecatedCounter(project.indexes.elements) }}</a></li>
+                            <li class="list-group-item"><a href="{{ path('errors.html') }}"><i class="icon-list-alt"></i> Errors {{ macros.renderErrorCounter(project.files) }}</a></li>
+                            <li class="list-group-item"><a href="{{ path('markers.html') }}"><i class="icon-list-alt"></i> Markers {{ macros.renderMarkerCounter(project.files) }}</a></li>
+                            {% endblock %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

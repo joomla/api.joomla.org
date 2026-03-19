@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row-fluid">
+    <div class="row">
 
-        <aside class="span5">
+        <aside class="col-md-5">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
                 {% set errorCount = 0 %}
@@ -15,7 +15,7 @@
                 {% for element in project.indexes.elements %}
                     {% if element.deprecated %}
                         {% if element.file.path != previousPath %}
-                            <li><a href="#{{ element.file.path }}"><i class="icon-file"></i> {{ element.file.path }}</a></li>
+                            <li><a href="deprecated.html#{{ element.file.path }}"><i class="icon-file"></i> {{ element.file.path }}</a></li>
                         {% endif %}
                         {% set errorCount = errorCount + element.tags.deprecated.count %}
                         {% if fileCounts[element.file.path] is not defined %}
@@ -28,7 +28,7 @@
             </ul>
         </aside>
 
-        <main class="span7">
+        <main class="col-md-7">
             <h1>Deprecated Elements</h1>
 
             {% if errorCount <= 0 %}

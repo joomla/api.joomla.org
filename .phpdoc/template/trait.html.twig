@@ -8,14 +8,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row-fluid">
-        <aside class="span5">
+    <div class="row">
+        <aside class="col-md-5">
             {{ block('sidebar') }}
         </aside>
 
-        <main class="span7">
-            <div class="element element--class">
-                {% include 'class/base.element.html.twig' with {'node': node, 'type': 'class'} %}
+        <main class="col-md-7">
+            <div class="element element--trait">
+                {% include 'class/base.element.html.twig' with {'node': node, 'type': 'trait'} %}
             </div>
             <ul class="breadcrumb">
                 {{ macros.buildBreadcrumb(node.namespace) }}

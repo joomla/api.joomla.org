@@ -3,7 +3,7 @@
     {% for file in files %}
         {% set count = count + file.markers|length %}
     {% endfor %}
-    <span class="label label-info">{{ count }}</span>
+    <span class="badge badge-info">{{ count }}</span>
 {% endmacro %}
 
 {% macro renderErrorCounter(files) %}
@@ -15,7 +15,7 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
-    <span class="label label-info">{{ count }}</span>
+    <span class="badge badge-info">{{ count }}</span>
 {% endmacro %}
 
 {% macro renderDeprecatedCounter(elements) %}
@@ -25,7 +25,7 @@
             {% set count = count + element.tags.deprecated.count %}
         {% endif %}
     {% endfor %}
-    <span class="label label-info">{{ count }}</span>
+    <span class="badge badge-info">{{ count }}</span>
 {% endmacro %}
 
 {% macro buildBreadcrumb(element) %}
