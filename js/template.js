@@ -2,11 +2,10 @@ if (typeof jQuery === 'undefined') {
     throw new Error('JoomlaApi JavaScript requires jQuery')
 }
 
-!function (jQuery, window, document, navigator) {
-    'use strict';
+window.Joomla=window.Joomla||{}
 
-    jQuery.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
-    jQuery.browser.ipad = /ipad/.test(navigator.userAgent.toLowerCase());
+!function (jQuery, window, document) {
+    'use strict';
 
     var JoomlaApi = window.JoomlaApi = {
         navTop: null,
@@ -42,12 +41,6 @@ if (typeof jQuery === 'undefined') {
                 })
                 .wrap('<span class="side-nav-header" />');
 
-            // do not show tooltips on iPad; it will cause the user having to click twice
-            if (!jQuery.browser.ipad) {
-                jQuery('.btn-group.visibility, .btn-group.type-filter').tooltip({'placement': 'bottom'});
-                jQuery('.element').tooltip({'placement': 'left'});
-            }
-
             jQuery('.btn-group.visibility, .btn-group.type-filter').show().find('button').find('i').click(function () {
                 jQuery(this).parent().click();
             });
@@ -82,43 +75,6 @@ if (typeof jQuery === 'undefined') {
         },
 
         /**
-         * Filter a path
-         *
-         * @param {String} string
-         * @returns {String}
-         */
-        filterPath: function (string) {
-            return string
-                .replace(/^\//, '')
-                .replace(/(index|default).[a-zA-Z]{3,4}$/, '')
-                .replace(/\/$/, '');
-        },
-
-        /**
-         * Initialize the scroll listeners
-         */
-        processScrollInit: function () {
-            var subnavWrapper = jQuery('.subnav-wrapper');
-
-            if (subnavWrapper.length) {
-                JoomlaApi.navTop = subnavWrapper.length && subnavWrapper.offset().top - 30;
-
-                // Fix the container top
-                jQuery('.body .container-main').css('top', subnavWrapper.height() + jQuery('#mega-menu').height());
-
-                // Only apply the scrollspy when the toolbar is not collapsed
-                if (document.body.clientWidth > 480) {
-                    var subnav = jQuery('.subnav');
-
-                    subnavWrapper.height(subnav.outerHeight());
-                    subnav.affix({
-                        offset: {top: subnav.offset().top - jQuery('#mega-menu').height()}
-                    });
-                }
-            }
-        },
-
-        /**
          * Event for when the page is scrolled
          */
         processScroll: function () {
@@ -139,90 +95,10 @@ if (typeof jQuery === 'undefined') {
                 }
             }
         },
-
-        /**
-         * Find the first scrollable element
-         *
-         * @param {*} els
-         * @returns {*}
-         */
-        scrollableElement: function (els) {
-            for (var i = 0, argLength = arguments.length; i < argLength; i++) {
-                var el = arguments[i],
-                    $scrollElement = jQuery(el);
-
-                if ($scrollElement.scrollTop() > 0) {
-                    return el;
-                }
-
-                $scrollElement.scrollTop(1);
-
-                var isScrollable = $scrollElement.scrollTop() > 0;
-
-                $scrollElement.scrollTop(0);
-
-                if (isScrollable) {
-                    return el;
-                }
-            }
-
-            return [];
-        }
     };
 
     jQuery(document).ready(function () {
-        prettyPrint();
         JoomlaApi.initializeContents();
-        JoomlaApi.processScrollInit();
         JoomlaApi.processScroll();
-
-        // do not show tooltips on iPad; it will cause the user having to click twice
-        if (!jQuery.browser.ipad) {
-            jQuery('.side-nav a').tooltip({'placement': 'top'});
-        }
-
-        // chrome cannot deal with certain situations; warn the user about reduced features
-        if (jQuery.browser.chrome && (window.location.protocol == 'file:')) {
-            jQuery('body > .container').prepend(
-                '<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a>' +
-                'You are using Google Chrome in a local environment; AJAX interaction has been ' +
-                'disabled because Chrome cannot <a href="http://code.google.com/p/chromium/issues/detail?id=40787">' +
-                'retrieve files using Ajax</a>.</div>'
-            );
-        }
-
-        var locationPath = JoomlaApi.filterPath(location.pathname);
-
-        // the ipad already smoothly scrolls and does not detect the scrollable
-        // element if top=0; as such we disable this behaviour for the iPad
-        if (!jQuery.browser.ipad) {
-            jQuery('a[href*=#]').each(function () {
-                var thisPath = JoomlaApi.filterPath(this.pathname) || locationPath;
-                if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
-                    var target = decodeURIComponent(this.hash.replace(/#/, ''));
-                    // note: I'm using attribute selector, because id selector can't match elements with '$'
-                    var $target = jQuery('[id="' + target + '"]');
-
-                    if ($target.length > 0) {
-                        jQuery(this).click(function (event) {
-                            var scrollElem = JoomlaApi.scrollableElement('html', 'body'),
-                                targetOffset = $target.offset().top;
-
-                            event.preventDefault();
-                            jQuery(scrollElem).animate({scrollTop: targetOffset}, 400, function () {
-                                location.hash = target;
-                            });
-                        });
-                    }
-                }
-            });
-        }
-
-        // Hide API Documentation menu if it's empty
-        jQuery('.subnav .dropdown a[id=api]').next().filter(function (el) {
-            if (jQuery(el).children().length == 0) {
-                return true;
-            }
-        }).parent().hide();
     });
 }(jQuery, window, document, navigator);
