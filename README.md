@@ -4,7 +4,7 @@ This repository hosts the source files used to build the [Joomla! API Documentat
 
 ## Static Files
 
-The following static files are used for the general website
+The `/assets` folder contains the static files used for the general website
 
 - `index.html` is the site's homepage
 - `results.html` is the search results page; this uses Google's Custom Search platform
@@ -12,9 +12,9 @@ The following static files are used for the general website
 
 ## phpDocumentor Template
 
-Most of the other files in this repository are used by [phpDocumentor](https://www.phpdoc.org/) for generating the API documentation.  A general structure can be found in the `template.xml` file.
+The `/template` folder is used by [phpDocumentor](https://www.phpdoc.org/) for generating the API documentation.  A general structure can be found in the `template/template.xml` file.
 
-Most of the static media assets in this repository (CSS, JavaScript, and images) are used within the generated documentation; some of the images are template assets or used by the homepage.
+Most of the static media assets in `/assets` (CSS, JavaScript, and images) are also used within the generated documentation via absolute URLs back to `https://api.joomla.org`; some of the images are template assets or used by the homepage.
 
 ## Website Structure
 
