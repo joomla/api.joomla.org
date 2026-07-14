@@ -17,8 +17,6 @@ steps:
       MATTERMOST_NIGHTLY_HOOK:
         from_secret: mattermost_nightly_hook
     commands:
-      - mkdir build
-      - cp -r -v archived.html css/ images/ img/ js/ index.html results.html robots.txt 403.html 404.html .htaccess ./build
       - mkdir -p ~/.ssh
       - eval $(ssh-agent -s)
       - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
@@ -26,7 +24,7 @@ steps:
       - chmod 600 ~/.ssh/id_rsa
       - ssh-add
       - rclone config create api sftp host $FTP_HOST user $FTP_USER port 22
-      - rclone copy ./build/ api:/home/api/public_html -v
+      - rclone copy ./assets/ api:/home/api/public_html -v
       - curl -i -X POST -H 'Content-Type:application/json' -d '{"text":"api.joomla.org Deployment for assets was successfull."}' $MATTERMOST_NIGHTLY_HOOK
 
 trigger:
@@ -90,13 +88,13 @@ steps:
     commands:
       - |
         if [ "$JTYPE" = "framework" ]; then 
-        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --defaultpackagename "Joomla Framework" --setting=graphs.enabled=true --setting=guides.enabled=true
+        phpdoc -d "./repos/*/src" -t "./build/framework-$JVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./template/" --title "Joomla! Framework $JVERSION.x API" -i "./repos/string/src/phputf8" --defaultpackagename "Joomla Framework" --setting=graphs.enabled=true --setting=guides.enabled=true
         fi
       - |
         if [ "$JTYPE" = "cms" ]; then
         export MINORVERSION=${JVERSION%.*}
         export MAJORVERSION=${JVERSION:0:1}
-        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=true --setting=guides.enabled=true
+        phpdoc -d "./repos/joomla-cms/libraries/src" -t "./build/cms-$MAJORVERSION/" --cache-folder "/tmp/phpdocumentor-cache" --template "./template/" --title "Joomla! CMS $MINORVERSION.x API" --defaultpackagename "Joomla CMS" --setting=graphs.enabled=true --setting=guides.enabled=true
         fi
 
   - name: deploy_documentation
@@ -143,6 +141,6 @@ trigger:
 
 ---
 kind: signature
-hmac: a002e30e04f1c87e97ac1d7ca091e3a71f5d958b15cb162c91a2e6200701f48b
+hmac: 43860adeedcf732482b2d862fa22a1b6e2b651df8f745c51b34277b4820032db
 
 ...

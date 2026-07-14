@@ -77,6 +77,6 @@ class RoboFile extends Tasks
 	public function generatePhpdocu(ConsoleIO $io, $opts = ['fw' => '2'])
 	{
 		$this->say('Generate API documentation using phpDocumentor for Joomla Framework ' . $opts['fw'] . '.x packages');
-		$this->_exec('php phpDocumentor.phar -d ./repos/*/src -t ./build/api-docs/v' . $opts['fw'] . '/ --template ./ --title "Joomla! Framework ' . $opts['fw'] . '.x API" -i ./repos/string/src/phputf8');
+		$this->_exec('php phpDocumentor.phar -d ./repos/*/src -t ./build/api-docs/v' . $opts['fw'] . '/ --template ./template/ --title "Joomla! Framework ' . $opts['fw'] . '.x API" -i ./repos/string/src/phputf8');
 	}
 }
