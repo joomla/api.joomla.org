@@ -1,0 +1,9 @@
+{% if node is attributed %}
+    {% set nodeAttributes = attributes(node)|specializedAttributes %}
+    {% if nodeAttributes|length > 0 %}
+        <div class="element__attributes">
+            <pre><code class="language-php">{% for attribute in nodeAttributes %}#[{{ attribute.attribute|shortFQSEN }}{% if attribute.arguments|length > 0 %}({% for argument in attribute.arguments %}{% if argument.name %}{{ argument.name }}: {% endif %}{{ argument.value }}{% if not loop.last %}, {% endif %}{% endfor %}){% endif %}]
+{% endfor %}</code></pre>
+        </div>
+    {% endif %}
+{% endif %}
