@@ -67,5 +67,19 @@
             </ul>
             {% endif %}
         </li>
+        {% if node is enum and node.cases|length > 0 %}
+        <li class="nav-header">
+            Cases
+            <ul>
+                {% for case in node.cases|sort_asc %}
+                <li class="case">
+                    <a href="{{ link(node) }}#case_{{ case.name }}" title="{{ case.name }} :: {{ case.summary }}">
+                        <pre>{{ case.name }}</pre>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
     </ul>
 {% endblock %}

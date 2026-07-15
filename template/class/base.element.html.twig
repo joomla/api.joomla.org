@@ -1,6 +1,9 @@
 {% import 'base/macros.html.twig' as macros %}
 
-<h1 class="element__header">{{ node.name }}</h1>
+<h1 class="element__header">
+    {{ node.name }}
+    {% if node is enum and node.backedType %}<code class="element__backed-type">: {{ node.backedType }}</code>{% endif %}
+</h1>
 
 {% if node.parent|length or node.interfaces|length %}
     <small class="pull-right">
@@ -16,6 +19,8 @@
 {% if node.summary %}
     <p class="element__summary">{{ node.summary }}</p>
 {% endif %}
+
+{% include 'class/attributes.html.twig' with {'node': node} %}
 
 {% if node.final or node.abstract or (node.tags.deprecated is defined) or node.description %}
     <div class="element__description">
@@ -93,5 +98,12 @@
     <h2>Properties</h2>
     {% for property in node.properties.merge(specialProperties) %}
         {% include 'class/property.html.twig' with {'property': property, 'node': node} %}
+    {% endfor %}
+{% endif %}
+
+{% if node is enum and node.cases|length > 0 %}
+    <h2>Cases</h2>
+    {% for case in node.cases %}
+        {% include 'class/case.html.twig' with {'case': case, 'node': node} %}
     {% endfor %}
 {% endif %}

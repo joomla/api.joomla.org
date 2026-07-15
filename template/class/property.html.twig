@@ -15,6 +15,8 @@
     {% endif %}
 
     <div class="collapse">
+        {% include 'class/attributes.html.twig' with {'node': property} %}
+
         {% if property.description %}
             <div class="node__description">{{ property.description|markdown|raw }}</div>
         {% endif %}

@@ -7,7 +7,7 @@
         {{ method.summary|markdown|raw }}
     {% endif %}
 
-    <pre>{{ method.name }}({% for argument in method.arguments %}{{ argument.type ? argument.type|join('|') ~ ' ' }}{{ argument.byReference ? '&' }}{{ argument.name }}{{ argument.default ? ' = ' ~ argument.default }}{% if not loop.last %}, {% endif %}{% endfor %}) {{ method.response.type ? ': ' ~ method.response.type|join('|') }}</pre>
+    <pre><code class="language-php">{{ method.name }}({% for argument in method.arguments %}{{ argument.type ? argument.type ~ ' ' }}{{ argument.byReference ? '&' }}${{ argument.name }}{{ argument.default ? ' = ' ~ argument.default }}{% if not loop.last %}, {% endif %}{% endfor %}){{ method.response.type ? ': ' ~ method.response.type }}</code></pre>
 
     {% if (method.parent.name != node.name) or method.static or method.final or method.abstract or (method.tags.api is defined) or (method.tags.deprecated is defined) %}
         <div class="pull-right">

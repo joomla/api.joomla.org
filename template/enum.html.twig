@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% import 'base/macros.html.twig' as macros %}
+{% use 'base/class.sidebar.html.twig' %}
+
+{% block title %}
+    {{ parent() }} &raquo; {{ node.FullyQualifiedStructuralElementName }}
+{% endblock %}
+
+{% block content %}
+    <div class="row-fluid">
+        <aside class="span5">
+            {{ block('sidebar') }}
+        </aside>
+
+        <main class="span7">
+            <div class="element element--enum">
+                {% include 'class/base.element.html.twig' with {'node': node, 'type': 'enum'} %}
+            </div>
+            <ul class="breadcrumb">
+                {{ macros.buildBreadcrumb(node.namespace) }}
+                <li class="active"><span class="divider">\</span> {{ node.name }}</li>
+            </ul>
+        </main>
+    </div>
+{% endblock %}

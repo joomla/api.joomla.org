@@ -1,0 +1,73 @@
+{% import 'base/macros.html.twig' as macros %}
+
+<div class="element__node node--clickable node--case node--visibility-public" id="case_{{ case.name }}" data-toggle="collapse" data-target="#case_{{ case.name }} .collapse">
+    <h3 class="node__header">{{ case.name }}</h3>
+
+    {% if case.summary %}
+        {{ case.summary|markdown|raw }}
+    {% endif %}
+
+    {% if case.tags.deprecated is defined %}
+        <div class="pull-right">
+            <span class="label label-important">deprecated</span>
+        </div>
+    {% endif %}
+
+    <div class="collapse">
+        {% include 'class/attributes.html.twig' with {'node': case} %}
+
+        {% if case.description %}
+            <div class="node__description">{{ case.description|markdown|raw }}</div>
+        {% endif %}
+
+        {% if case.value %}
+            <table class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <th scope="row">Value</th>
+                        <td>{{ case.value }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+
+        {% if case.tags|length > 0 %}
+            <table class="table table-condensed">
+                <tbody>
+                    {% for tagList in case.tags %}
+                        {% if tagList|length %}
+                            {% if tagList.0.name not in ['var'] %}
+                                {% if tagList.0.name == 'package' and tagList.0.description == 'Default' %}
+                                    {# Do not display the package tag if its value is "Default" #}
+                                {% else %}
+                                    <tr>
+                                        <th scope="row">
+                                            {{ tagList.0.name }}
+                                        </th>
+                                        <td>
+                                            {% for tag in tagList %}
+                                                {% if tag.name == 'since' %}
+                                                    {{ tag.version|markdown|raw }}
+                                                {% elseif tag.name == 'deprecated' %}
+                                                    {{ (tag.version ~ ' ' ~ tag.description)|markdown|raw }}
+                                                {% elseif tag.name == 'see' %}
+                                                    {% if tag.reference|slice(0, 4) == 'http' %}
+                                                        {{ tag.reference|markdown|raw }}
+                                                    {% else %}
+                                                        {{ tag.reference|route|raw }}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {{ tag.description|markdown|raw }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</div>
