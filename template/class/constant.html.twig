@@ -15,6 +15,8 @@
     {% endif %}
 
     <div class="collapse">
+        {% include 'class/attributes.html.twig' with {'node': constant} %}
+
         {% if constant.description %}
             <div class="node__description">{{ constant.description|markdown|raw }}</div>
         {% endif %}

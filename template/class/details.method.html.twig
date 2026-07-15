@@ -1,6 +1,8 @@
 {% import 'base/macros.html.twig' as macros %}
 
 <div class="collapse">
+    {% include 'class/attributes.html.twig' with {'node': method} %}
+
     {% if method.description %}
         <div class="node__description">{{ method.description|markdown|raw }}</div>
     {% endif %}
