@@ -171,7 +171,9 @@ if (typeof jQuery === 'undefined') {
     };
 
     jQuery(document).ready(function () {
-        prettyPrint();
+        if (typeof Prism !== 'undefined') {
+            Prism.highlightAll();
+        }
         JoomlaApi.initializeContents();
         JoomlaApi.processScrollInit();
         JoomlaApi.processScroll();
